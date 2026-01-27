@@ -1,0 +1,24 @@
+{
+    "name": "webflow-doc",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "vue": "^3.5.25",
+        "vue-router": "^4.6.4",
+        "@iconify/vue": "^5.0.0",
+        "webflow-ui": "workspace:*"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.1.17",
+        "@vitejs/plugin-vue": "^5.2.4",
+        "tailwindcss": "^4.1.17",
+        "typescript": "^5.7.2",
+        "vite": "^6.4.1"
+    }
+}
