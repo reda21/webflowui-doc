@@ -63,7 +63,7 @@ const modalCodeExample = computed(() => {
 
                     <!-- Mock Modal -->
                     <div
-                        class="relative z-10 w-full max-w-md glass rounded-3xl shadow-2xl shadow-cyan-500/10 border border-white/10 p-8 transform group-hover:scale-[1.02] transition-transform duration-500">
+                        class="relative z-10 w-full max-w-md glass rounded-3xl shadow-2xl shadow-cyan-500/10 border border-slate-200 dark:border-white/10 p-8 transform group-hover:scale-[1.02] transition-transform duration-500 bg-white/80 dark:bg-transparent">
                         <div class="flex items-center justify-between mb-8">
                             <div class="flex items-center gap-3">
                                 <div
@@ -71,13 +71,14 @@ const modalCodeExample = computed(() => {
                                     <Icon name="heroicons:bolt" />
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-black italic tracking-tight text-white">System Alert</h3>
+                                    <h3 class="text-lg font-black italic tracking-tight text-slate-900 dark:text-white">
+                                        System Alert</h3>
                                     <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">
                                         Confirmation Protocol</p>
                                 </div>
                             </div>
                         </div>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-8 italic">
+                        <p class="text-slate-600 dark:text-slate-500 text-sm leading-relaxed mb-8 italic">
                             Êtes-vous sûr de vouloir initialiser le déploiement ? Cette action est irréversible et
                             affectera le noyau central.
                         </p>
@@ -94,24 +95,28 @@ const modalCodeExample = computed(() => {
                     :variant="selectedVariant" :severity="selectedSeverity" :animation="selectedAnimation"
                     :overlay-blur="overlayBlur" :overlay-opacity="overlayOpacity">
                     <div class="space-y-6">
-                        <div class="p-6 bg-slate-950/50 rounded-2xl border border-white/5 flex items-start gap-4">
-                            <Icon name="heroicons:information-circle" class="text-cyan-400 mt-1" />
-                            <p class="text-slate-400 text-sm leading-relaxed">
+                        <div
+                            class="p-6 bg-slate-100 dark:bg-slate-950/50 rounded-2xl border border-slate-200 dark:border-white/5 flex items-start gap-4">
+                            <Icon name="heroicons:information-circle" class="text-cyan-500 dark:text-cyan-400 mt-1" />
+                            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                                 Vous visualisez actuellement une instance réelle de la <span
-                                    class="text-cyan-400 font-bold">Modal Premium</span>.
+                                    class="text-cyan-500 dark:text-cyan-400 font-bold">Modal Premium</span>.
                                 Testez l'interaction clavier (Echap) et le focus trap.
                             </p>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="p-4 glass rounded-xl space-y-1 bg-white/5">
+                            <div
+                                class="p-4 glass rounded-xl space-y-1 bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/5">
                                 <span
                                     class="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Dimensions</span>
-                                <p class="font-bold font-mono text-cyan-400">{{ selectedSize }}</p>
+                                <p class="font-bold font-mono text-cyan-500 dark:text-cyan-400">{{ selectedSize }}</p>
                             </div>
-                            <div class="p-4 glass rounded-xl space-y-1 bg-white/5">
+                            <div
+                                class="p-4 glass rounded-xl space-y-1 bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/5">
                                 <span
                                     class="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Style</span>
-                                <p class="font-bold font-mono text-cyan-400">{{ selectedVariant }}</p>
+                                <p class="font-bold font-mono text-cyan-500 dark:text-cyan-400">{{ selectedVariant }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -124,13 +129,14 @@ const modalCodeExample = computed(() => {
                 </Modal>
 
                 <!-- Dynamic Controls -->
-                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8 bg-black/20">
+                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8 bg-slate-50 dark:bg-black/20">
                     <div class="space-y-2">
                         <label
                             class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Dimensions</label>
                         <select v-model="selectedSize"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-cyan-500/50 transition-all cursor-pointer text-slate-300 font-bold">
-                            <option v-for="opt in sizeOptions" :key="opt" :value="opt" class="bg-slate-900">{{ opt }}
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-cyan-500/50 transition-all cursor-pointer text-slate-700 dark:text-slate-300 font-bold">
+                            <option v-for="opt in sizeOptions" :key="opt" :value="opt"
+                                class="bg-white dark:bg-slate-900">{{ opt }}
                             </option>
                         </select>
                     </div>
@@ -138,16 +144,18 @@ const modalCodeExample = computed(() => {
                         <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Variante
                             Visuelle</label>
                         <select v-model="selectedVariant"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-cyan-500/50 transition-all cursor-pointer text-slate-300 font-bold">
-                            <option v-for="opt in variantOptions" :key="opt" :value="opt" class="bg-slate-900">{{ opt }}
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-cyan-500/50 transition-all cursor-pointer text-slate-700 dark:text-slate-300 font-bold">
+                            <option v-for="opt in variantOptions" :key="opt" :value="opt"
+                                class="bg-white dark:bg-slate-900">{{ opt }}
                             </option>
                         </select>
                     </div>
                     <div class="space-y-2">
                         <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Sévérité</label>
                         <select v-model="selectedSeverity"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-cyan-500/50 transition-all cursor-pointer text-slate-300 font-bold">
-                            <option v-for="opt in severityOptions" :key="opt" :value="opt" class="bg-slate-900">{{ opt
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-cyan-500/50 transition-all cursor-pointer text-slate-700 dark:text-slate-300 font-bold">
+                            <option v-for="opt in severityOptions" :key="opt" :value="opt"
+                                class="bg-white dark:bg-slate-900">{{ opt
                                 }}</option>
                         </select>
                     </div>
@@ -157,25 +165,32 @@ const modalCodeExample = computed(() => {
 
         <!-- Variants Grid -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="glass-card p-10 space-y-6 hover:-translate-y-2 transition-transform duration-500">
+            <div
+                class="glass-card p-10 space-y-6 hover:-translate-y-2 transition-transform duration-500 border-slate-200 dark:border-white/5">
                 <div
-                    class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shadow-lg shadow-indigo-500/10">
+                    class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 dark:text-indigo-400 shadow-lg shadow-indigo-500/10">
                     <Icon name="heroicons:device-phone-mobile" size="lg" />
                 </div>
-                <h3 class="text-xl font-bold italic text-white uppercase tracking-tighter">Mobile First</h3>
+                <h3 class="text-xl font-bold italic text-slate-900 dark:text-white uppercase tracking-tighter">Mobile
+                    First</h3>
                 <p class="text-sm text-slate-500 leading-relaxed italic">
-                    La variante <code class="text-indigo-400 font-bold">bottom-sheet</code> transforme la modal en
+                    La variante <code class="text-indigo-500 dark:text-indigo-400 font-bold">bottom-sheet</code>
+                    transforme la
+                    modal en
                     panneau
                     glissant sur mobile, mimant les interactions natives iOS/Android.
                 </p>
             </div>
 
-            <div class="glass-card p-10 space-y-6 hover:-translate-y-2 transition-transform duration-500">
+            <div
+                class="glass-card p-10 space-y-6 hover:-translate-y-2 transition-transform duration-500 border-slate-200 dark:border-white/5">
                 <div
-                    class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 shadow-lg shadow-emerald-500/10">
+                    class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 dark:text-emerald-400 shadow-lg shadow-emerald-500/10">
                     <Icon name="heroicons:eye" size="lg" />
                 </div>
-                <h3 class="text-xl font-bold italic text-white uppercase tracking-tighter">Accessibilité WCAG</h3>
+                <h3 class="text-xl font-bold italic text-slate-900 dark:text-white uppercase tracking-tighter">
+                    Accessibilité
+                    WCAG</h3>
                 <p class="text-sm text-slate-500 leading-relaxed italic">
                     Focus trap intégré, attributs ARIA automatiques et restauration du focus à la fermeture.
                     Certifié compatible lecteur d'écran.
@@ -189,18 +204,20 @@ const modalCodeExample = computed(() => {
                 <span class="w-8 h-1 bg-cyan-500 rounded-full"></span>
                 Implémentation
             </h2>
-            <div class="code-window">
+            <div class="code-window shadow-2xl shadow-cyan-500/5">
                 <div class="code-header font-display">
                     <span
                         class="text-[10px] text-slate-500 font-mono font-black tracking-widest uppercase">DialogController.vue</span>
                 </div>
-                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-950/50">
-                    <pre><span class="text-pink-500">import</span> { <span class="text-cyan-400">Modal</span>, <span
-                    class="text-cyan-400">useModal</span> } <span class="text-pink-500">from</span> <span
-                    class="text-emerald-400">'@webmx/ui'</span>;
+                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-50 dark:bg-slate-950/50">
+                    <pre><span class="text-pink-600 dark:text-pink-500">import</span> { <span
+                    class="text-cyan-600 dark:text-cyan-400">Modal</span>, <span
+                    class="text-cyan-600 dark:text-cyan-400">useModal</span> } <span
+                    class="text-pink-600 dark:text-pink-500">from</span> <span
+                    class="text-emerald-600 dark:text-emerald-400">'@webmx/ui'</span>;
 
                 <span class="text-slate-500">// Déclencheur réactif</span>
-                <span class="text-white">{{ modalCodeExample }}</span>
+                <span class="text-slate-800 dark:text-white">{{ modalCodeExample }}</span>
             </pre>
                 </div>
             </div>
@@ -212,7 +229,8 @@ const modalCodeExample = computed(() => {
                 <span class="w-8 h-1 bg-cyan-500 rounded-full"></span>
                 Matrix API
             </h2>
-            <div class="glass rounded-3xl overflow-hidden border border-white/5 bg-black/20">
+            <div
+                class="glass rounded-3xl overflow-hidden border border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-black/20">
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr
@@ -229,9 +247,9 @@ const modalCodeExample = computed(() => {
                             { name: 'variant', type: 'default | glass | bottom-sheet', default: '\'default\'' },
                             { name: 'animation', type: 'scale | slide | fade', default: '\'scale\'' },
                             { name: 'severity', type: 'info | warning | danger | success', default: '\'default\'' },
-                        ]" :key="prop.name" class="hover:bg-white/5 transition-colors group">
+                        ]" :key="prop.name" class="hover:bg-cyan-500/5 dark:hover:bg-white/5 transition-colors group">
                             <td
-                                class="py-4 px-8 font-mono text-sm text-cyan-400 group-hover:text-cyan-300 transition-colors font-bold">
+                                class="py-4 px-8 font-mono text-sm text-cyan-600 dark:text-cyan-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 transition-colors font-bold">
                                 {{ prop.name }}</td>
                             <td class="py-4 px-8 font-mono text-xs text-slate-400 italic opacity-80">{{ prop.type }}
                             </td>

@@ -1,22 +1,21 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Button, SocialButton, Icon } from 'webflow-ui'
-// Import Types
+import { Button, Icon } from 'webflow-ui'
 import type { ButtonSeverity, ButtonVariant, ButtonSize, ButtonRounded, ButtonShadow, ButtonRing, ButtonIconPos } from 'webflow-ui/components/button/types'
 
 // Button Configurator State
-type ButtonAs = 'button' | 'a' | 'input'
+
 
 const selectedSeverity = ref<ButtonSeverity>('primary')
 const selectedVariant = ref<ButtonVariant>('soft')
-const selectedSize = ref<ButtonSize>('md')
-const selectedRounded = ref<ButtonRounded>('md')
-const selectedShadow = ref<ButtonShadow>('none')
+const selectedSize = ref<ButtonSize>('lg')
+const selectedRounded = ref<ButtonRounded>('xl')
+const selectedShadow = ref<ButtonShadow>('xl')
 const selectedRing = ref<ButtonRing>('none')
-const selectedAs = ref<ButtonAs>('button')
-const selectedIcon = ref('')
+const selectedIcon = ref('heroicons:rocket-launch')
 const selectedIconPos = ref<ButtonIconPos>('left')
 const showOnlyIcon = ref(false)
+const isLoading = ref(false)
 
 const severityOptions: ButtonSeverity[] = ['primary', 'secondary', 'success', 'info', 'warn', 'help', 'danger', 'contrast']
 const variantOptions: ButtonVariant[] = ['soft', 'outlined', 'subtle', 'ghost', 'link']
@@ -26,23 +25,25 @@ const roundedOptions: ButtonRounded[] = ['none', 'xs', 'sm', 'md', 'lg', 'xl', '
 const buttonCodeExample = computed(() => {
     let props = ''
     if (selectedSeverity.value !== 'primary') props += ` severity="${selectedSeverity.value}"`
-    if (selectedVariant.value !== 'soft') props += ` variant="${selectedVariant.value}"`
+    if (selectedVariant.value !== 'solid') props += ` variant="${selectedVariant.value}"`
     if (selectedSize.value !== 'md') props += ` size="${selectedSize.value}"`
     if (selectedRounded.value !== 'md') props += ` rounded="${selectedRounded.value}"`
     if (selectedShadow.value !== 'none') props += ` shadow="${selectedShadow.value}"`
-    if (selectedRing.value !== 'none') props += ` ring="${selectedRing.value}"`
     if (selectedIcon.value) {
         props += ` icon="${selectedIcon.value}"`
         if (selectedIconPos.value !== 'left') props += ` icon-pos="${selectedIconPos.value}"`
     }
-    const label = showOnlyIcon.value && selectedIcon.value ? '' : (selectedIcon.value ? 'Action Button' : 'Button')
+    if (showOnlyIcon.value) props += ` square`
+    if (isLoading.value) props += ` loading`
+
+    const label = showOnlyIcon.value ? '' : 'Launch Action'
     return `<Button${props}>${label}</Button>`
 })
 </script>
 
 <template>
     <div class="space-y-16 pb-20">
-        <!-- Header Section -->
+        <!-- Header -->
         <header class="space-y-4">
             <div class="flex items-center gap-3">
                 <span
@@ -61,178 +62,159 @@ const buttonCodeExample = computed(() => {
             </p>
         </header>
 
-        <!-- Interactive Configurator (Hero Preview) -->
+        <!-- Interactive Configurator -->
         <section class="group relative">
             <div
-                class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-[2rem] blur opacity-25 group-hover:opacity-40 transition duration-1000">
+                class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-[2rem] blur opacity-25 group-hover:opacity-40 transition duration-1000">
             </div>
             <div class="relative glass-card overflow-hidden">
-                <!-- Live Preview Area -->
+                <!-- Live Preview Stage -->
                 <div
-                    class="p-12 lg:p-24 flex flex-col items-center justify-center min-h-[400px] bg-slate-50/50 dark:bg-slate-900/50 border-b border-white/5 relative">
-                    <!-- Background Grid -->
-                    <div class="absolute inset-0 opacity-10 pointer-events-none"
-                        style="background-image: radial-gradient(var(--neon-indigo) 1px, transparent 1px); background-size: 30px 30px;">
+                    class="relative min-h-[400px] flex items-center justify-center bg-slate-50/50 dark:bg-slate-900/50 p-12 overflow-hidden border-b border-white/5">
+                    <!-- Geometric Background -->
+                    <div class="absolute inset-0 opacity-20 pointer-events-none"
+                        style="background-image: radial-gradient(var(--neon-indigo) 1px, transparent 1px); background-size: 40px 40px;">
                     </div>
 
-                    <div class="relative z-10 p-12 glass rounded-3xl shadow-2xl flex flex-col items-center gap-8">
-                        <Button class="scale-125 transition-all duration-300" :severity="selectedSeverity"
-                            :variant="selectedVariant" :size="selectedSize" :rounded="selectedRounded"
-                            :shadow="selectedShadow" :ring="selectedRing" :as="selectedAs" :icon="selectedIcon"
-                            :icon-pos="selectedIconPos">
-                            {{ showOnlyIcon && selectedIcon ? '' : (selectedIcon ? 'Action Button' : 'Button') }}
+                    <!-- The Button -->
+                    <div
+                        class="relative z-10 p-10 bg-white/50 dark:bg-black/20 rounded-3xl border border-slate-200 dark:border-white/10 backdrop-blur-sm group-hover:scale-105 transition-transform duration-500">
+                        <Button :severity="selectedSeverity" :variant="selectedVariant" :size="selectedSize"
+                            :rounded="selectedRounded" :shadow="selectedShadow" :ring="selectedRing"
+                            :icon="selectedIcon" :icon-pos="selectedIconPos" :square="showOnlyIcon" :loading="isLoading"
+                            @click="isLoading = !isLoading" class="font-bold italic uppercase tracking-wider">
+                            {{ showOnlyIcon ? '' : 'Launch Action' }}
                         </Button>
-
-                        <div class="flex items-center gap-4 text-xs font-mono text-slate-500 opacity-60">
-                            <span>w: {{ selectedSize === '2xl' ? '180px' : 'auto' }}</span>
-                            <span>h: {{ selectedSize === '2xl' ? '64px' : 'auto' }}</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Controls Area -->
-                <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-black/5">
+                <!-- Configuration Grid -->
+                <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-slate-50 dark:bg-black/20">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Sévérité</label>
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Severity</label>
                         <select v-model="selectedSeverity"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-300">
-                            <option v-for="opt in severityOptions" :key="opt" :value="opt" class="bg-slate-900">{{ opt
-                                }}</option>
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
+                            <option v-for="opt in severityOptions" :key="opt" :value="opt"
+                                class="bg-white dark:bg-slate-900">{{ opt }}</option>
                         </select>
                     </div>
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Variante</label>
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Variant</label>
                         <select v-model="selectedVariant"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-300">
-                            <option v-for="opt in variantOptions" :key="opt" :value="opt" class="bg-slate-900">{{ opt }}
-                            </option>
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
+                            <option v-for="opt in variantOptions" :key="opt" :value="opt"
+                                class="bg-white dark:bg-slate-900">{{ opt }}</option>
                         </select>
                     </div>
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Taille &
-                            Forme</label>
-                        <div class="flex gap-2">
-                            <select v-model="selectedSize"
-                                class="w-1/2 glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-300">
-                                <option v-for="opt in sizeOptions" :key="opt" :value="opt" class="bg-slate-900">{{ opt
-                                    }}</option>
-                            </select>
-                            <select v-model="selectedRounded"
-                                class="w-1/2 glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-300">
-                                <option v-for="opt in roundedOptions" :key="opt" :value="opt" class="bg-slate-900">{{
-                                    opt }}</option>
-                            </select>
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Size</label>
+                        <select v-model="selectedSize"
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
+                            <option v-for="opt in sizeOptions" :key="opt" :value="opt"
+                                class="bg-white dark:bg-slate-900">{{ opt }}</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Rounded</label>
+                        <select v-model="selectedRounded"
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
+                            <option v-for="opt in roundedOptions" :key="opt" :value="opt"
+                                class="bg-white dark:bg-slate-900">{{ opt }}</option>
+                        </select>
+                    </div>
+
+                    <!-- Advanced Controls -->
+                    <div class="col-span-1 md:col-span-2 lg:col-span-2 grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Icon</label>
+                            <input v-model="selectedIcon" type="text"
+                                class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-700 dark:text-slate-300" />
                         </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label
-                            class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Iconographie</label>
-                        <select v-model="selectedIcon"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-500/50 transition-all font-bold text-slate-300">
-                            <option value="" class="bg-slate-900">Aucune</option>
-                            <option value="heroicons:bolt" class="bg-slate-900">Bolt</option>
-                            <option value="heroicons:arrow-right" class="bg-slate-900">Arrow</option>
-                            <option value="heroicons:trash" class="bg-slate-900">Trash</option>
-                            <option value="heroicons:check" class="bg-slate-900">Check</option>
-                        </select>
+                        <div class="space-y-2 pt-6 flex items-center gap-4">
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <div class="relative">
+                                    <input type="checkbox" v-model="showOnlyIcon" class="peer sr-only">
+                                    <div
+                                        class="w-9 h-5 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-500/50 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-500">
+                                    </div>
+                                </div>
+                                <span
+                                    class="text-[10px] font-black text-slate-500 uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Square</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <div class="relative">
+                                    <input type="checkbox" v-model="isLoading" class="peer sr-only">
+                                    <div
+                                        class="w-9 h-5 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-500/50 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-500">
+                                    </div>
+                                </div>
+                                <span
+                                    class="text-[10px] font-black text-slate-500 uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Loading</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Code Documentation Section -->
+        <!-- Features Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+                class="glass-card p-8 space-y-4 hover:border-indigo-500/30 transition-colors group border-slate-200 dark:border-white/5">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 dark:text-indigo-400 group-hover:scale-110 transition-transform">
+                    <Icon name="heroicons:cursor-arrow-rays" class="text-xl" />
+                </div>
+                <h3 class="font-black italic uppercase text-slate-900 dark:text-white tracking-tight">Polymorphic</h3>
+                <p class="text-xs text-slate-500 leading-relaxed italic">
+                    Rendu dynamique en <code class="text-indigo-500 font-bold">&lt;button&gt;</code>, <code
+                        class="text-indigo-500 font-bold">&lt;a&gt;</code> ou <code
+                        class="text-indigo-500 font-bold">&lt;router-link&gt;</code> selon les props.
+                </p>
+            </div>
+
+            <div
+                class="glass-card p-8 space-y-4 hover:border-indigo-500/30 transition-colors group border-slate-200 dark:border-white/5">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 dark:text-indigo-400 group-hover:scale-110 transition-transform">
+                    <Icon name="heroicons:sparkles" class="text-xl" />
+                </div>
+                <h3 class="font-black italic uppercase text-slate-900 dark:text-white tracking-tight">Haptech™</h3>
+                <p class="text-xs text-slate-500 leading-relaxed italic">
+                    Micro-interactions et retours haptiques simulés pour une sensation tactile premium à chaque clic.
+                </p>
+            </div>
+
+            <div
+                class="glass-card p-8 space-y-4 hover:border-indigo-500/30 transition-colors group border-slate-200 dark:border-white/5">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 dark:text-indigo-400 group-hover:scale-110 transition-transform">
+                    <Icon name="heroicons:eye" class="text-xl" />
+                </div>
+                <h3 class="font-black italic uppercase text-slate-900 dark:text-white tracking-tight">A11y Core</h3>
+                <p class="text-xs text-slate-500 leading-relaxed italic">
+                    Conforme WCAG 2.1 avec états focus visibles et support complet de la navigation au clavier.
+                </p>
+            </div>
+        </section>
+
+        <!-- Code Documentation -->
         <section class="space-y-6">
             <h2 class="text-2xl font-bold flex items-center gap-3 italic">
                 <span class="w-8 h-1 bg-indigo-500 rounded-full"></span>
-                Synthèse du Code
+                Integration
             </h2>
-            <div class="code-window">
+            <div class="code-window shadow-2xl shadow-indigo-500/5">
                 <div class="code-header font-display">
                     <span
-                        class="text-[10px] text-slate-500 font-mono font-black tracking-widest uppercase">Implementation.vue</span>
+                        class="text-[10px] text-slate-500 font-mono font-black tracking-widest uppercase">Component.vue</span>
                 </div>
-                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-950/50">
-                    <pre><span class="text-pink-500">import</span> { <span class="text-indigo-400">Button</span> } <span class="text-pink-500">from</span> <span class="text-emerald-400">'@webmx/ui'</span>;
+                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-50 dark:bg-slate-950/50">
+                    <pre><span class="text-pink-600 dark:text-pink-500">import</span> { <span class="text-indigo-600 dark:text-indigo-400">Button</span> } <span class="text-pink-600 dark:text-pink-500">from</span> <span class="text-emerald-600 dark:text-emerald-400">'@webmx/ui'</span>;
 
-<span class="text-slate-500">// Bouton configuré pour l'interface</span>
-<span class="text-white">{{ buttonCodeExample }}</span></pre>
+<span class="text-slate-500">// Utilisation simple</span>
+<span class="text-slate-800 dark:text-white">{{ buttonCodeExample }}</span></pre>
                 </div>
-            </div>
-        </section>
-
-        <!-- Visual Examples Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Variants -->
-            <div class="glass-card p-10 space-y-8">
-                <div class="flex items-center gap-4">
-                    <Icon name="heroicons:swatch" class="text-indigo-500" />
-                    <h3 class="text-xl font-bold italic uppercase tracking-tighter">Variantes Spectrales</h3>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <Button variant="soft" class="w-full">Soft</Button>
-                    <Button variant="outlined" class="w-full">Outlined</Button>
-                    <Button variant="ghost" class="w-full">Ghost</Button>
-                    <Button variant="link" class="w-full">Link</Button>
-                </div>
-                <p class="text-xs text-slate-500 italic leading-relaxed">
-                    Chaque variante est calibrée pour un niveau de hiérarchie visuelle spécifique dans le flux de
-                    l'application.
-                </p>
-            </div>
-
-            <!-- Social -->
-            <div
-                class="glass-card p-10 space-y-8 bg-gradient-to-br from-indigo-500/5 to-transparent flex flex-col justify-between">
-                <div class="flex items-center gap-4">
-                    <Icon name="heroicons:users" class="text-indigo-500" />
-                    <h3 class="text-xl font-bold italic uppercase tracking-tighter">Authentification Sociale</h3>
-                </div>
-                <div class="flex flex-wrap gap-4 justify-center py-6">
-                    <SocialButton provider="google" />
-                    <SocialButton provider="github" />
-                    <SocialButton provider="twitter" />
-                    <SocialButton provider="discord" />
-                </div>
-                <p class="text-xs text-slate-500 italic leading-relaxed text-center">
-                    Composants pré-assemblés pour les principaux fournisseurs d'identité avec icônes SVG natives.
-                </p>
-            </div>
-        </section>
-
-        <!-- Props API Table -->
-        <section class="space-y-6">
-            <h2 class="text-2xl font-bold flex items-center gap-3 italic">
-                <span class="w-8 h-1 bg-indigo-500 rounded-full"></span>
-                Props Matrix
-            </h2>
-            <div class="glass rounded-3xl overflow-hidden border border-white/5 bg-black/20">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr
-                            class="bg-white/5 border-b border-white/5 text-[10px] uppercase font-black tracking-widest text-slate-500">
-                            <th class="py-6 px-8">Propriété</th>
-                            <th class="py-6 px-8">Signature de Type</th>
-                            <th class="py-6 px-8">Valeur Par Défaut</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-white/5">
-                        <tr v-for="prop in [
-                            { name: 'severity', type: 'primary | secondary | success | ...', default: '\'primary\'' },
-                            { name: 'variant', type: 'soft | outlined | ghost | link', default: '\'soft\'' },
-                            { name: 'size', type: 'xs | sm | md | lg | xl | 2xl', default: '\'md\'' },
-                            { name: 'icon', type: 'string (Iconify)', default: 'undefined' },
-                            { name: 'loading', type: 'boolean', default: 'false' },
-                            { name: 'rounded', type: 'none | sm | md | lg | xl | full', default: '\'md\'' },
-                        ]" :key="prop.name" class="hover:bg-white/5 transition-colors group">
-                            <td
-                                class="py-4 px-8 font-mono text-sm text-indigo-400 group-hover:text-indigo-300 transition-colors font-bold">
-                                {{ prop.name }}</td>
-                            <td class="py-4 px-8 font-mono text-xs text-slate-400 italic opacity-80">{{ prop.type }}
-                            </td>
-                            <td class="py-4 px-8 font-mono text-xs text-slate-500">{{ prop.default }}</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </section>
     </div>

@@ -55,7 +55,7 @@ const buttonGroupCode = computed(() => {
 
                             <!-- Main Visual Showcase -->
                             <div
-                                class="p-2 glass rounded-2xl bg-black/20 border-white/10 scale-125 transform transition-transform duration-500 hover:scale-[1.3]">
+                                class="p-2 glass rounded-2xl bg-white/20 dark:bg-black/20 border-slate-200 dark:border-white/10 scale-125 transform transition-transform duration-500 hover:scale-[1.3]">
                                 <ButtonGroup v-model="toggleValue" toggle class="shadow-2xl shadow-violet-500/20">
                                     <Button value="left" icon="heroicons:bars-3-bottom-left" square severity="primary"
                                         size="lg" />
@@ -74,7 +74,8 @@ const buttonGroupCode = computed(() => {
                             </div>
                         </div>
 
-                        <div class="flex gap-8 items-center border-t border-white/5 pt-8 w-full justify-center">
+                        <div
+                            class="flex gap-8 items-center border-t border-slate-200 dark:border-white/5 pt-8 w-full justify-center">
                             <!-- Example 1: Vertical -->
                             <div class="flex flex-col items-center gap-2">
                                 <span class="text-[9px] font-black uppercase text-slate-600 tracking-widest">Zoom
@@ -100,8 +101,8 @@ const buttonGroupCode = computed(() => {
                 </div>
 
                 <!-- Feature Highligts -->
-                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-6 bg-black/20">
-                    <div class="space-y-2 p-4 rounded-xl hover:bg-white/5 transition-colors">
+                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-50 dark:bg-black/20">
+                    <div class="space-y-2 p-4 rounded-xl hover:bg-white dark:hover:bg-white/5 transition-colors">
                         <div class="flex items-center gap-2 mb-2">
                             <Icon name="heroicons:arrows-up-down" class="text-violet-400" size="xs" />
                             <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Direction</h4>
@@ -111,7 +112,7 @@ const buttonGroupCode = computed(() => {
                                 class="text-violet-400">Vertical</span> pour s'adapter à tous les layouts.
                         </p>
                     </div>
-                    <div class="space-y-2 p-4 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="space-y-2 p-4 rounded-xl hover:bg-white dark:hover:bg-white/5 transition-colors">
                         <div class="flex items-center gap-2 mb-2">
                             <Icon name="heroicons:cursor-arrow-rays" class="text-violet-400" size="xs" />
                             <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Sémantique</h4>
@@ -121,7 +122,7 @@ const buttonGroupCode = computed(() => {
                                 class="text-violet-400">Checkbox</span> (multiple) intégré sans logique externe.
                         </p>
                     </div>
-                    <div class="space-y-2 p-4 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="space-y-2 p-4 rounded-xl hover:bg-white dark:hover:bg-white/5 transition-colors">
                         <div class="flex items-center gap-2 mb-2">
                             <Icon name="heroicons:puzzle-piece" class="text-violet-400" size="xs" />
                             <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Fusion</h4>
@@ -139,29 +140,34 @@ const buttonGroupCode = computed(() => {
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Feature 1: Segmented Control -->
             <div
-                class="glass-card p-10 space-y-8 bg-gradient-to-br from-violet-500/5 to-transparent group hover:border-violet-500/30 transition-colors">
-                <h3 class="text-xl font-bold flex items-center gap-3 italic uppercase text-white tracking-tight">
+                class="glass-card p-10 space-y-8 bg-gradient-to-br from-violet-500/5 to-transparent group hover:border-violet-500/30 transition-colors border-slate-200 dark:border-white/5">
+                <h3
+                    class="text-xl font-bold flex items-center gap-3 italic uppercase text-slate-900 dark:text-white tracking-tight">
                     <Icon name="heroicons:swatch" class="text-violet-400" />
                     Segmented Control
                 </h3>
                 <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-violet-500/50 pl-4">
                     Une alternative tactile aux listes déroulantes pour les choix à faible cardinalité.
                 </p>
-                <div class="flex justify-center p-8 glass bg-black/40 rounded-2xl border border-white/5">
-                    <ButtonGroup class="bg-black/60 p-1.5 rounded-2xl border border-white/10 shadow-inner">
+                <div
+                    class="flex justify-center p-8 glass bg-slate-100 dark:bg-black/40 rounded-2xl border border-slate-200 dark:border-white/5">
+                    <ButtonGroup
+                        class="bg-white dark:bg-black/60 p-1.5 rounded-2xl border border-slate-200 dark:border-white/10 shadow-inner">
                         <Button variant="ghost" rounded="xl" size="sm"
-                            class="px-6 font-bold text-white bg-white/10 shadow-lg">Day</Button>
+                            class="px-6 font-bold text-slate-900 dark:text-white bg-slate-100 dark:bg-white/10 shadow-lg">Day</Button>
                         <Button variant="ghost" rounded="xl" size="sm"
-                            class="px-6 font-bold text-slate-500 hover:text-white transition-colors">Week</Button>
+                            class="px-6 font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">Week</Button>
                         <Button variant="ghost" rounded="xl" size="sm"
-                            class="px-6 font-bold text-slate-500 hover:text-white transition-colors">Month</Button>
+                            class="px-6 font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">Month</Button>
                     </ButtonGroup>
                 </div>
             </div>
 
             <!-- Feature 2: Complex Toolbars -->
-            <div class="glass-card p-10 space-y-8 group hover:border-indigo-500/30 transition-colors">
-                <h3 class="text-xl font-bold flex items-center gap-3 italic uppercase text-white tracking-tight">
+            <div
+                class="glass-card p-10 space-y-8 group hover:border-indigo-500/30 transition-colors border-slate-200 dark:border-white/5">
+                <h3
+                    class="text-xl font-bold flex items-center gap-3 italic uppercase text-slate-900 dark:text-white tracking-tight">
                     <Icon name="heroicons:adjustments-horizontal" class="text-indigo-400" />
                     Complex Toolbars
                 </h3>
@@ -169,7 +175,8 @@ const buttonGroupCode = computed(() => {
                     Combinez différents styles et actions pour créer des barres d'outils denses et fonctionnelles.
                 </p>
                 <div class="space-y-4">
-                    <div class="p-4 glass rounded-xl border-white/5 flex items-center justify-between bg-black/20">
+                    <div
+                        class="p-4 glass rounded-xl border-slate-200 dark:border-white/5 flex items-center justify-between bg-slate-50 dark:bg-black/20">
                         <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Export
                             Options</span>
                         <ButtonGroup>
@@ -194,11 +201,11 @@ const buttonGroupCode = computed(() => {
                     <span
                         class="text-[10px] text-slate-500 font-mono tracking-widest uppercase font-black">GroupLogic.vue</span>
                 </div>
-                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-950/50">
-                    <pre><span class="text-pink-500">import</span> { <span class="text-violet-400">ButtonGroup</span> } <span class="text-pink-500">from</span> <span class="text-emerald-400">'@webmx/ui'</span>;
+                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-50 dark:bg-slate-950/50">
+                    <pre><span class="text-pink-600 dark:text-pink-500">import</span> { <span class="text-violet-600 dark:text-violet-400">ButtonGroup</span> } <span class="text-pink-600 dark:text-pink-500">from</span> <span class="text-emerald-600 dark:text-emerald-400">'@webmx/ui'</span>;
 
 <span class="text-slate-500">// Groupe logique v3</span>
-<span class="text-white">{{ buttonGroupCode }}</span></pre>
+<span class="text-slate-800 dark:text-white">{{ buttonGroupCode }}</span></pre>
                 </div>
             </div>
         </section>
@@ -214,7 +221,11 @@ const buttonGroupCode = computed(() => {
 }
 
 .glass-card {
-    @apply glass rounded-[2.5rem];
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 2.5rem;
 }
 
 .text-gradient {

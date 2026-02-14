@@ -135,10 +135,18 @@ import { Icon } from 'webflow-ui'
 }
 
 .code-window {
-    @apply rounded-2xl overflow-hidden border border-white/5 bg-black/40 shadow-2xl;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .code-header {
-    @apply px-4 py-3 border-b border-white/5 bg-white/5 flex items-center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
 }
 </style>

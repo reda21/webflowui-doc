@@ -30,15 +30,15 @@ const activeSection = computed(() => {
 })
 
 // Styles definition to avoid @apply issues in SFC
-const navLinkClass = "flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-300 italic"
-const navActiveClass = "flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 shadow-lg shadow-indigo-500/5 italic"
+const navLinkClass = "flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5 transition-all duration-300 italic"
+const navActiveClass = "flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest text-indigo-600 bg-indigo-50 border border-indigo-200 dark:text-indigo-400 dark:bg-indigo-500/10 dark:border-indigo-500/20 shadow-lg shadow-indigo-500/5 italic"
 </script>
 
 <template>
     <div class="flex min-h-[calc(100vh-80px)] bg-transparent">
         <!-- Dashboard Sidebar (Glass) -->
         <aside
-            class="hidden lg:block w-80 shrink-0 sticky top-20 h-[calc(100vh-80px)] overflow-y-auto border-r border-white/5 bg-black/5 backdrop-blur-3xl custom-scrollbar">
+            class="hidden lg:block w-80 shrink-0 sticky top-20 h-[calc(100vh-80px)] overflow-y-auto border-r border-slate-200 dark:border-white/5 bg-white/50 dark:bg-black/5 backdrop-blur-3xl custom-scrollbar">
             <nav class="p-8 space-y-12">
                 <!-- Group: Start -->
                 <div class="space-y-4">

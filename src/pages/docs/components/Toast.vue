@@ -88,10 +88,11 @@ const generatedCode = computed(() => {
                         <div class="flex-1 space-y-1">
                             <h4 class="font-black text-white tracking-tight italic uppercase text-sm">Operation Complete
                             </h4>
-                            <p class="text-xs text-slate-400 leading-relaxed font-medium">Les données ont été
+                            <p class="text-xs text-slate-300 dark:text-slate-400 leading-relaxed font-medium">Les
+                                données ont été
                                 synchronisées avec le cloud.</p>
                         </div>
-                        <button class="text-slate-500 hover:text-white transition-colors">
+                        <button class="text-slate-400 dark:text-slate-500 hover:text-white transition-colors">
                             <Icon name="heroicons:x-mark" size="xs" />
                         </button>
 
@@ -111,34 +112,74 @@ const generatedCode = computed(() => {
                 </div>
 
                 <!-- Configuration Controls -->
-                <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-black/20">
+                <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-slate-50 dark:bg-black/20">
                     <div class="space-y-2">
                         <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Niveau
                             d'alerte</label>
                         <select v-model="configSeverity"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all cursor-pointer text-slate-300 font-bold">
-                            <option v-for="s in severities" :key="s" :value="s" class="bg-slate-900">{{ s }}</option>
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all cursor-pointer text-slate-700 dark:text-slate-300 font-bold">
+                            <option v-for="s in severities" :key="s" :value="s" class="bg-white dark:bg-slate-900">{{ s
+                            }}</option>
                         </select>
                     </div>
                     <div class="space-y-2">
                         <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Vecteur
                             d'apparition</label>
                         <select v-model="configPosition"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all cursor-pointer text-slate-300 font-bold">
-                            <option v-for="p in positions" :key="p" :value="p" class="bg-slate-900">{{ p }}</option>
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all cursor-pointer text-slate-700 dark:text-slate-300 font-bold">
+                            <option v-for="p in positions" :key="p" :value="p" class="bg-white dark:bg-slate-900">{{ p
+                            }}</option>
                         </select>
                     </div>
                     <div class="space-y-2">
                         <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Contenu
                             (Msg)</label>
                         <input v-model="configDesc" type="text"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all text-slate-300 font-bold placeholder-slate-600" />
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all text-slate-700 dark:text-slate-300 font-bold placeholder-slate-400 dark:placeholder-slate-600" />
                     </div>
                     <div class="space-y-2">
                         <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Durée
                             (ms)</label>
                         <input v-model.number="configDuration" type="number" step="500"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all text-slate-300 font-mono font-bold" />
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all text-slate-700 dark:text-slate-300 font-mono font-bold" />
+                    </div>
+                    <div class="space-y-2">
+                        <label
+                            class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Iconographie</label>
+                        <select v-model="mediaType"
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all cursor-pointer text-slate-700 dark:text-slate-300 font-bold">
+                            <option value="none" class="bg-white dark:bg-slate-900">Aucune</option>
+                            <option value="icon" class="bg-white dark:bg-slate-900">Icone</option>
+                            <option value="avatar" class="bg-white dark:bg-slate-900">Avatar (Simulé)</option>
+                        </select>
+                    </div>
+                    <div v-if="mediaType === 'icon'" class="space-y-2">
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Icone
+                            Custom</label>
+                        <input v-model="configCustomIcon" type="text"
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-emerald-500/50 transition-all text-slate-700 dark:text-slate-300 font-bold placeholder-slate-400 dark:placeholder-slate-600" />
+                    </div>
+                    <div class="space-y-2 flex items-center gap-4 pt-6">
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <div class="relative">
+                                <input type="checkbox" v-model="configShowProgress" class="peer sr-only">
+                                <div
+                                    class="w-9 h-5 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-emerald-500/50 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-500">
+                                </div>
+                            </div>
+                            <span
+                                class="text-[10px] font-black text-slate-500 uppercase tracking-widest group-hover:text-emerald-500 transition-colors">Progress</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <div class="relative">
+                                <input type="checkbox" v-model="configClosable" class="peer sr-only">
+                                <div
+                                    class="w-9 h-5 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-emerald-500/50 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-500">
+                                </div>
+                            </div>
+                            <span
+                                class="text-[10px] font-black text-slate-500 uppercase tracking-widest group-hover:text-emerald-500 transition-colors">Closable</span>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -151,7 +192,7 @@ const generatedCode = computed(() => {
                     class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                     <Icon name="heroicons:arrow-path" class="text-xl" />
                 </div>
-                <h3 class="font-black italic uppercase text-white tracking-tight">Async Promise</h3>
+                <h3 class="font-black italic uppercase text-slate-900 dark:text-white tracking-tight">Async Promise</h3>
                 <p class="text-xs text-slate-500 leading-relaxed italic">
                     Gérez automatiquement les états <span class="text-emerald-400">loading</span>, <span
                         class="text-emerald-400">success</span> et <span class="text-rose-400">error</span> des
@@ -163,7 +204,7 @@ const generatedCode = computed(() => {
                     class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                     <Icon name="heroicons:arrow-uturn-left" class="text-xl" />
                 </div>
-                <h3 class="font-black italic uppercase text-white tracking-tight">Undo Action</h3>
+                <h3 class="font-black italic uppercase text-slate-900 dark:text-white tracking-tight">Undo Action</h3>
                 <p class="text-xs text-slate-500 leading-relaxed italic">
                     Intégrez des actions contextuelles directement dans le toast pour permettre l'annulation rapide
                     d'opérations.
@@ -174,7 +215,7 @@ const generatedCode = computed(() => {
                     class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                     <Icon name="heroicons:queue-list" class="text-xl" />
                 </div>
-                <h3 class="font-black italic uppercase text-white tracking-tight">Smart Queue</h3>
+                <h3 class="font-black italic uppercase text-slate-900 dark:text-white tracking-tight">Smart Queue</h3>
                 <p class="text-xs text-slate-500 leading-relaxed italic">
                     Les notifications s'empilent intelligemment sans encombrer l'interface, avec limite configurable par
                     position.
@@ -193,13 +234,13 @@ const generatedCode = computed(() => {
                     <span
                         class="text-[10px] text-slate-500 font-mono font-black tracking-widest uppercase">Logic.ts</span>
                 </div>
-                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-950/50">
-                    <pre><span class="text-pink-500">import</span> { <span class="text-cyan-400">useToast</span> } <span class="text-pink-500">from</span> <span class="text-emerald-400">'@webmx/ui'</span>;
+                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-50 dark:bg-slate-950/50">
+                    <pre><span class="text-pink-600 dark:text-pink-500">import</span> { <span class="text-cyan-600 dark:text-cyan-400">useToast</span> } <span class="text-pink-600 dark:text-pink-500">from</span> <span class="text-emerald-600 dark:text-emerald-400">'@webmx/ui'</span>;
 
-<span class="text-pink-500">const</span> <span class="text-white">toaster</span> = <span class="text-cyan-400">useToast</span>();
+<span class="text-pink-600 dark:text-pink-500">const</span> <span class="text-slate-900 dark:text-white">toaster</span> = <span class="text-cyan-600 dark:text-cyan-400">useToast</span>();
 
 <span class="text-slate-500">// Émission de signal</span>
-<span class="text-white">{{ generatedCode }}</span></pre>
+<span class="text-slate-800 dark:text-white">{{ generatedCode }}</span></pre>
                 </div>
             </div>
         </section>
@@ -255,15 +296,56 @@ const generatedCode = computed(() => {
     }
 }
 
+.text-gradient {
+    background: linear-gradient(135deg, var(--neon-emerald), var(--neon-teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes progress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
 .animate-progress {
     animation: progress 5s linear forwards;
 }
 
 .code-window {
-    @apply rounded-2xl overflow-hidden border border-white/5 bg-black/40 shadow-2xl;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .code-header {
-    @apply px-4 py-3 border-b border-white/5 bg-white/5 flex items-center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
 }
 </style>

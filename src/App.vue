@@ -6,11 +6,11 @@ import { Navbar, ModalRenderer, ToastProvider, Icon, type NavItem } from 'webflo
 const route = useRoute()
 const isDark = ref(true) // Force dark by default for premium feel
 const brandName = ref('WEBMX')
-const ctaText = ref('CONSOLE')
+const ctaText = ref('START')
 
 const navItems = computed<NavItem[]>(() => [
     { label: 'ACCUEIL', href: '/', active: route.path === '/' },
-    { label: 'LABORATOIRE', href: '/docs', active: route.path.startsWith('/docs') },
+    { label: 'DOC', href: '/docs', active: route.path.startsWith('/docs') },
 ])
 
 const toggleDarkMode = () => {
@@ -42,15 +42,16 @@ onMounted(() => {
     <div class="min-h-screen bg-transparent selection:bg-cyan-500/30">
         <!-- Background Layer -->
         <div class="fixed inset-0 pointer-events-none">
-            <div class="absolute inset-0 bg-[#020617]"></div>
-            <div class="absolute inset-0 opacity-20"
-                style="background-image: radial-gradient(#1e293b 1px, transparent 1px); background-size: 40px 40px;">
+            <div class="absolute inset-0 bg-slate-50 dark:bg-[#020617] transition-colors duration-500"></div>
+            <div class="absolute inset-0 opacity-20 dark:opacity-20"
+                style="background-image: radial-gradient(var(--grid-color) 1px, transparent 1px); background-size: 40px 40px;">
             </div>
         </div>
 
         <!-- Global UI: Navbar -->
         <Navbar :brand-name="brandName" logo-href="/" :nav-items="navItems" :show-search="true"
-            :show-theme-toggle="true" :is-dark="isDark" :cta-text="ctaText" sticky blur @theme-toggle="toggleDarkMode">
+            :show-theme-toggle="true" :is-dark="isDark" :cta-text="ctaText" sticky blur @theme-toggle="toggleDarkMode"
+            @cta-click="$router.push('/docs/getting-started')">
             <template #logo-icon>
                 <div
                     class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">

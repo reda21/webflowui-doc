@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Separator, Button, Icon } from 'webflow-ui'
-import type { SeparatorOrientation, SeparatorVariant, SeparatorSize, SeparatorSeverity } from 'webflow-ui/components/separator/types'
+import { Separator, Icon } from 'webflow-ui'
+import type { SeparatorOrientation } from 'webflow-ui/components/separator/types'
 
-// Configurator State
-const configOrientation = ref<SeparatorOrientation>('horizontal')
-const configVariant = ref<SeparatorVariant>('solid')
-const configSize = ref<SeparatorSize>('md')
-const configSeverity = ref<SeparatorSeverity>('default')
-const configLabel = ref('FLUX EDGE')
+const orientation = ref<SeparatorOrientation>('horizontal')
+const orientationOptions: SeparatorOrientation[] = ['horizontal', 'vertical']
 
 const generatedCode = computed(() => {
-    return `<Separator 
-  orientation="${configOrientation.value}" 
-  variant="${configVariant.value}"
-  label="${configLabel.value}"
-/>`
+    return `<div class="flex items-center space-x-4 text-sm">
+  <div>Blog</div>
+  <Separator orientation="vertical" />
+  <div>Docs</div>
+  <Separator orientation="vertical" />
+  <div>Source</div>
+</div>`
 })
 </script>
 
@@ -25,163 +23,88 @@ const generatedCode = computed(() => {
         <header class="space-y-4">
             <div class="flex items-center gap-3">
                 <span
-                    class="px-2.5 py-1 rounded-full bg-slate-500/10 border border-slate-500/20 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">Division
-                    Spatiale</span>
-                <span class="text-slate-500 dark:text-slate-500 text-xs font-medium">Bordures Sub-pixel • Label
-                    Flottant</span>
+                    class="px-2.5 py-1 rounded-full bg-slate-500/10 border border-slate-500/20 text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Layout
+                    Divider</span>
+                <span class="text-slate-500 text-xs font-medium">Semantic • Accessible</span>
             </div>
             <h1 class="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
                 Separator <span class="text-gradient">Line</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed italic">
-                L'art du silence visuel. Le Separator de WebMX définit les frontières sans encombrer
-                l'espace, apportant structure et rythme avec une précision chirurgicale.
+                Un séparateur sémantique pour structurer le contenu visuellement sans
+                interrompre le flux de lecture.
             </p>
         </header>
 
         <!-- Interactive Section -->
         <section class="group relative">
             <div
-                class="absolute -inset-1 bg-gradient-to-r from-slate-500 to-slate-800 rounded-[2rem] blur opacity-25 group-hover:opacity-40 transition duration-1000">
+                class="absolute -inset-1 bg-gradient-to-r from-slate-400 to-gray-500 rounded-[2rem] blur opacity-25 group-hover:opacity-40 transition duration-1000">
             </div>
             <div class="relative glass-card overflow-hidden">
                 <!-- Live Preview Stage -->
                 <div
                     class="relative min-h-[400px] flex items-center justify-center bg-slate-50/50 dark:bg-slate-900/50 p-12 overflow-hidden border-b border-white/5">
-                    <!-- Technical Grid Background -->
-                    <div class="absolute inset-0 opacity-10 pointer-events-none">
-                        <div
-                            class="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent">
-                        </div>
-                        <div
-                            class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent">
-                        </div>
-                        <!-- Dot pattern -->
-                        <div class="absolute inset-0"
-                            style="background-image: radial-gradient(var(--slate-700) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.2">
-                        </div>
+                    <!-- Geometric Background -->
+                    <div class="absolute inset-0 opacity-20 pointer-events-none"
+                        style="background-image: radial-gradient(var(--neon-slate) 1px, transparent 1px); background-size: 30px 30px;">
                     </div>
 
-                    <div class="relative z-10 w-full max-w-lg space-y-12 backdrop-blur-sm">
-                        <!-- Module Stack -->
-                        <div class="space-y-8">
-                            <div
-                                class="h-16 flex items-center justify-center glass rounded-2xl bg-black/20 border-white/5 shadow-inner">
-                                <span class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Module
-                                    Alpha</span>
-                            </div>
-
-                            <div :class="configOrientation === 'vertical' ? 'h-32 flex justify-center' : ''"
-                                class="transition-all duration-500">
-                                <Separator :orientation="configOrientation" :variant="configVariant" :size="configSize"
-                                    :severity="configSeverity" :label="configLabel || undefined"
-                                    class="transition-all duration-700" />
-                            </div>
-
-                            <div
-                                class="h-16 flex items-center justify-center glass rounded-2xl bg-black/20 border-white/5 shadow-inner">
-                                <span class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Module
-                                    Beta</span>
-                            </div>
+                    <div
+                        class="relative z-10 w-full max-w-lg bg-white/50 dark:bg-black/20 p-8 rounded-3xl border border-slate-200 dark:border-white/10 backdrop-blur-sm shadow-2xl">
+                        <div class="space-y-4">
+                            <h4 class="text-sm font-medium leading-none text-slate-900 dark:text-white">WebMX UI</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">
+                                Une bibliothèque de composants moderne.
+                            </p>
+                        </div>
+                        <Separator class="my-6" />
+                        <div class="flex h-5 items-center space-x-4 text-sm text-slate-900 dark:text-white">
+                            <div>Blog</div>
+                            <Separator orientation="vertical" />
+                            <div>Docs</div>
+                            <Separator orientation="vertical" />
+                            <div>Source</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Configuration Grid -->
-                <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-black/20">
+                <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-slate-50 dark:bg-black/20">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Axe
-                            (Orientation)</label>
-                        <select v-model="configOrientation"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-white/50 transition-all font-bold text-slate-300 cursor-pointer">
-                            <option v-for="o in ['horizontal', 'vertical']" :key="o" :value="o" class="bg-slate-900">{{
-                                o }}</option>
+                        <label
+                            class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Orientation</label>
+                        <select v-model="orientation"
+                            class="w-full glass bg-transparent border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-slate-500/50 transition-all font-bold text-slate-700 dark:text-slate-300 cursor-pointer">
+                            <option v-for="o in orientationOptions" :key="o" :value="o"
+                                class="bg-white dark:bg-slate-900">{{ o }}</option>
                         </select>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Style
-                            (Variant)</label>
-                        <select v-model="configVariant"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-white/50 transition-all font-bold text-slate-300 cursor-pointer">
-                            <option v-for="v in ['solid', 'dashed', 'dotted', 'gradient']" :key="v" :value="v"
-                                class="bg-slate-900">{{ v }}</option>
-                        </select>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Épaisseur
-                            (Size)</label>
-                        <select v-model="configSize"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-white/50 transition-all font-bold text-slate-300 cursor-pointer">
-                            <option v-for="s in ['xs', 'sm', 'md', 'lg', 'xl']" :key="s" :value="s"
-                                class="bg-slate-900">{{ s }}</option>
-                        </select>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Label ID</label>
-                        <input v-model="configLabel" type="text"
-                            class="w-full glass bg-transparent border-white/10 rounded-xl px-3 py-2 text-sm outline-none focus:border-white/50 transition-all font-bold text-slate-300 placeholder-slate-600"
-                            placeholder="Label optionnel..." />
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Use Cases & Patterns -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Feature 1: Login Pattern -->
-            <div
-                class="glass-card p-10 space-y-8 bg-gradient-to-br from-white/5 to-transparent group hover:border-slate-500/30 transition-colors">
-                <h3 class="text-xl font-bold italic flex items-center gap-3 uppercase tracking-tighter text-white">
-                    <Icon name="heroicons:finger-print" class="text-slate-400" />
-                    Authentication Flow
-                </h3>
-                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-500/50 pl-4">
-                    Pattern classique de séparation d'actions pour les formulaires de connexion.
-                </p>
-                <div class="space-y-5 p-8 glass bg-black/40 rounded-2xl border border-white/5">
-                    <Button severity="contrast"
-                        class="w-full h-10 font-bold uppercase tracking-widest text-xs shadow-lg">Continuer avec
-                        Email</Button>
-                    <Separator label="OU" class="opacity-50" />
-                    <div class="flex gap-3">
-                        <Button variant="soft"
-                            class="flex-1 bg-white/5 hover:bg-white/10 text-xs font-bold">Google</Button>
-                        <Button variant="soft"
-                            class="flex-1 bg-white/5 hover:bg-white/10 text-xs font-bold">GitHub</Button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 2: Vertical Split -->
-            <div class="glass-card p-10 space-y-8 group hover:border-slate-500/30 transition-colors">
-                <h3 class="text-xl font-bold italic flex items-center gap-3 uppercase tracking-tighter text-white">
-                    <Icon name="heroicons:columns" class="text-slate-400" />
-                    Column Layout
-                </h3>
-                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-500/50 pl-4">
-                    Séparation verticale pour délimiter les zones de contenu dans les headers ou toolbars.
-                </p>
+        <!-- Features Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 space-y-4 hover:border-slate-500/30 transition-colors group">
                 <div
-                    class="flex items-center justify-center p-6 glass rounded-2xl bg-black/20 h-40 gap-8 border border-white/5">
-                    <div class="flex flex-col items-center gap-2">
-                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">View Mode</span>
-                        <Icon name="heroicons:list-bullet" class="text-slate-400" />
-                    </div>
-
-                    <Separator orientation="vertical" variant="dashed" severity="primary" class="h-16" />
-
-                    <div class="flex flex-col items-center gap-2">
-                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Sort By</span>
-                        <Icon name="heroicons:arrows-up-down" class="text-slate-400" />
-                    </div>
-
-                    <Separator orientation="vertical" variant="gradient" severity="success" class="h-16" />
-
-                    <div class="flex flex-col items-center gap-2">
-                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Filter</span>
-                        <Icon name="heroicons:funnel" class="text-slate-400" />
-                    </div>
+                    class="w-12 h-12 rounded-2xl bg-slate-500/10 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:scale-110 transition-transform">
+                    <Icon name="heroicons:bars-2" class="text-xl" />
                 </div>
+                <h3 class="font-black italic uppercase text-slate-900 dark:text-white tracking-tight">Responsive</h3>
+                <p class="text-xs text-slate-500 leading-relaxed italic">
+                    S'adapte automatiquement à l'orientation et à la taille du conteneur.
+                </p>
+            </div>
+            <div class="glass-card p-8 space-y-4 hover:border-slate-500/30 transition-colors group">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-slate-500/10 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:scale-110 transition-transform">
+                    <Icon name="heroicons:eye-slash" class="text-xl" />
+                </div>
+                <h3 class="font-black italic uppercase text-slate-900 dark:text-white tracking-tight">Decorative</h3>
+                <p class="text-xs text-slate-500 leading-relaxed italic">
+                    Utilisé purement pour la décoration, ignoré par les lecteurs d'écran par défaut.
+                </p>
             </div>
         </section>
 
@@ -189,18 +112,18 @@ const generatedCode = computed(() => {
         <section class="space-y-6">
             <h2 class="text-2xl font-bold flex items-center gap-3 italic">
                 <span class="w-8 h-1 bg-slate-500 rounded-full"></span>
-                Génération Dynamique
+                Injection
             </h2>
             <div class="code-window shadow-2xl shadow-slate-500/5">
                 <div class="code-header font-display">
                     <span
-                        class="text-[10px] text-slate-500 font-mono tracking-widest uppercase font-black">LayoutLine.vue</span>
+                        class="text-[10px] text-slate-500 font-mono font-black tracking-widest uppercase">Layout.vue</span>
                 </div>
-                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-950/50">
-                    <pre><span class="text-pink-500">import</span> { <span class="text-slate-400">Separator</span> } <span class="text-pink-500">from</span> <span class="text-emerald-400">'@webmx/ui'</span>;
+                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-50 dark:bg-slate-950/50">
+                    <pre><span class="text-pink-600 dark:text-pink-500">import</span> { <span class="text-slate-600 dark:text-slate-400">Separator</span> } <span class="text-pink-600 dark:text-pink-500">from</span> <span class="text-emerald-600 dark:text-emerald-400">'@webmx/ui'</span>;
 
-<span class="text-slate-500">// Délimitation structurelle</span>
-<span class="text-white">{{ generatedCode }}</span></pre>
+<span class="text-slate-500">// Structure visuelle</span>
+<span class="text-slate-800 dark:text-white">{{ generatedCode }}</span></pre>
                 </div>
             </div>
         </section>
@@ -224,7 +147,7 @@ const generatedCode = computed(() => {
 }
 
 .text-gradient {
-    background: linear-gradient(135deg, var(--slate-300), var(--slate-600));
+    background: linear-gradient(135deg, var(--neon-slate), #94a3b8);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

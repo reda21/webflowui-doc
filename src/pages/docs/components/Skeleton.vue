@@ -5,9 +5,9 @@ import { Skeleton, SkeletonGroup, Button, Icon } from 'webflow-ui'
 const isLoading = ref(true)
 
 const posts = ref([
-    { id: 1, title: 'Project Protocol #1', desc: 'Analyse prédictive des flux de données trans-clusters avec auto-correction.' },
-    { id: 2, title: 'Project Protocol #2', desc: 'Optimisation des vecteurs de rendu pour les interfaces spatiales.' },
-    { id: 3, title: 'Project Protocol #3', desc: 'Synchronisation quantique des états globaux.' }
+    { id: 1, title: 'Quantum Computing', desc: 'The future of processing power.' },
+    { id: 2, title: 'Neural Networks', desc: 'Mimicking the human brain.' },
+    { id: 3, title: 'Dark Matter', desc: 'The unseen universe.' }
 ])
 </script>
 
@@ -17,17 +17,16 @@ const posts = ref([
         <header class="space-y-4">
             <div class="flex items-center gap-3">
                 <span
-                    class="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-[0.2em]">Flux
-                    d'Attente</span>
-                <span class="text-slate-500 dark:text-slate-500 text-xs font-medium">Réduction de Charge Cognitive •
-                    Animation Wave</span>
+                    class="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-[0.2em]">Loading
+                    State</span>
+                <span class="text-slate-500 dark:text-slate-500 text-xs font-medium">Shimmer Effect • Zero-CLS</span>
             </div>
             <h1 class="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                Skeleton <span class="text-gradient">Structure</span>
+                Skeleton <span class="text-gradient">Engine</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed italic">
-                Anticipez le contenu. Le Skeleton de WebMX permet de simuler la structure de votre interface
-                pendant le chargement des données, créant une transition fluide et premium.
+                La structure avant le contenu. Préservez le layout en simulant la présence
+                de données pour réduire la perception de latence.
             </p>
         </header>
 
@@ -46,7 +45,7 @@ const posts = ref([
                     </div>
 
                     <div
-                        class="relative z-10 w-full max-w-md p-8 glass rounded-3xl space-y-8 animate-float shadow-2xl shadow-amber-500/10 border border-white/10">
+                        class="relative z-10 w-full max-w-md p-8 glass rounded-3xl space-y-8 animate-float shadow-2xl shadow-amber-500/10 border border-slate-200 dark:border-white/10 bg-white/50 dark:bg-black/20">
                         <div class="flex items-center gap-4">
                             <Skeleton variant="circle" width="64px" height="64px"
                                 class="ring-4 ring-amber-500/10 shadow-xl" />
@@ -55,7 +54,7 @@ const posts = ref([
                                 <Skeleton width="40%" height="10px" />
                             </div>
                         </div>
-                        <div class="space-y-4 pt-4 border-t border-white/5">
+                        <div class="space-y-4 pt-4 border-t border-slate-200 dark:border-white/5">
                             <SkeletonGroup>
                                 <div class="space-y-2">
                                     <Skeleton width="100%" height="12px" />
@@ -80,19 +79,22 @@ const posts = ref([
                 </div>
 
                 <!-- Meta Grid -->
-                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center bg-black/20">
+                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center bg-slate-50 dark:bg-black/20">
                     <div class="space-y-1">
                         <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Morphing</span>
-                        <p class="text-xs font-bold text-slate-400 italic">S'adapte dynamiquement au layout</p>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 italic">S'adapte dynamiquement au
+                            layout</p>
                     </div>
-                    <div class="space-y-1 border-x border-white/5">
+                    <div class="space-y-1 border-x border-slate-200 dark:border-white/5">
                         <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Performance</span>
-                        <p class="text-xs font-bold text-slate-400 italic">Accélération GPU native</p>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 italic">Accélération GPU native
+                        </p>
                     </div>
                     <div class="space-y-1">
                         <span
                             class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Accessibilité</span>
-                        <p class="text-xs font-bold text-slate-400 italic">Support ARIA & Reduce Motion</p>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 italic">Support ARIA & Reduce
+                            Motion</p>
                     </div>
                 </div>
             </div>
@@ -101,27 +103,33 @@ const posts = ref([
         <!-- Detailed Variations -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Feature 1: Shape Variations -->
-            <div class="glass-card p-10 space-y-6 group hover:border-amber-500/30 transition-colors">
-                <h3 class="text-xl font-bold italic flex items-center gap-3 uppercase tracking-tighter text-white">
-                    <Icon name="heroicons:swatch" class="text-amber-400" />
+            <div
+                class="glass-card p-10 space-y-6 group hover:border-amber-500/30 transition-colors border-slate-200 dark:border-white/5">
+                <h3
+                    class="text-xl font-bold italic flex items-center gap-3 uppercase tracking-tighter text-slate-900 dark:text-white">
+                    <Icon name="heroicons:swatch" class="text-amber-500 dark:text-amber-400" />
                     Primitives Géométriques
                 </h3>
                 <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-amber-500/50 pl-4">
-                    Un ensemble complet de primitives (<code class="text-amber-400 font-bold">circle</code>, <code
-                        class="text-amber-400 font-bold">rounded</code>, <code
-                        class="text-amber-400 font-bold">rect</code>) pour prototyper n'importe quelle UI.
+                    Un ensemble complet de primitives (<code class="text-amber-500 font-bold">circle</code>, <code
+                        class="text-amber-500 font-bold">rounded</code>, <code
+                        class="text-amber-500 font-bold">rect</code>) pour prototyper n'importe quelle UI.
                 </p>
-                <div class="flex items-center justify-around p-8 glass bg-black/40 rounded-2xl border border-white/5">
+                <div
+                    class="flex items-center justify-around p-8 glass bg-slate-100 dark:bg-black/40 rounded-2xl border border-slate-200 dark:border-white/5">
                     <div class="flex flex-col items-center gap-3 group-hover:scale-105 transition-transform">
-                        <Skeleton variant="circle" width="50px" height="50px" class="ring-2 ring-white/10" />
+                        <Skeleton variant="circle" width="50px" height="50px"
+                            class="ring-2 ring-slate-200 dark:ring-white/10" />
                         <span class="text-[9px] font-black uppercase text-slate-500 tracking-widest">Circle</span>
                     </div>
                     <div class="flex flex-col items-center gap-3 group-hover:scale-105 transition-transform delay-75">
-                        <Skeleton variant="rounded" width="50px" height="50px" class="ring-2 ring-white/10" />
+                        <Skeleton variant="rounded" width="50px" height="50px"
+                            class="ring-2 ring-slate-200 dark:ring-white/10" />
                         <span class="text-[9px] font-black uppercase text-slate-500 tracking-widest">Rounded</span>
                     </div>
                     <div class="flex flex-col items-center gap-3 group-hover:scale-105 transition-transform delay-150">
-                        <Skeleton variant="rectangle" width="50px" height="50px" class="ring-2 ring-white/10" />
+                        <Skeleton variant="rectangle" width="50px" height="50px"
+                            class="ring-2 ring-slate-200 dark:ring-white/10" />
                         <span class="text-[9px] font-black uppercase text-slate-500 tracking-widest">Square</span>
                     </div>
                 </div>
@@ -129,16 +137,18 @@ const posts = ref([
 
             <!-- Feature 2: Stagger Animations -->
             <div
-                class="glass-card p-10 space-y-6 bg-gradient-to-br from-orange-500/5 to-transparent group hover:border-orange-500/30 transition-colors">
-                <h3 class="text-xl font-bold italic flex items-center gap-3 uppercase tracking-tighter text-white">
-                    <Icon name="heroicons:sparkles" class="text-orange-400" />
+                class="glass-card p-10 space-y-6 bg-gradient-to-br from-orange-500/5 to-transparent group hover:border-orange-500/30 transition-colors border-slate-200 dark:border-white/5">
+                <h3
+                    class="text-xl font-bold italic flex items-center gap-3 uppercase tracking-tighter text-slate-900 dark:text-white">
+                    <Icon name="heroicons:sparkles" class="text-orange-500 dark:text-orange-400" />
                     Stagger Sequencer
                 </h3>
                 <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-orange-500/50 pl-4">
-                    Le composant <code class="text-orange-400 font-bold">SkeletonGroup</code> orchestre les délais
+                    Le composant <code class="text-orange-500 font-bold">SkeletonGroup</code> orchestre les délais
                     d'animation pour créer une vague organique de chargement.
                 </p>
-                <div class="space-y-4 p-8 glass bg-black/40 rounded-2xl border border-white/5">
+                <div
+                    class="space-y-4 p-8 glass bg-slate-100 dark:bg-black/40 rounded-2xl border border-slate-200 dark:border-white/5">
                     <SkeletonGroup>
                         <div v-for="i in 3" :key="i" class="flex gap-4 items-center">
                             <Skeleton variant="circle" width="32px" height="32px" />
@@ -155,7 +165,7 @@ const posts = ref([
         <!-- Real Example Interaction -->
         <section class="space-y-8">
             <div class="flex items-center justify-between">
-                <h2 class="text-3xl font-black italic tracking-tighter">Content <span
+                <h2 class="text-3xl font-black italic tracking-tighter text-slate-900 dark:text-white">Content <span
                         class="text-gradient">Resolution</span></h2>
                 <Button severity="contrast" variant="soft" size="sm" @click="isLoading = !isLoading"
                     class="font-black italic uppercase tracking-widest">
@@ -165,7 +175,7 @@ const posts = ref([
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div v-for="(post, i) in posts" :key="post.id"
-                    class="p-1 glass-card border border-white/5 bg-black/40 overflow-hidden relative group">
+                    class="p-1 glass-card border border-slate-200 dark:border-white/5 bg-slate-100 dark:bg-black/40 overflow-hidden relative group">
                     <div
                         class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                     </div>
@@ -173,7 +183,7 @@ const posts = ref([
                     <div class="p-6 space-y-6 relative z-10">
                         <!-- Image Slot -->
                         <div
-                            class="relative h-48 w-full rounded-2xl overflow-hidden bg-slate-900 border border-white/5">
+                            class="relative h-48 w-full rounded-2xl overflow-hidden bg-slate-200 dark:bg-slate-900 border border-slate-200 dark:border-white/5">
                             <transition name="fade" mode="out-in">
                                 <Skeleton v-if="isLoading" height="100%" variant="rectangle" class="absolute inset-0" />
                                 <img v-else :src="`https://picsum.photos/400/200?random=${i}`" alt="Content"
@@ -192,14 +202,17 @@ const posts = ref([
                                     </SkeletonGroup>
                                 </div>
                                 <div v-else class="space-y-2">
-                                    <h4 class="text-lg font-bold text-white italic tracking-tight">{{ post.title }}</h4>
-                                    <p class="text-xs text-slate-400 leading-relaxed">{{ post.desc }}</p>
+                                    <h4 class="text-lg font-bold text-slate-900 dark:text-white italic tracking-tight">
+                                        {{ post.title }}</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ post.desc
+                                    }}</p>
                                 </div>
                             </transition>
                         </div>
 
                         <!-- Footer Slot -->
-                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-white/10">
                             <transition name="fade" mode="out-in">
                                 <Skeleton v-if="isLoading" width="80px" height="24px" radius="8px" />
                                 <span v-else
@@ -210,7 +223,7 @@ const posts = ref([
                             <transition name="fade" mode="out-in">
                                 <Skeleton v-if="isLoading" width="80px" height="32px" radius="8px" />
                                 <Button v-else variant="ghost" size="sm"
-                                    class="text-amber-400 hover:text-amber-300">Access</Button>
+                                    class="text-amber-500 dark:text-amber-400 hover:text-amber-600 dark:hover:text-amber-300">Access</Button>
                             </transition>
                         </div>
                     </div>
@@ -229,14 +242,14 @@ const posts = ref([
                     <span
                         class="text-[10px] text-slate-500 font-mono tracking-widest uppercase font-black">Loader.vue</span>
                 </div>
-                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-950/50">
-                    <pre><span class="text-pink-500">import</span> { <span class="text-amber-400">Skeleton</span>, <span class="text-amber-400">SkeletonGroup</span> } <span class="text-pink-500">from</span> <span class="text-emerald-400">'@webmx/ui'</span>;
+                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-50 dark:bg-slate-950/50">
+                    <pre><span class="text-pink-600 dark:text-pink-500">import</span> { <span class="text-amber-500 dark:text-amber-400">Skeleton</span>, <span class="text-amber-500 dark:text-amber-400">SkeletonGroup</span> } <span class="text-pink-600 dark:text-pink-500">from</span> <span class="text-emerald-600 dark:text-emerald-400">'@webmx/ui'</span>;
 
 <span class="text-slate-500">// Structure avec auto-stagger</span>
-<span class="text-white">&lt;<span class="text-amber-400">SkeletonGroup</span>&gt;
-  &lt;<span class="text-amber-400">Skeleton</span> <span class="text-indigo-400">variant</span>=<span class="text-emerald-400">"circle"</span> <span class="text-indigo-400">size</span>=<span class="text-emerald-400">"lg"</span> /&gt;
-  &lt;<span class="text-amber-400">Skeleton</span> <span class="text-indigo-400">height</span>=<span class="text-emerald-400">"20px"</span> <span class="text-indigo-400">width</span>=<span class="text-emerald-400">"200px"</span> /&gt;
-&lt;/<span class="text-amber-400">SkeletonGroup</span>&gt;</span></pre>
+<span class="text-slate-800 dark:text-white">&lt;<span class="text-amber-500 dark:text-amber-400">SkeletonGroup</span>&gt;
+  &lt;<span class="text-amber-500 dark:text-amber-400">Skeleton</span> <span class="text-indigo-600 dark:text-indigo-400">variant</span>=<span class="text-emerald-600 dark:text-emerald-400">"circle"</span> <span class="text-indigo-600 dark:text-indigo-400">size</span>=<span class="text-emerald-600 dark:text-emerald-400">"lg"</span> /&gt;
+  &lt;<span class="text-amber-500 dark:text-amber-400">Skeleton</span> <span class="text-indigo-600 dark:text-indigo-400">height</span>=<span class="text-emerald-600 dark:text-emerald-400">"20px"</span> <span class="text-indigo-600 dark:text-indigo-400">width</span>=<span class="text-emerald-600 dark:text-emerald-400">"200px"</span> /&gt;
+&lt;/<span class="text-amber-500 dark:text-amber-400">SkeletonGroup</span>&gt;</span></pre>
                 </div>
             </div>
         </section>
@@ -270,25 +283,15 @@ const posts = ref([
 
     0%,
     100% {
-        transform: translateY(0px);
+        transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-6px);
     }
 }
 
 .animate-float {
-    animation: float 6s ease-in-out infinite;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
+    animation: float 4s ease-in-out infinite;
 }
 </style>

@@ -1,0 +1,39 @@
+
+> webflow-doc@0.0.1 type-check D:\code\workspace\webmx\doc
+> vue-tsc --noEmit
+
+src/pages/docs/components/Avatar.vue(4,27): error TS2305: Module '"webflow-ui/components/avatar/types"' has no exported member 'AvatarShape'.
+src/pages/docs/components/Button.vue(21,42): error TS2322: Type '"solid"' is not assignable to type 'ButtonVariant'.
+src/pages/docs/components/Button.vue(28,9): error TS2367: This comparison appears to be unintentional because the types 'ButtonVariant' and '"solid"' have no overlap.
+src/pages/docs/components/Kbd.vue(3,10): error TS2305: Module '"webflow-ui"' has no exported member 'Kbd'.
+src/pages/docs/components/Kbd.vue(4,30): error TS2307: Cannot find module 'webflow-ui/components/kbd/types' or its corresponding type declarations.
+src/pages/docs/components/SocialButton.vue(4,15): error TS2305: Module '"webflow-ui/components/social-button/types"' has no exported member 'SocialNetwork'.
+src/pages/docs/components/SocialButton.vue(53,26): error TS2345: Argument of type '{ class: string; key: SocialNetwork; network: SocialNetwork; }' is not assignable to parameter of type '{ readonly provider: SocialProvider; readonly iconOnly?: boolean | undefined; readonly showIcon?: boolean | undefined; readonly pill?: boolean | undefined; readonly name?: string | undefined; ... 52 more ...; readonly onClick?: ((event: MouseEvent) => any) | undefined; } & VNodeProps & AllowedComponentProps & Compon...'.
+  Property 'provider' is missing in type '{ class: string; key: SocialNetwork; network: SocialNetwork; }' but required in type '{ readonly provider: SocialProvider; readonly iconOnly?: boolean | undefined; readonly showIcon?: boolean | undefined; readonly pill?: boolean | undefined; readonly name?: string | undefined; ... 52 more ...; readonly onClick?: ((event: MouseEvent) => any) | undefined; }'.
+../ui/src/components/avatar/useAvatar.ts(48,9): error TS6133: 'retryAttempts' is declared but its value is never read.
+../ui/src/components/avatar/useAvatar.ts(49,9): error TS6133: 'retryDelay' is declared but its value is never read.
+../ui/src/components/button-group/ButtonGroup.vue(9,15): error TS6196: 'ButtonGroupDirection' is declared but never used.
+../ui/src/components/button/Button.vue(92,45): error TS6133: 'onMounted' is declared but its value is never read.
+../ui/src/components/button/Button.vue(92,56): error TS6133: 'onUnmounted' is declared but its value is never read.
+../ui/src/components/button/Button.vue(110,5): error TS6196: 'ButtonProps' is declared but never used.
+../ui/src/components/icon/Icon.vue(268,7): error TS6133: 'isClient' is declared but its value is never read.
+../ui/src/components/modal/useModal.ts(1,20): error TS6133: 'h' is declared but its value is never read.
+../ui/src/components/modal/useModal.ts(1,23): error TS6133: 'markRaw' is declared but its value is never read.
+../ui/src/components/modal/useModal.ts(3,1): error TS6133: 'Modal' is declared but its value is never read.
+../ui/src/components/navbar/NavLogo.vue(10,15): error TS6196: 'NavLogoMode' is declared but never used.
+../ui/src/components/skeleton/SkeletonGroup.vue(2,1): error TS6133: 'provide' is declared but its value is never read.
+../ui/src/components/skeleton/SkeletonGroup.vue(4,7): error TS6133: 'props' is declared but its value is never read.
+../ui/src/components/toast/store.ts(1,15): error TS6133: 'reactive' is declared but its value is never read.
+../ui/src/components/toast/store.ts(2,15): error TS6196: 'ToastId' is declared but never used.
+../ui/src/components/toast/store.ts(2,51): error TS6196: 'ToastOptions' is declared but never used.
+../ui/src/components/toast/Toast.vue(6,27): error TS6196: 'SwipeEvent' is declared but never used.
+../ui/src/components/toast/Toast.vue(6,39): error TS6196: 'ToastId' is declared but never used.
+../ui/src/components/tooltip/Tooltip.vue(16,56): error TS6133: 'nextTick' is declared but its value is never read.
+../ui/src/components/tooltip/Tooltip.vue(69,7): error TS6133: 'positionStyles' is declared but its value is never read.
+../ui/src/components/tooltip/useTooltipPosition.ts(1,25): error TS6133: 'onMounted' is declared but its value is never read.
+../ui/src/components/tooltip/useTooltipPosition.ts(1,36): error TS6133: 'onUnmounted' is declared but its value is never read.
+../ui/src/components/tooltip/useTooltipPosition.ts(1,49): error TS6133: 'watch' is declared but its value is never read.
+../ui/src/components/tooltip/useTooltipPosition.ts(2,29): error TS6196: 'TooltipPosition' is declared but never used.
+../ui/src/components/tooltip/useTooltipSingleton.ts(1,10): error TS6133: 'ref' is declared but its value is never read.
+../ui/src/composables/useButton.ts(1,61): error TS6133: 'Ref' is declared but its value is never read.
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 2.
