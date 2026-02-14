@@ -1,656 +1,307 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Avatar, AvatarGroup, Icon } from 'webflow-ui'
-
-const initialsAlt = ref('Benjamin Canac')
-const initialsSize = ref<any>('md')
-const textValue = ref('+1')
-const textSize = ref<any>('md')
-const iconValue = ref('heroicons:user')
-const iconSize = ref<any>('md')
 
 // New features refs
 const isGradient = ref(false)
 const isSkeleton = ref(false)
 const isInteractive = ref(false)
 const showChip = ref(false)
-const chipColor = ref<any>('success')
-const chipPulse = ref(false)
+const chipColor = ref<string>('success')
+
+const avatarCodeExample = computed(() => {
+    let props = ''
+    if (isGradient.value) props += ' gradient'
+    if (isSkeleton.value) props += ' skeleton'
+    if (showChip.value) props += ` :chip="{ color: '${chipColor.value}' }"`
+    return `<Avatar src="/portrait.jpg" alt="User"${props} />`
+})
 </script>
 
 <template>
-    <section id="avatar" class="scroll-mt-24 mb-20 px-4 md:px-0">
-        <!-- Badge Status -->
-        <div class="flex items-center gap-3 mb-2">
-            <span
-                class="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Composant</span>
-            <span
-                class="px-2 py-0.5 text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full">Disponible</span>
-        </div>
-
-        <!-- Title & Description -->
-        <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
-            Avatar
-        </h1>
-        <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-3xl">
-            Un composant polyvalent pour afficher des photos de profil, des initiales ou des icônes.
-            Il supporte plusieurs tailles, formes et un indicateur de statut (chip).
-        </p>
-
-        <!-- Basic Examples -->
-        <div class="mb-12 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm">
-            <div
-                class="bg-slate-50 dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2">
-                <span class="text-xs font-medium text-slate-500">Aperçu</span>
-            </div>
-            <div class="bg-white dark:bg-slate-900 p-8 flex flex-wrap gap-8 items-center justify-center">
-                <Avatar src="https://i.pravatar.cc/150?img=1" alt="John Doe" />
-                <Avatar text="JD" />
-                <Avatar icon="heroicons:user" />
-                <Avatar src="/invalid.jpg" alt="Fallback User" />
-                <Avatar src="https://i.pravatar.cc/150?img=5" chip />
-            </div>
-            <div class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-t border-slate-200 dark:border-slate-800">
-                <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar src="https://i.pravatar.cc/150?img=1" alt="John Doe" /&gt;
-  &lt;Avatar text="JD" /&gt;
-  &lt;Avatar icon="heroicons:user" /&gt;
-  &lt;Avatar src="https://i.pravatar.cc/150?img=5" chip /&gt;
-&lt;/template&gt;</code></pre>
-            </div>
-        </div>
-
-        <!-- Interactive Playground -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Playground Interactif</h3>
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm">
-                <!-- Controls -->
-                <div
-                    class="bg-slate-50 dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                    <div class="flex items-center justify-between gap-4 p-2 bg-slate-100 dark:bg-slate-900 rounded-lg">
-                        <span class="text-xs text-slate-500 font-mono">Gradient</span>
-                        <input type="checkbox" v-model="isGradient" class="w-4 h-4 rounded" />
-                    </div>
-                    <div class="flex items-center justify-between gap-4 p-2 bg-slate-100 dark:bg-slate-900 rounded-lg">
-                        <span class="text-xs text-slate-500 font-mono">Skeleton</span>
-                        <input type="checkbox" v-model="isSkeleton" class="w-4 h-4 rounded" />
-                    </div>
-                    <div class="flex items-center justify-between gap-4 p-2 bg-slate-100 dark:bg-slate-900 rounded-lg">
-                        <span class="text-xs text-slate-500 font-mono">Interactive</span>
-                        <input type="checkbox" v-model="isInteractive" class="w-4 h-4 rounded" />
-                    </div>
-                    <div class="flex items-center justify-between gap-4 p-2 bg-slate-100 dark:bg-slate-900 rounded-lg">
-                        <span class="text-xs text-slate-500 font-mono">Show Chip</span>
-                        <input type="checkbox" v-model="showChip" class="w-4 h-4 rounded" />
-                    </div>
-                    <div class="flex items-center justify-between gap-4 p-2 bg-slate-100 dark:bg-slate-900 rounded-lg">
-                        <span class="text-xs text-slate-500 font-mono">Chip Color</span>
-                        <select v-model="chipColor"
-                            class="bg-transparent border-none outline-none text-xs dark:text-white">
-                            <option v-for="c in ['success', 'warning', 'danger', 'info', 'primary']" :key="c"
-                                :value="c">{{ c }}</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Preview -->
-                <div class="bg-white dark:bg-slate-900 p-12 flex items-center justify-center min-h-[160px]">
-                    <Avatar alt="John Doe" :gradient="isGradient" :skeleton="isSkeleton" :interactive="isInteractive"
-                        :chip="showChip ? { color: chipColor, pulse: chipPulse, inset: true } : false" size="xl" />
-                </div>
-            </div>
-        </div>
-
-        <!-- Initials -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Initials</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                When no icon or text is provided, the <span
-                    class="font-bold text-slate-900 dark:text-white">initials</span> of the <code>alt</code> prop is
-                used as fallback.
-            </p>
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm">
-                <!-- Controls -->
-                <div
-                    class="bg-slate-50 dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 flex flex-wrap items-center gap-4 text-sm">
-                    <div
-                        class="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-300 dark:border-slate-600 overflow-hidden">
-                        <span
-                            class="px-2 py-1 text-xs text-slate-500 font-mono border-r border-slate-300 dark:border-slate-600">alt</span>
-                        <input v-model="initialsAlt" type="text"
-                            class="bg-transparent border-none outline-none px-2 py-1 w-40 dark:text-white" />
-                    </div>
-                    <div
-                        class="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-300 dark:border-slate-600 overflow-hidden">
-                        <span
-                            class="px-2 py-1 text-xs text-slate-500 font-mono border-r border-slate-300 dark:border-slate-600">size</span>
-                        <select v-model="initialsSize"
-                            class="bg-transparent border-none outline-none px-2 py-1 dark:text-white">
-                            <option v-for="s in ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']" :key="s"
-                                :value="s">{{ s }}</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Preview -->
-                <div class="bg-white dark:bg-slate-900 p-12 flex items-center justify-center min-h-[160px]">
-                    <Avatar :alt="initialsAlt" :size="initialsSize" />
-                </div>
-                <!-- Code -->
-                <div class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-t border-slate-200 dark:border-slate-800">
-                    <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar alt="{{ initialsAlt }}" size="{{ initialsSize }}" /&gt;
-&lt;/template&gt;</code></pre>
-                </div>
-            </div>
-            <!-- Info Box -->
-            <div
-                class="mt-4 p-4 rounded-xl bg-sky-50 dark:bg-sky-900/20 border border-sky-100 dark:border-sky-800/50 flex gap-3 items-start shadow-sm">
-                <Icon name="heroicons:information-circle" class="w-5 h-5 text-sky-500 shrink-0 mt-0.5" />
-                <p class="text-sm text-sky-700 dark:text-sky-300 leading-relaxed">
-                    The <code>alt</code> prop is passed to the <code>img</code> element as the <code>alt</code>
-                    attribute.
-                </p>
-            </div>
-        </div>
-
-        <!-- Text -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Text</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                Use the <code>text</code> prop to display a fallback text.
-            </p>
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm">
-                <!-- Controls -->
-                <div
-                    class="bg-slate-50 dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 flex flex-wrap items-center gap-4 text-sm">
-                    <div
-                        class="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-300 dark:border-slate-600 overflow-hidden">
-                        <span
-                            class="px-2 py-1 text-xs text-slate-500 font-mono border-r border-slate-300 dark:border-slate-600">text</span>
-                        <input v-model="textValue" type="text"
-                            class="bg-transparent border-none outline-none px-2 py-1 w-20 dark:text-white" />
-                    </div>
-                    <div
-                        class="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-300 dark:border-slate-600 overflow-hidden">
-                        <span
-                            class="px-2 py-1 text-xs text-slate-500 font-mono border-r border-slate-300 dark:border-slate-600">size</span>
-                        <select v-model="textSize"
-                            class="bg-transparent border-none outline-none px-2 py-1 dark:text-white">
-                            <option v-for="s in ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']" :key="s"
-                                :value="s">{{ s }}</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Preview -->
-                <div class="bg-white dark:bg-slate-900 p-12 flex items-center justify-center min-h-[160px]">
-                    <Avatar :text="textValue" :size="textSize" />
-                </div>
-                <!-- Code -->
-                <div class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-t border-slate-200 dark:border-slate-800">
-                    <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar text="{{ textValue }}" size="{{ textSize }}" /&gt;
-&lt;/template&gt;</code></pre>
-                </div>
-            </div>
-        </div>
-
-        <!-- Squircle -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Squircle</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                You can create a squircle shaped avatar by combining <code>rounded="none"</code> and a custom class.
-            </p>
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm">
-                <div class="bg-white dark:bg-slate-900 p-12 flex items-center justify-center min-h-[160px]">
-                    <Avatar class="rounded-none squircle" size="xl"
-                        src="https://avatars.githubusercontent.com/u/739984?v=4" alt="Benjamin Canac" />
-                </div>
-                <!-- Code / Style -->
-                <div class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-t border-slate-200 dark:border-slate-800">
-                    <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar class="rounded-none squircle" src="..." alt="Benjamin Canac" /&gt;
-&lt;/template&gt;
-
-&lt;style&gt;
-.squircle {
-  mask-image: url("data:image/svg+xml,...");
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-}
-&lt;/style&gt;</code></pre>
-                </div>
-            </div>
-        </div>
-
-        <!-- Squircle -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Squircle</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                You can create a squircle shaped avatar by combining <code>rounded="none"</code> and a custom class.
-            </p>
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm">
-                <div class="bg-white dark:bg-slate-900 p-12 flex items-center justify-center min-h-[160px]">
-                    <Avatar class="rounded-none squircle" size="xl"
-                        src="https://avatars.githubusercontent.com/u/739984?v=4" alt="Benjamin Canac" />
-                </div>
-                <!-- Code / Style -->
-                <div class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-t border-slate-200 dark:border-slate-800">
-                    <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar class="rounded-none squircle" src="..." alt="Benjamin Canac" /&gt;
-&lt;/template&gt;
-
-&lt;style&gt;
-.squircle {
-  mask-image: url("data:image/svg+xml,...");
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-}
-&lt;/style&gt;</code></pre>
-                </div>
-            </div>
-        </div>
-
-        <!-- Icon -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Icon</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                Use the <code>icon</code> prop to display a fallback <span
-                    class="text-emerald-500 font-bold">Icon</span>.
-            </p>
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm">
-                <!-- Controls -->
-                <div
-                    class="bg-slate-50 dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 flex flex-wrap items-center gap-4 text-sm">
-                    <div
-                        class="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-300 dark:border-slate-600 overflow-hidden">
-                        <span
-                            class="px-2 py-1 text-xs text-slate-500 font-mono border-r border-slate-300 dark:border-slate-600">icon</span>
-                        <input v-model="iconValue" type="text"
-                            class="bg-transparent border-none outline-none px-2 py-1 w-48 dark:text-white" />
-                    </div>
-                    <div
-                        class="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-300 dark:border-slate-600 overflow-hidden">
-                        <span
-                            class="px-2 py-1 text-xs text-slate-500 font-mono border-r border-slate-300 dark:border-slate-600">size</span>
-                        <select v-model="iconSize"
-                            class="bg-transparent border-none outline-none px-2 py-1 dark:text-white">
-                            <option v-for="s in ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']" :key="s"
-                                :value="s">{{ s }}</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Preview -->
-                <div class="bg-white dark:bg-slate-900 p-12 flex items-center justify-center min-h-[160px]">
-                    <Avatar :icon="iconValue" :size="iconSize" />
-                </div>
-                <!-- Code -->
-                <div class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-t border-slate-200 dark:border-slate-800">
-                    <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar icon="{{ iconValue }}" size="{{ iconSize }}" /&gt;
-&lt;/template&gt;</code></pre>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tailles -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Tailles</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                De <code>3xs</code> à <code>3xl</code> pour s'adapter à tous vos contextes.
-            </p>
-            <div
-                class="p-8 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800/50 flex flex-wrap gap-6 items-end justify-center">
-                <div class="flex flex-col items-center gap-2"
-                    v-for="s in ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']" :key="s">
-                    <Avatar :size="s" src="https://i.pravatar.cc/150?img=10" />
-                    <span class="text-[10px] text-slate-500 font-mono">{{ s }}</span>
-                </div>
-            </div>
-            <div
-                class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border border-t-0 border-slate-200 dark:border-slate-800 rounded-b-xl">
-                <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar size="3xs" src="..." /&gt;
-  &lt;Avatar size="md" src="..." /&gt;
-  &lt;Avatar size="3xl" src="..." /&gt;
-&lt;/template&gt;</code></pre>
-            </div>
-        </div>
-
-        <!-- Formes -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Formes</h3>
-            <div
-                class="p-8 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800/50 flex flex-wrap gap-8 items-center justify-center">
-                <div class="flex flex-col items-center gap-3" v-for="r in ['none', 'md', 'full']" :key="r">
-                    <Avatar :rounded="r" size="xl" src="https://i.pravatar.cc/150?img=20" />
-                    <span class="text-xs text-slate-500">{{ r }}</span>
-                </div>
-            </div>
-            <div
-                class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border border-t-0 border-slate-200 dark:border-slate-800 rounded-b-xl">
-                <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar rounded="none" src="..." /&gt;
-  &lt;Avatar rounded="md" src="..." /&gt;
-  &lt;Avatar rounded="full" src="..." /&gt;
-&lt;/template&gt;</code></pre>
-            </div>
-        </div>
-
-        <!-- AvatarGroup -->
-        <div class="mb-12">
-            <div class="flex items-center gap-2 mb-4">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white">AvatarGroup</h3>
+    <div class="space-y-16 pb-20">
+        <!-- Header -->
+        <header class="space-y-4">
+            <div class="flex items-center gap-3">
                 <span
-                    class="px-2 py-0.5 text-[10px] font-bold bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded uppercase tracking-tighter">Stack</span>
+                    class="px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em]">Profile
+                    Entity</span>
+                <span class="text-slate-500 dark:text-slate-500 text-xs font-medium">Smart Fallback • Presence
+                    Chip</span>
             </div>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                Empilez plusieurs avatars avec une gestion automatique du surplus.
+            <h1 class="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Avatar <span class="text-gradient">Identity</span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed italic">
+                "La représentation numérique du Soi."
+                Un composant d'identité polymorphe capable de gérer images, initiales et
+                états de présence avec une fluidité absolue.
             </p>
-            <div
-                class="p-8 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800/50 flex flex-col gap-8">
-                <div class="flex items-center gap-8">
-                    <AvatarGroup :max="3">
-                        <Avatar src="https://i.pravatar.cc/150?img=31" />
-                        <Avatar src="https://i.pravatar.cc/150?img=32" />
-                        <Avatar src="https://i.pravatar.cc/150?img=33" />
-                        <Avatar src="https://i.pravatar.cc/150?img=34" />
-                        <Avatar src="https://i.pravatar.cc/150?img=35" />
-                    </AvatarGroup>
-                    <span class="text-sm text-slate-500">Max = 3</span>
-                </div>
-                <div class="flex items-center gap-8">
-                    <AvatarGroup :max="4" size="lg">
-                        <Avatar src="https://i.pravatar.cc/150?img=41" />
-                        <Avatar src="https://i.pravatar.cc/150?img=42" />
-                        <Avatar src="https://i.pravatar.cc/150?img=43" />
-                        <Avatar src="https://i.pravatar.cc/150?img=44" />
-                        <Avatar src="https://i.pravatar.cc/150?img=45" />
-                        <Avatar src="https://i.pravatar.cc/150?img=46" />
-                    </AvatarGroup>
-                    <span class="text-sm text-slate-500">Size = LG, Max = 4</span>
-                </div>
-            </div>
-            <div
-                class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border border-t-0 border-slate-200 dark:border-slate-800 rounded-b-xl">
-                <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;AvatarGroup :max="3"&gt;
-    &lt;Avatar src="..." /&gt;
-    &lt;Avatar src="..." /&gt;
-    &lt;Avatar src="..." /&gt;
-    &lt;Avatar src="..." /&gt;
-  &lt;/AvatarGroup&gt;
-&lt;/template&gt;</code></pre>
-            </div>
-        </div>
+        </header>
 
-        <!-- Chip -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Chip</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                Utilisez la prop <code>chip</code> pour afficher un indicateur (ex: statut en ligne) autour de l'Avatar.
-            </p>
+        <!-- Interactive Section -->
+        <section class="group relative">
             <div
-                class="p-8 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800/50 flex flex-wrap gap-8 items-center justify-center">
-                <Avatar src="https://i.pravatar.cc/150?img=1" chip />
-                <Avatar src="https://i.pravatar.cc/150?img=2" :chip="{ inset: true }" />
+                class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-[2rem] blur opacity-25 group-hover:opacity-40 transition duration-1000">
             </div>
-            <div
-                class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border border-t-0 border-slate-200 dark:border-slate-800 rounded-b-xl">
-                <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;Avatar src="..." chip /&gt;
-  
-  &lt;Avatar src="..." :chip="{ inset: true }" /&gt;
-&lt;/template&gt;</code></pre>
-            </div>
-        </div>
+            <div class="relative glass-card overflow-hidden">
+                <!-- Live Preview Stage -->
+                <div
+                    class="relative min-h-[350px] flex items-center justify-center bg-slate-50/50 dark:bg-slate-900/50 p-12 overflow-hidden border-b border-white/5">
+                    <!-- Geometric Background -->
+                    <div class="absolute inset-0 opacity-20 pointer-events-none"
+                        style="background-image: radial-gradient(var(--neon-blue) 1px, transparent 1px); background-size: 30px 30px;">
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="w-64 h-64 rounded-full border border-blue-500/10 animate-pulse-slow"></div>
+                        <div class="absolute w-96 h-96 rounded-full border border-indigo-500/5"></div>
+                    </div>
 
-        <!-- Tooltip -->
-        <div class="mb-20">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Tooltip</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6">
-                Vous pouvez utiliser un composant <code>Tooltip</code> pour afficher une information au survol.
-            </p>
-            <div
-                class="p-8 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800/50 flex items-center justify-center">
-                <!-- Simulation d'un tooltip pour la démo -->
-                <div class="relative group">
-                    <Avatar src="https://i.pravatar.cc/150?img=5" alt="Benjamin Canac" />
+                    <!-- Main Avatar Display -->
                     <div
-                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                        Benjamin Canac
+                        class="relative z-10 flex items-center gap-8 bg-black/40 p-10 rounded-full border border-white/10 backdrop-blur-xl hover:scale-105 transition-transform duration-500 group-hover:border-blue-500/20">
+                        <div class="relative">
+                            <Avatar
+                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150"
+                                alt="Alex Johnson" size="3xl" :gradient="isGradient" :skeleton="isSkeleton"
+                                :interactive="isInteractive"
+                                :chip="showChip ? { color: chipColor, inset: true } : false"
+                                class="ring-4 ring-black shadow-2xl" />
+                            <!-- Decorative orbits -->
+                            <div v-if="isGradient"
+                                class="absolute -inset-2 rounded-full border-2 border-transparent border-t-blue-500/50 border-r-indigo-500/50 animate-spin-slow pointer-events-none">
+                            </div>
+                        </div>
+
+                        <div class="hidden md:block space-y-1">
+                            <h4 class="text-2xl font-black text-white italic tracking-tight">Alex Johnson</h4>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                                <p class="text-xs text-blue-400 font-bold tracking-widest uppercase">System Architect
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls Area -->
+                <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-black/20">
+                    <div class="flex items-center justify-between p-4 glass rounded-xl w-full hover:bg-white/5 transition-colors cursor-pointer"
+                        @click="isGradient = !isGradient">
+                        <label
+                            class="text-[10px] font-black text-slate-400 uppercase tracking-widest cursor-pointer">Mode
+                            Néon</label>
+                        <div :class="[isGradient ? 'bg-blue-500 border-blue-500' : 'bg-transparent border-slate-600']"
+                            class="w-4 h-4 rounded border flex items-center justify-center transition-colors">
+                            <Icon v-if="isGradient" name="heroicons:check" size="xs" class="text-white w-3 h-3" />
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 glass rounded-xl w-full hover:bg-white/5 transition-colors cursor-pointer"
+                        @click="isInteractive = !isInteractive">
+                        <label
+                            class="text-[10px] font-black text-slate-400 uppercase tracking-widest cursor-pointer">Haptic
+                            Touch</label>
+                        <div :class="[isInteractive ? 'bg-blue-500 border-blue-500' : 'bg-transparent border-slate-600']"
+                            class="w-4 h-4 rounded border flex items-center justify-center transition-colors">
+                            <Icon v-if="isInteractive" name="heroicons:check" size="xs" class="text-white w-3 h-3" />
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 glass rounded-xl w-full hover:bg-white/5 transition-colors cursor-pointer"
+                        @click="isSkeleton = !isSkeleton">
+                        <label
+                            class="text-[10px] font-black text-slate-400 uppercase tracking-widest cursor-pointer">Simuler
+                            Load</label>
+                        <div :class="[isSkeleton ? 'bg-blue-500 border-blue-500' : 'bg-transparent border-slate-600']"
+                            class="w-4 h-4 rounded border flex items-center justify-center transition-colors">
+                            <Icon v-if="isSkeleton" name="heroicons:check" size="xs" class="text-white w-3 h-3" />
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 glass rounded-xl w-full hover:bg-white/5 transition-colors cursor-pointer"
+                        @click="showChip = !showChip">
+                        <label
+                            class="text-[10px] font-black text-slate-400 uppercase tracking-widest cursor-pointer">Status
+                            Chip</label>
+                        <div :class="[showChip ? 'bg-blue-500 border-blue-500' : 'bg-transparent border-slate-600']"
+                            class="w-4 h-4 rounded border flex items-center justify-center transition-colors">
+                            <Icon v-if="showChip" name="heroicons:check" size="xs" class="text-white w-3 h-3" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div
-                class="bg-slate-50 dark:bg-slate-950 px-6 py-4 border border-t-0 border-slate-200 dark:border-slate-800 rounded-b-xl">
-                <pre class="text-sm overflow-x-auto text-sky-400"><code>&lt;template&gt;
-  &lt;UTooltip text="Benjamin Canac"&gt;
-    &lt;Avatar src="..." alt="Benjamin Canac" /&gt;
-  &lt;/UTooltip&gt;
-&lt;/template&gt;</code></pre>
-            </div>
-        </div>
+        </section>
 
-        <!-- Performance -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Performance</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-6 fund-bold">
-                Optimisez le chargement des images critiques.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="p-6 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-900">
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">Preloading</h4>
-                    <p class="text-xs text-slate-500 mb-4">Utilisez <code>preload</code> pour les avatars au-dessus de
-                        la ligne de flottaison.</p>
-                    <pre class="text-[10px] text-sky-400"><code>&lt;Avatar src="..." preload /&gt;</code></pre>
+        <!-- Variants Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Feature 1: Grouping -->
+            <div class="glass-card p-10 space-y-6 group hover:border-blue-500/30 transition-colors">
+                <div class="flex items-center justify-between">
+                    <h3
+                        class="text-xl font-bold italic flex items-center gap-3 text-white uppercase tracking-tighter w-full">
+                        <Icon name="heroicons:users" class="text-blue-400" />
+                        Cluster Grouping
+                    </h3>
                 </div>
-                <div class="p-6 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-900">
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">Blur Hash</h4>
-                    <p class="text-xs text-slate-500 mb-4">Affichez un placeholder flou pendant le chargement.</p>
-                    <pre
-                        class="text-[10px] text-sky-400"><code>&lt;Avatar src="..." blurHash="data:..." /&gt;</code></pre>
+                <p class="text-xs text-slate-500 leading-relaxed italic">
+                    Agérez automatiquement les listes d'utilisateurs denses avec l'empilement intelligent
+                    et l'indicateur de surplus dynamique.
+                </p>
+                <div class="p-8 glass bg-black/40 rounded-2xl flex justify-center border border-white/5">
+                    <AvatarGroup :max="4">
+                        <Avatar src="https://i.pravatar.cc/150?img=11" class="ring-4 ring-black" />
+                        <Avatar src="https://i.pravatar.cc/150?img=12" class="ring-4 ring-black" />
+                        <Avatar src="https://i.pravatar.cc/150?img=13" class="ring-4 ring-black" />
+                        <Avatar src="https://i.pravatar.cc/150?img=4" class="ring-4 ring-black" />
+                        <Avatar src="https://i.pravatar.cc/150?img=5" class="ring-4 ring-black" />
+                    </AvatarGroup>
                 </div>
             </div>
-        </div>
 
-        <!-- Migration Guide -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Guide de Migration</h3>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- From Nuxt UI -->
-                <div
-                    class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <div class="flex items-center gap-2 mb-4">
-                        <Icon name="logos:nuxt-icon" class="w-5 h-5" />
-                        <span class="font-bold">Depuis Nuxt UI</span>
+            <!-- Feature 2: Fallbacks -->
+            <div class="glass-card p-10 space-y-6 group hover:border-indigo-500/30 transition-colors">
+                <div class="flex items-center justify-between">
+                    <h3
+                        class="text-xl font-bold italic flex items-center gap-3 text-white uppercase tracking-tighter w-full">
+                        <Icon name="heroicons:arrow-path" class="text-indigo-400" />
+                        Smart Fallback
+                    </h3>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed italic">
+                    En l'absence d'image source, le système bascule gracieusement vers les initiales
+                    générées ou une iconographie vectorielle thématique.
+                </p>
+                <div class="flex justify-center gap-8 py-4">
+                    <div class="flex flex-col items-center gap-2">
+                        <Avatar text="BC" size="lg"
+                            class="ring-2 ring-white/10 bg-indigo-500/20 text-indigo-300 font-black" />
+                        <span class="text-[9px] uppercase font-bold text-slate-600">Initials</span>
                     </div>
-                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-                        <li class="flex gap-2">
-                            <Icon name="heroicons:arrow-right" class="w-4 h-4 mt-1 text-slate-400" />
-                            <span><code>UAvatar</code> devient <code>Avatar</code>.</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <Icon name="heroicons:arrow-right" class="w-4 h-4 mt-1 text-slate-400" />
-                            <span>La prop <code>chip-color</code> est maintenant dans l'objet <code>chip</code>.</span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- From Vuetify -->
-                <div
-                    class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <div class="flex items-center gap-2 mb-4">
-                        <Icon name="logos:vuetify" class="w-5 h-5" />
-                        <span class="font-bold">Depuis Vuetify</span>
+                    <div class="flex flex-col items-center gap-2">
+                        <Avatar icon="heroicons:user" size="lg"
+                            class="ring-2 ring-white/10 bg-white/5 text-slate-400" />
+                        <span class="text-[9px] uppercase font-bold text-slate-600">Icon Mode</span>
                     </div>
-                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-                        <li class="flex gap-2">
-                            <Icon name="heroicons:arrow-right" class="w-4 h-4 mt-1 text-slate-400" />
-                            <span><code>v-avatar</code> devient <code>Avatar</code>.</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <Icon name="heroicons:arrow-right" class="w-4 h-4 mt-1 text-slate-400" />
-                            <span>Utilisez <code>rounded="none"</code> pour les avatars carrés.</span>
-                        </li>
-                    </ul>
+                    <div class="flex flex-col items-center gap-2">
+                        <Avatar alt="John Doe" size="lg"
+                            class="ring-2 ring-white/10 bg-rose-500/20 text-rose-300 font-black" />
+                        <span class="text-[9px] uppercase font-bold text-slate-600">Auto-Gen</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- API Reference -->
-        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-            <Icon name="heroicons:code-bracket" class="w-6 h-6 text-indigo-500" />
-            API Reference
-        </h2>
+        <!-- Code Block -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold flex items-center gap-3 italic">
+                <span class="w-8 h-1 bg-blue-500 rounded-full"></span>
+                Génération de Code
+            </h2>
+            <div class="code-window">
+                <div class="code-header font-display">
+                    <span
+                        class="text-[10px] text-slate-500 font-mono font-black tracking-widest uppercase">ProfileView.vue</span>
+                </div>
+                <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto bg-slate-950/50">
+                    <pre><span class="text-pink-500">import</span> { <span class="text-blue-400">Avatar</span> } <span class="text-pink-500">from</span> <span class="text-emerald-400">'@webmx/ui'</span>;
 
-        <!-- Props Table -->
-        <div class="mb-12">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Props</h3>
-            <div class="overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm">
-                <table class="w-full text-sm text-left">
-                    <thead
-                        class="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold border-b border-slate-200 dark:border-slate-700">
+<span class="text-slate-500">// Instantation du profil</span>
+<span class="text-white">{{ avatarCodeExample }}</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Props API -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold flex items-center gap-3 italic">
+                <span class="w-8 h-1 bg-blue-500 rounded-full"></span>
+                Spécifications Techniques
+            </h2>
+            <div class="glass rounded-3xl overflow-hidden border border-white/5 bg-black/20">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-white/5 border-b border-white/5">
                         <tr>
-                            <th class="py-4 px-6">Prop</th>
-                            <th class="py-4 px-6">Default</th>
-                            <th class="py-4 px-6">Type</th>
+                            <th class="py-6 px-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                Propriété</th>
+                            <th class="py-6 px-8 text-[10px] font-black uppercase tracking-widest text-slate-500">Typage
+                            </th>
+                            <th class="py-6 px-8 text-[10px] font-black uppercase tracking-widest text-slate-500">Défaut
+                            </th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-900/50">
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">as</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">'span'</td>
-                            <td class="py-4 px-6">
-                                <span class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-xs">any</span>
-                                <p class="mt-1 text-slate-500 text-xs">The element or component this component should
-                                    render as.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">src</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6">
-                                <span class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-xs">string</span>
-                                <p class="mt-1 text-slate-500 text-xs">URL source de l'image.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">alt</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6">
-                                <span class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-xs">string</span>
-                                <p class="mt-1 text-slate-500 text-xs">Texte alternatif pour l'image.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">icon</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6">
-                                <span class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-xs">any</span>
-                                <p class="mt-1 text-slate-500 text-xs">Nom de l'icône à afficher.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">text</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6">
-                                <span class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-xs">string</span>
-                                <p class="mt-1 text-slate-500 text-xs">Initiales ou texte à afficher.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">size</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">'md'</td>
-                            <td class="py-4 px-6">
-                                <div class="flex flex-wrap gap-1 max-w-[300px]">
-                                    <span v-for="s in ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']"
-                                        :key="s"
-                                        class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-[10px] font-mono text-emerald-600 dark:text-emerald-400">"{{
-                                            s }}"</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">chip</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">false</td>
+                    <tbody class="divide-y divide-white/5">
+                        <tr v-for="prop in [
+                            { name: 'src', type: 'string (URL)', default: 'undefined' },
+                            { name: 'alt', type: 'string (a11y)', default: 'undefined' },
+                            { name: 'size', type: '3xs | ... | 3xl', default: '\'md\'' },
+                            { name: 'gradient', type: 'boolean', default: 'false' },
+                            { name: 'chip', type: 'boolean | ChipOptions', default: 'false' },
+                            { name: 'rounded', type: 'sm | full | none', default: '\'full\'' },
+                        ]" :key="prop.name" class="hover:bg-white/5 transition-colors group">
                             <td
-                                class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs tracking-tighter">
-                                boolean | ChipProps</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">rounded</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">'full'</td>
-                            <td class="py-4 px-6">
-                                <div class="flex flex-wrap gap-1 max-w-[300px]">
-                                    <span v-for="r in ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full']" :key="r"
-                                        class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-[10px] font-mono text-emerald-600 dark:text-emerald-400">"{{
-                                            r }}"</span>
-                                </div>
+                                class="py-4 px-8 font-mono text-sm text-blue-400 font-bold group-hover:text-blue-300 transition-colors">
+                                {{ prop.name }}</td>
+                            <td class="py-4 px-8 font-mono text-xs text-slate-400 italic opacity-80">{{ prop.type }}
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">loading</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs">"eager" |
-                                "lazy"</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">
-                                referrerpolicy</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs">string</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">crossorigin
-                            </td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs">"" |
-                                "anonymous" | "use-credentials"</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">decoding</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs">"async" |
-                                "auto" | "sync"</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">height</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs">string |
-                                number</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">width</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs">string |
-                                number</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">srcset</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs">string</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-mono text-indigo-600 dark:text-indigo-400 font-bold">usemap</td>
-                            <td class="py-4 px-6 font-mono text-slate-400 text-xs">-</td>
-                            <td class="py-4 px-6 font-mono text-emerald-600 dark:text-emerald-400 text-xs">string</td>
+                            <td class="py-4 px-8 font-mono text-xs text-slate-500">{{ prop.default }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </template>
 
 <style scoped>
-@reference "../../../../../ui/src/theme.css";
-
-/* Fix select dropdown in dark mode */
-select {
-    @apply bg-transparent;
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
 }
 
-select option {
-    @apply bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white;
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 2.5rem;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 0.1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.2;
+        transform: scale(1.05);
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 10s linear infinite;
 }
 </style>

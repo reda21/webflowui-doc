@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebMX Documentation Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-sidebar {
+            background: rgba(16, 22, 34, 0.8);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(17, 82, 212, 0.1);
+        }
+        .glass-search {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #1152d4, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .component-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .component-card:hover {
+            border-color: rgba(17, 82, 212, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(17, 82, 212, 0.2);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 bottom-0 w-72 glass-sidebar hidden lg:flex flex-col z-50">
+<div class="p-8 flex items-center space-x-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons-round text-white text-xl">layers</span>
+</div>
+<span class="text-xl font-bold tracking-tight">WebMX</span>
+</div>
+<nav class="flex-1 overflow-y-auto px-6 py-4 space-y-8">
+<div>
+<h3 class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4 px-2">Getting Started</h3>
+<ul class="space-y-1">
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg bg-primary/10 text-primary font-medium border border-primary/20" href="#"><span class="material-icons-round text-sm">rocket_launch</span><span>Introduction</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span class="material-icons-round text-sm">download</span><span>Installation</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span class="material-icons-round text-sm">terminal</span><span>CLI Tools</span></a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4 px-2">Theming</h3>
+<ul class="space-y-1">
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span class="material-icons-round text-sm">palette</span><span>Colors</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span class="material-icons-round text-sm">title</span><span>Typography</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span class="material-icons-round text-sm">settings_input_component</span><span>Customization</span></a></li>
+</ul>
+</div>
+<div>
+<div class="flex items-center justify-between mb-4 px-2">
+<h3 class="text-xs font-semibold text-slate-500 uppercase tracking-widest">Components</h3>
+<span class="material-icons-round text-xs text-slate-500">expand_more</span>
+</div>
+<ul class="space-y-1">
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span>Accordion</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span>Alerts</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span>Avatar</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span>Buttons</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span>Cards</span></a></li>
+<li><a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors" href="#"><span>Dialog</span></a></li>
+</ul>
+</div>
+</nav>
+<div class="p-6 border-t border-white/5">
+<div class="bg-primary/5 rounded-xl p-4 border border-primary/10">
+<p class="text-xs text-slate-400 mb-2">v2.4.0 available</p>
+<button class="w-full py-2 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-lg transition-all shadow-lg shadow-primary/20">Upgrade Now</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-72 min-h-screen">
+<!-- Header / Search -->
+<header class="sticky top-0 z-40 px-8 py-4 glass-sidebar lg:bg-transparent lg:backdrop-blur-none border-none">
+<div class="max-w-5xl mx-auto flex items-center justify-between">
+<div class="flex-1 max-w-2xl">
+<div class="relative group">
+<span class="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-12 pr-24 py-3 glass-search rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-slate-200 placeholder-slate-500" placeholder="Search documentation..." type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center space-x-1 px-2 py-1 rounded bg-white/5 border border-white/10">
+<span class="text-[10px] font-bold text-slate-500">⌘</span>
+<span class="text-[10px] font-bold text-slate-500">K</span>
+</div>
+</div>
+</div>
+<div class="hidden md:flex items-center space-x-6 ml-8">
+<a class="text-slate-400 hover:text-white transition-colors" href="#"><img class="w-5 h-5 opacity-70 hover:opacity-100" data-alt="GitHub Social Icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASmkyhawr67RB2krBaX-ObtUx5a33K3i5OdAi2pUma7nebTAgAAGyTIbxxygM1sG8VlQxGs1B8hJdO6snXAXsw6zClkyyVMyIxwnEegWYeraZQgPvLr9yUOj_z38iCWimXJBgS3BkLyXzrLpzIuliyuI6RhdDrIfTmnCOvULhkMZ5G70EJfN0eRYdLcWzRpQtOJf1-62ETlxn7rkNVFc8RxvXDvMGcyiS8KQ9IBze63gQwKSopeTOFl_BAUIXfwmATBAzqjn7bI7g"/></a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#"><img class="w-5 h-5 opacity-70 hover:opacity-100" data-alt="Twitter Social Icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYrHPD4Am9XBpWBsdabjSffZDXFXhwC8G0OEoQfNTfNpZGPESoxRfZ9V4Ru3KQMnJ4xW1vcugdx_h52nB1U2YixkxEEVkr_UIIlO-n13Fy8X8bk8EdlkTT6xXCbw-gK1ECHUQktFZ057hKI5VGSmNA5l4axsx3bJkUsT8UqZsBqr-jd65l8janDSt-rYYPFq_-BjcLwychmsw5sMrYOs2kcqOnMIffw1c9d5WXhxN-IbRoZSgHJ2-AsdxX9Rwa2RfGue3a-Sp4NBA"/></a>
+<div class="h-4 w-[1px] bg-white/10"></div>
+<button class="bg-white/5 hover:bg-white/10 p-2 rounded-lg border border-white/10 transition-colors">
+<span class="material-icons-round text-primary text-xl">light_mode</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="px-8 pt-16 pb-12">
+<div class="max-w-5xl mx-auto">
+<div class="relative">
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 blur-[120px] rounded-full pointer-events-none"></div>
+<h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-6">
+                        Build at the <br/>
+<span class="text-gradient">speed of light.</span>
+</h1>
+<p class="text-xl text-slate-400 max-w-2xl leading-relaxed mb-10">
+                        WebMX is a production-ready component library for modern web apps. Hand-crafted with Tailwind CSS for maximum customizability and performance.
+                    </p>
+<div class="flex flex-wrap gap-4 items-center">
+<button class="px-8 py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-xl shadow-primary/30 flex items-center space-x-2 transition-all">
+<span>Get Started</span>
+<span class="material-icons-round">arrow_forward</span>
+</button>
+<div class="flex items-center bg-white/5 border border-white/10 rounded-xl px-4 py-4 font-mono text-sm text-slate-300">
+<span class="text-primary mr-2">$</span> npm install @webmx/core
+                            <button class="ml-4 hover:text-primary transition-colors"><span class="material-icons-round text-sm">content_copy</span></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Grid -->
+<section class="px-8 py-16">
+<div class="max-w-5xl mx-auto">
+<div class="flex items-center justify-between mb-10">
+<h2 class="text-2xl font-bold flex items-center space-x-3">
+<span class="w-8 h-1 bg-primary rounded-full"></span>
+<span>Featured Components</span>
+</h2>
+<a class="text-primary font-medium hover:underline flex items-center space-x-1" href="#">
+<span>View all</span>
+<span class="material-icons-round text-sm">chevron_right</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Buttons Preview -->
+<div class="component-card rounded-2xl p-6 flex flex-col h-full">
+<div class="mb-8 flex items-center justify-between">
+<span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-blue-500/20">Basics</span>
+<span class="material-icons-round text-slate-600">more_horiz</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center space-y-4 py-4">
+<button class="w-full bg-primary py-2.5 rounded-lg font-medium text-sm text-white shadow-lg shadow-primary/20">Primary Button</button>
+<button class="w-full bg-white/5 border border-white/10 py-2.5 rounded-lg font-medium text-sm text-slate-200 hover:bg-white/10 transition-colors">Secondary Action</button>
+<button class="w-full bg-transparent border border-dashed border-slate-700 py-2.5 rounded-lg font-medium text-sm text-slate-500">Ghost Outline</button>
+</div>
+<div class="mt-8">
+<h3 class="font-bold text-lg mb-1">Buttons</h3>
+<p class="text-sm text-slate-500">Highly flexible buttons with 4 sizes and 12 variants.</p>
+</div>
+</div>
+<!-- Cards Preview -->
+<div class="component-card rounded-2xl p-6 flex flex-col h-full">
+<div class="mb-8 flex items-center justify-between">
+<span class="px-3 py-1 bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-purple-500/20">Layout</span>
+<span class="material-icons-round text-slate-600">more_horiz</span>
+</div>
+<div class="flex-1 flex flex-col justify-center space-y-4 py-4">
+<div class="p-4 rounded-xl glass-search">
+<div class="w-full h-16 rounded-lg overflow-hidden mb-3">
+<div class="w-full h-full bg-gradient-to-br from-slate-700 to-slate-800" data-alt="Abstract gradient card header"></div>
+</div>
+<div class="w-3/4 h-2 bg-slate-700 rounded mb-2"></div>
+<div class="w-1/2 h-2 bg-slate-800 rounded"></div>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="font-bold text-lg mb-1">Content Cards</h3>
+<p class="text-sm text-slate-500">Elegant layout containers with automatic shadow states.</p>
+</div>
+</div>
+<!-- Navbars Preview -->
+<div class="component-card rounded-2xl p-6 flex flex-col h-full">
+<div class="mb-8 flex items-center justify-between">
+<span class="px-3 py-1 bg-green-500/10 text-green-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-green-500/20">Navigation</span>
+<span class="material-icons-round text-slate-600">more_horiz</span>
+</div>
+<div class="flex-1 flex flex-col justify-center space-y-4 py-4">
+<div class="w-full py-2 px-3 glass-search rounded-lg flex items-center justify-between">
+<div class="flex space-x-2">
+<div class="w-2 h-2 rounded-full bg-primary/40"></div>
+<div class="w-2 h-2 rounded-full bg-slate-700"></div>
+<div class="w-2 h-2 rounded-full bg-slate-700"></div>
+</div>
+<div class="w-8 h-4 rounded-full bg-primary/20"></div>
+</div>
+<div class="w-full py-3 px-4 bg-primary rounded-lg flex items-center justify-between">
+<div class="w-4 h-4 rounded bg-white/20"></div>
+<div class="flex space-x-2">
+<div class="w-6 h-1 rounded-full bg-white/20"></div>
+<div class="w-6 h-1 rounded-full bg-white/40"></div>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="font-bold text-lg mb-1">Navbars</h3>
+<p class="text-sm text-slate-500">Fully responsive, sticky, and blur-enabled navigations.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats/Social -->
+<section class="px-8 py-12 border-t border-white/5">
+<div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0">
+<div class="flex items-center space-x-12">
+<div>
+<div class="text-3xl font-bold">12k+</div>
+<div class="text-sm text-slate-500">Github Stars</div>
+</div>
+<div>
+<div class="text-3xl font-bold">450k</div>
+<div class="text-sm text-slate-500">Weekly Downloads</div>
+</div>
+<div>
+<div class="text-3xl font-bold">140+</div>
+<div class="text-sm text-slate-500">Total Components</div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<span class="text-sm text-slate-400">Used by world-class teams</span>
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-background-dark overflow-hidden bg-slate-800">
+<img data-alt="User avatar for social proof" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKkAYn502HeVWZ27hCKI6aG0PywJeqjyPC0ncZFZsR3d-Ytvqv7P3_rhVQ6BZdPN951tI2xQiO0xmfKF4K04ejKe7n7Jpss4TJ7JAVLR-rv8WgGd5Lv0NNYGYHoo-QlGRXJXII-9qmqRct465P2_B8F2H7_Q_tAcQ2spjB3zw4vB4i16jucBA6GTL_GRSIHKBPZEgDi6vK4x4qZSYn1WJTDxtL6AGwlUC_m4AGuw0Id1TbD2XR7VUKX656D5hpnUzjTGkdA87XgO8"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-background-dark overflow-hidden bg-slate-800">
+<img data-alt="User avatar for social proof" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0FlU3_wfSYurXSP4hZVxef-czMf8Lq2ilsfDWiTb8GEHic6bX0f6QvITeZQctjbbw27NSPEIyMV7norZX7tPRtoJYjWJQ9WRHtjpZ112QuEo0Gj0AEIbhJbLTYkDiYqR6KzgJJLpfmYPgO7dS0KC6zNs8TgAZo_kG6IESVnMubcjAwf0QFca6-POeScPRVBtE2WQ7H5oripEgvfkb-CdRKNF-hPuZAVwLoI87UGL5QFDKBQY9X23CoEqTSW915tWzBfCXYkH1cfQ"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-background-dark overflow-hidden bg-slate-800">
+<img data-alt="User avatar for social proof" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkVcz542qpTMQ9HI4ioZHALAb3GknIkk0Q56nz83mkd2YoAuBnl1bwRzdr7pddUi5n59eBE5tsJI436ox7u7Tj74jPg-YKzyZ3Gi2cedhUt2ZlOdcZ4D7FA41pz7lpOyLGLWF8QNj5qm6gHKiaKfSmMUtEqmRVU-UG4DPsx5arvUHwZ8PyhnEPv2bJH8b_SwV3PTZxIbsBKSztJVDxKIau2Cv5BhwXbJcCzCyKXtpBdC-StwsttvZwQkQ0OKxGMJUoui8jcs8Jqhs"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-background-dark bg-primary flex items-center justify-center text-[10px] font-bold text-white">+8k</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="px-8 py-12 bg-black/20 mt-12">
+<div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="col-span-2">
+<div class="flex items-center space-x-3 mb-6">
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center">
+<span class="material-icons-round text-white text-xs">layers</span>
+</div>
+<span class="font-bold tracking-tight">WebMX</span>
+</div>
+<p class="text-slate-500 text-sm max-w-sm">
+                        Built with ❤️ for developers who value performance and developer experience. Licensed under MIT.
+                    </p>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-sm">Product</h4>
+<ul class="space-y-3 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Components</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Templates</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Releases</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-sm">Community</h4>
+<ul class="space-y-3 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Discord</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">GitHub</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Twitter</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Discussions</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-5xl mx-auto mt-16 pt-8 border-t border-white/5 flex items-center justify-between text-xs text-slate-600">
+<p>© 2024 WebMX UI. All rights reserved.</p>
+<div class="flex space-x-6">
+<a class="hover:text-slate-400" href="#">Privacy Policy</a>
+<a class="hover:text-slate-400" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

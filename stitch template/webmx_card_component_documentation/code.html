@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebMX Card Component Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#25d1f4",
+                "background-light": "#f5f8f8",
+                "background-dark": "#101f22",
+              },
+              fontFamily: {
+                "display": ["Inter"],
+                "mono": ["Fira Code"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(16, 31, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(37, 209, 244, 0.1);
+        }
+        .code-syntax {
+            background: #0d1618;
+        }
+        .keyword { color: #25d1f4; }
+        .string { color: #a5f3fc; }
+        .comment { color: #4b5563; }
+        
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101f22;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #25d1f440;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25d1f4;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 antialiased min-h-screen">
+<div class="flex">
+<!-- Sidebar Navigation -->
+<aside class="fixed top-0 left-0 h-screen w-64 glass-panel border-r border-primary/10 hidden lg:flex flex-col z-50">
+<div class="p-6 border-b border-primary/10">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="text-background-dark font-bold">W</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-white">WebMX</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto p-4 space-y-8">
+<div>
+<p class="text-xs font-semibold text-primary uppercase tracking-wider mb-4 px-2">Foundation</p>
+<ul class="space-y-1">
+<li><a class="block px-2 py-1.5 rounded hover:bg-primary/10 transition-colors" href="#">Getting Started</a></li>
+<li><a class="block px-2 py-1.5 rounded hover:bg-primary/10 transition-colors" href="#">Theming</a></li>
+<li><a class="block px-2 py-1.5 rounded hover:bg-primary/10 transition-colors" href="#">Typography</a></li>
+</ul>
+</div>
+<div>
+<p class="text-xs font-semibold text-primary uppercase tracking-wider mb-4 px-2">Components</p>
+<ul class="space-y-1">
+<li><a class="block px-2 py-1.5 rounded hover:bg-primary/10 transition-colors" href="#">Button</a></li>
+<li><a class="block px-2 py-1.5 rounded bg-primary text-background-dark font-medium" href="#">Card</a></li>
+<li><a class="block px-2 py-1.5 rounded hover:bg-primary/10 transition-colors" href="#">Input</a></li>
+<li><a class="block px-2 py-1.5 rounded hover:bg-primary/10 transition-colors" href="#">Modal</a></li>
+<li><a class="block px-2 py-1.5 rounded hover:bg-primary/10 transition-colors" href="#">Navigation</a></li>
+</ul>
+</div>
+</nav>
+<div class="p-4 border-t border-primary/10">
+<div class="flex items-center gap-3 px-2 py-2 rounded bg-primary/5">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-xs font-medium">v1.4.2 Latest</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 px-6 py-12 lg:px-12">
+<div class="max-w-5xl mx-auto">
+<!-- Header Section -->
+<header class="mb-12">
+<div class="flex items-center gap-4 mb-2">
+<span class="text-sm font-mono text-primary font-medium tracking-widest uppercase">Components</span>
+</div>
+<h1 class="text-5xl font-bold text-white mb-4">Card</h1>
+<p class="text-xl text-slate-400 max-w-2xl leading-relaxed">
+                        A versatile container for grouping related content and actions in a structured format.
+                    </p>
+</header>
+<!-- Interactive Preview -->
+<section class="mb-20">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-blue-500/30 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative bg-background-dark/50 border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+<div class="p-12 flex justify-center items-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent">
+<!-- Featured Card Example -->
+<div class="w-full max-w-md bg-white dark:bg-[#162a2e] rounded-xl overflow-hidden shadow-2xl border border-white/5 transform transition hover:-translate-y-2 duration-300">
+<div class="relative h-48">
+<img alt="Abstract Background" class="w-full h-full object-cover" data-alt="Abstract vibrant cyan and purple waves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjYjzw8dI0gqgV28ADkhohjkaMI_gpX2OcG2tGd2s1kbZwuy6ty6Shq3AER85BLjwYo89-c45lNMhUJgOm0yKV6g0KAJXifTiIpIU0GllNL0qhrKMiPjHCVardRS0_lVWNylp_qE6o5GHM2z7i23H7YylMDUcxAaH_9vPv0bZTlndhMlMReD6j6OXSRV5PSMohsCqkaB6q9sZX72rpZPFuK8yd7vdHddHEG5-Fq03-B3jwdfKjbL1AAh-XuEO5szGQW5y0eRwglmQ"/>
+<div class="absolute top-4 right-4 px-2 py-1 rounded bg-black/40 backdrop-blur-md border border-white/10">
+<span class="text-xs font-medium text-white uppercase tracking-tighter">New Release</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-white mb-2">Oceanic Exploration</h3>
+<p class="text-slate-400 text-sm mb-6">Discover the hidden depths of the Pacific with our latest series of high-fidelity environmental captures.</p>
+<div class="flex items-center justify-between pt-6 border-t border-white/5">
+<button class="bg-primary text-background-dark font-bold py-2 px-4 rounded hover:bg-primary/90 transition-all text-sm">View Details</button>
+<button class="text-white hover:text-primary font-medium transition-colors text-sm flex items-center gap-1">
+<i class="material-icons text-base">bookmark_border</i>
+                                                Save
+                                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Code Sample Toggle -->
+<div class="border-t border-white/10 px-6 py-4 bg-background-dark flex justify-between items-center">
+<span class="text-xs text-slate-500 font-mono">Example: Interactive Preview</span>
+<div class="flex gap-4">
+<button class="text-xs text-slate-400 hover:text-white flex items-center gap-1"><i class="material-icons text-sm">code</i> View Code</button>
+<button class="text-xs text-slate-400 hover:text-white flex items-center gap-1"><i class="material-icons text-sm">content_copy</i> Copy</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Variants Section -->
+<section class="mb-20">
+<h2 class="text-2xl font-bold text-white mb-2">Style Variants</h2>
+<p class="text-slate-400 mb-8">Four distinct visual weights to match your application's hierarchy.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Default -->
+<div class="p-6 rounded-xl border border-white/5 bg-[#162a2e]/40">
+<div class="bg-white dark:bg-[#162a2e] p-6 rounded-lg shadow-xl mb-4">
+<span class="text-xs text-primary font-mono uppercase mb-2 block">Default</span>
+<h4 class="font-bold text-white">Standard Card</h4>
+<p class="text-sm text-slate-400 mt-2">Elevated with a soft drop shadow and clean edges.</p>
+</div>
+<p class="text-sm font-mono text-slate-500">variant="default"</p>
+</div>
+<!-- Bordered -->
+<div class="p-6 rounded-xl border border-white/5 bg-[#162a2e]/40">
+<div class="bg-white dark:bg-[#162a2e] p-6 rounded-lg border-2 border-primary/50 mb-4">
+<span class="text-xs text-primary font-mono uppercase mb-2 block">Bordered</span>
+<h4 class="font-bold text-white">Neon Border</h4>
+<p class="text-sm text-slate-400 mt-2">Focused state with a high-contrast primary stroke.</p>
+</div>
+<p class="text-sm font-mono text-slate-500">variant="bordered"</p>
+</div>
+<!-- Flat -->
+<div class="p-6 rounded-xl border border-white/5 bg-[#162a2e]/40">
+<div class="bg-[#1a2e32] p-6 rounded-lg mb-4">
+<span class="text-xs text-primary font-mono uppercase mb-2 block">Flat</span>
+<h4 class="font-bold text-white">Subtle Layer</h4>
+<p class="text-sm text-slate-400 mt-2">No shadows, perfect for low-priority dashboard items.</p>
+</div>
+<p class="text-sm font-mono text-slate-500">variant="flat"</p>
+</div>
+<!-- Glass -->
+<div class="p-6 rounded-xl border border-white/5 bg-gradient-to-br from-primary/10 to-transparent">
+<div class="bg-white/5 backdrop-blur-md p-6 rounded-lg border border-white/10 mb-4">
+<span class="text-xs text-primary font-mono uppercase mb-2 block">Glassmorphism</span>
+<h4 class="font-bold text-white">Transparent Blur</h4>
+<p class="text-sm text-slate-300 mt-2">Floating effect with background blur integration.</p>
+</div>
+<p class="text-sm font-mono text-slate-500">variant="glass"</p>
+</div>
+</div>
+</section>
+<!-- Composition Breakdown -->
+<section class="mb-20">
+<h2 class="text-2xl font-bold text-white mb-2">Card Content Anatomy</h2>
+<p class="text-slate-400 mb-8">Deconstructing the internal architecture of the Card sub-components.</p>
+<div class="bg-background-dark/80 rounded-xl p-8 border border-white/5 overflow-x-auto">
+<div class="min-w-[600px] flex flex-col gap-2 relative">
+<!-- Schematic Visualization -->
+<div class="relative border-2 border-dashed border-primary/30 rounded-lg p-6 group">
+<div class="absolute -top-3 -left-3 bg-primary text-background-dark text-[10px] font-bold px-2 py-0.5 rounded uppercase">CardContainer</div>
+<div class="border border-dashed border-slate-500 rounded p-4 mb-2 bg-slate-500/5 relative">
+<div class="absolute -top-2.5 right-4 bg-slate-500 text-white text-[9px] px-1.5 py-0.5 rounded">CardHeader</div>
+<h4 class="text-white text-lg">Project Alpha</h4>
+<span class="text-xs text-slate-500">Last updated 2 hours ago</span>
+</div>
+<div class="border border-dashed border-slate-500 rounded p-4 mb-2 bg-slate-500/5 relative">
+<div class="absolute -top-2.5 right-4 bg-slate-500 text-white text-[9px] px-1.5 py-0.5 rounded">CardBody</div>
+<p class="text-sm text-slate-400">Main descriptive text area for the component. Supports any custom child elements including charts, forms, and images.</p>
+</div>
+<div class="border border-dashed border-slate-500 rounded p-4 bg-slate-500/5 relative">
+<div class="absolute -top-2.5 right-4 bg-slate-500 text-white text-[9px] px-1.5 py-0.5 rounded">CardFooter</div>
+<div class="flex gap-2">
+<div class="h-6 w-16 bg-primary/20 rounded"></div>
+<div class="h-6 w-16 bg-slate-700 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Props Table -->
+<section class="mb-20">
+<h2 class="text-2xl font-bold text-white mb-6">Props API</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10">
+<th class="py-4 px-4 text-xs font-mono uppercase text-primary">Prop</th>
+<th class="py-4 px-4 text-xs font-mono uppercase text-primary">Type</th>
+<th class="py-4 px-4 text-xs font-mono uppercase text-primary">Default</th>
+<th class="py-4 px-4 text-xs font-mono uppercase text-primary">Description</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 px-4 font-mono text-white">variant</td>
+<td class="py-4 px-4 text-slate-400 italic">'default' | 'bordered' | 'flat' | 'glass'</td>
+<td class="py-4 px-4 font-mono text-slate-500">'default'</td>
+<td class="py-4 px-4 text-slate-400">The visual style of the container.</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 px-4 font-mono text-white">hoverable</td>
+<td class="py-4 px-4 text-slate-400 italic">boolean</td>
+<td class="py-4 px-4 font-mono text-slate-500">false</td>
+<td class="py-4 px-4 text-slate-400">Adds lift and shadow transitions on hover.</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 px-4 font-mono text-white">padding</td>
+<td class="py-4 px-4 text-slate-400 italic">'none' | 'sm' | 'md' | 'lg'</td>
+<td class="py-4 px-4 font-mono text-slate-500">'md'</td>
+<td class="py-4 px-4 text-slate-400">Controls the inner spacing of sub-components.</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 px-4 font-mono text-white">as</td>
+<td class="py-4 px-4 text-slate-400 italic">string</td>
+<td class="py-4 px-4 font-mono text-slate-500">'div'</td>
+<td class="py-4 px-4 text-slate-400">Render the component as a different HTML tag.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Layout Patterns -->
+<section class="mb-20">
+<h2 class="text-2xl font-bold text-white mb-2">Layout Patterns</h2>
+<p class="text-slate-400 mb-8">Common implementations within flexible grid systems.</p>
+<div class="space-y-12">
+<!-- 2 Column -->
+<div>
+<p class="text-xs font-mono text-slate-500 mb-4 tracking-widest uppercase">Two-Column Feature Grid</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all cursor-pointer">
+<div class="w-10 h-10 rounded bg-primary/20 flex items-center justify-center text-primary mb-4">
+<i class="material-icons">speed</i>
+</div>
+<h4 class="text-white font-bold mb-2">Lightning Fast</h4>
+<p class="text-sm text-slate-400">Optimized for speed with zero-runtime CSS strategies.</p>
+</div>
+<div class="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all cursor-pointer">
+<div class="w-10 h-10 rounded bg-primary/20 flex items-center justify-center text-primary mb-4">
+<i class="material-icons">palette</i>
+</div>
+<h4 class="text-white font-bold mb-2">Fully Themeable</h4>
+<p class="text-sm text-slate-400">Every pixel can be adjusted via the Tailwind theme file.</p>
+</div>
+</div>
+</div>
+<!-- 3 Column -->
+<div>
+<p class="text-xs font-mono text-slate-500 mb-4 tracking-widest uppercase">Three-Column Status Feed</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-[#162a2e] rounded-xl overflow-hidden border border-white/5">
+<div class="h-32 bg-slate-800">
+<img alt="Tech" class="w-full h-full object-cover opacity-50" data-alt="Cyberpunk electronics components with blue neon light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA22YU-aBKMeUh0WZ9IwmG-vZ9Ybz-Z4vgst_bVlVpLfl-kTAbZqRQ-9tjHjcjUOGG0Qa1ofZtEiZjM7-qyCqstKuUzah_MqE4EksvyoZ6R-5RqEV33fR9o3bKCq62FfGautNLAo_Hz_mGeR971Pc1hbLEJoAMgOLpj04jszyllGPHwUBLiv_th2hPtWZnkSsgiRGYAeLOiTGB5zg86DR4vkBTiLQLB4pLGiOIMWPvel8o0082V6RDDcZmucMfmlpi-M1zztliYOLU"/>
+</div>
+<div class="p-4">
+<h5 class="text-white font-semibold text-sm">System Update</h5>
+<span class="text-[10px] text-slate-500 uppercase">Version 2.0.1 ready</span>
+</div>
+</div>
+<div class="bg-[#162a2e] rounded-xl overflow-hidden border border-white/5">
+<div class="h-32 bg-slate-800">
+<img alt="Tech" class="w-full h-full object-cover opacity-50" data-alt="Satellite view of digital network earth glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRn9pNXsQbTUjoo2e4oaB2-fmJ7vILvoebkRT7DMWbdPuvI6e0t617f3W8btT3xyIm64Ita9xuBleQ0zUBim77xQBFxMXOV_mGR1pRlYpqHo6Ymr4ddenyu63HlX-4XhOw-ePvP8BAvBF4oUf9Zoj3FTfijye6h-ahaJohOAa0cdbbVIB6iJlKWt8gmnrGl-qlS35zUAyQfZ1sOYGs8XidHO5K0PtJT09G6EQrdjVQD--e5HmggP6-tcPS2Ufyb_Lc_FZZhOKLUhs"/>
+</div>
+<div class="p-4">
+<h5 class="text-white font-semibold text-sm">Cloud Sync</h5>
+<span class="text-[10px] text-slate-500 uppercase">1.2 GB uploaded</span>
+</div>
+</div>
+<div class="bg-[#162a2e] rounded-xl overflow-hidden border border-white/5">
+<div class="h-32 bg-slate-800">
+<img alt="Tech" class="w-full h-full object-cover opacity-50" data-alt="Close up of futuristic glowing CPU server" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7p-eL4KLB07WCIzO_AhsXxVlQ1lrzOBOXQ_2iG7Ml5N7QJoGdWL1mUHyIysGgZWXiSwHWBUkXLneiULBGzEhLb-VmKUa6NsxtXQPeL9FY2_SsfFHnHjfwO6zC6pundSycURgVE29uiaQLkaieDjhPkupfXMMtKg1QMEZM0_OD11Ki8EU0FgI_nl6kBIUc8R5i0r5oIV8sCss7AGvcTMlhqPinZ2egyKnG8U0C2YEh1-z1OLXJiC9uasnW_Ziq3M48fP_JAqjLDro"/>
+</div>
+<div class="p-4">
+<h5 class="text-white font-semibold text-sm">Security Log</h5>
+<span class="text-[10px] text-slate-500 uppercase">No threats detected</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Navigation -->
+<footer class="mt-32 pt-12 border-t border-white/10 flex justify-between">
+<a class="group" href="#">
+<span class="block text-xs text-slate-500 mb-1">Previous</span>
+<div class="flex items-center gap-2 group-hover:text-primary transition-colors text-white font-bold">
+<i class="material-icons">arrow_back</i>
+                            Button Component
+                        </div>
+</a>
+<a class="group text-right" href="#">
+<span class="block text-xs text-slate-500 mb-1">Next</span>
+<div class="flex items-center gap-2 group-hover:text-primary transition-colors text-white font-bold justify-end">
+                            Input Component
+                            <i class="material-icons">arrow_forward</i>
+</div>
+</a>
+</footer>
+</div>
+</main>
+<!-- Table of Contents Sidebar -->
+<aside class="fixed top-0 right-0 h-screen w-64 hidden xl:block p-8">
+<h5 class="text-xs font-bold text-white uppercase tracking-widest mb-6">On This Page</h5>
+<ul class="space-y-4 text-sm text-slate-400 border-l border-white/10 pl-4">
+<li><a class="hover:text-primary transition-colors" href="#">Interactive Preview</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Style Variants</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Content Anatomy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Props API</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Layout Patterns</a></li>
+</ul>
+<div class="mt-12 bg-primary/5 rounded-xl p-6 border border-primary/10">
+<h6 class="text-white font-bold text-sm mb-2">Need Help?</h6>
+<p class="text-xs text-slate-400 mb-4">Join our developer community on Discord for real-time support.</p>
+<button class="w-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-2 rounded transition-all">Join Discord</button>
+</div>
+</aside>
+</div>
+<!-- Mobile Header (Simplified) -->
+<div class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-background-dark/80 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-6 z-50">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center">
+<span class="text-background-dark text-[10px] font-bold">W</span>
+</div>
+<span class="font-bold text-white">WebMX</span>
+</div>
+<button class="text-white"><i class="material-icons">menu</i></button>
+</div>
+</body></html>

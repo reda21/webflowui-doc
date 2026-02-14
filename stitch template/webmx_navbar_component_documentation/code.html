@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebMX Navbar Component Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25d1f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"],
+                        "mono": ["Fira Code"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101f22;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #25d1f444;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25d1f466;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .code-block {
+            background: #081012;
+            border: 1px solid rgba(37, 209, 244, 0.1);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen w-64 glass-panel border-r border-slate-200 dark:border-white/5 hidden lg:block z-50">
+<div class="p-6">
+<div class="flex items-center gap-2 mb-10">
+<div class="w-8 h-8 bg-primary rounded shadow-[0_0_15px_rgba(37,209,244,0.4)] flex items-center justify-center">
+<span class="text-background-dark font-bold">W</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">WebMX</span>
+</div>
+<nav class="space-y-8">
+<section>
+<h5 class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Getting Started</h5>
+<ul class="space-y-3">
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Introduction</a></li>
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Installation</a></li>
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Theming</a></li>
+</ul>
+</section>
+<section>
+<h5 class="text-xs font-semibold text-primary uppercase tracking-widest mb-4">Navigation</h5>
+<ul class="space-y-3">
+<li><a class="text-sm text-primary font-medium flex items-center gap-2" href="#">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                            Navbar
+                        </a></li>
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Sidebar</a></li>
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Breadcrumbs</a></li>
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Pagination</a></li>
+</ul>
+</section>
+<section>
+<h5 class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Content</h5>
+<ul class="space-y-3">
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Card</a></li>
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Table</a></li>
+<li><a class="text-sm hover:text-primary transition-colors" href="#">Accordion</a></li>
+</ul>
+</section>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 min-h-screen px-6 py-10 lg:px-12">
+<div class="max-w-5xl mx-auto">
+<!-- Header Section -->
+<header class="mb-12">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-2.5 py-1 rounded bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">Components</span>
+<span class="text-slate-500 dark:text-slate-400">/</span>
+<span class="text-slate-500 dark:text-slate-400 text-sm">Navigation</span>
+</div>
+<h1 class="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">Navbar</h1>
+<p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
+                    A premium responsive navigation header that includes support for branding, navigation links, search, and dropdown menus. Built with glassmorphism and deep customization in mind.
+                </p>
+</header>
+<!-- Interactive Preview Area -->
+<section class="mb-16" id="preview">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xl font-semibold text-slate-900 dark:text-white">Interactive Preview</h3>
+<div class="flex bg-slate-100 dark:bg-white/5 p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-medium bg-white dark:bg-primary/20 text-primary rounded shadow-sm">Preview</button>
+<button class="px-4 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Code</button>
+</div>
+</div>
+<div class="relative w-full aspect-video lg:h-96 bg-[#0a1518] rounded-xl overflow-hidden border border-white/5 flex flex-col">
+<!-- Preview Navbar -->
+<nav class="w-full h-16 glass-panel border-b border-white/10 flex items-center justify-between px-6 z-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center shadow-[0_0_10px_rgba(37,209,244,0.3)]">
+<span class="text-[10px] font-bold text-background-dark italic">M</span>
+</div>
+<span class="text-white font-bold tracking-tight">WebMX</span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-sm text-primary font-medium" href="#">Dashboard</a>
+<a class="text-sm text-slate-400 hover:text-white transition-colors" href="#">Projects</a>
+<a class="text-sm text-slate-400 hover:text-white transition-colors" href="#">Team</a>
+<a class="text-sm text-slate-400 hover:text-white transition-colors" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-white/5 border border-white/10 rounded-lg px-3 py-1.5">
+<span class="material-icons text-slate-400 text-sm">search</span>
+<input class="bg-transparent border-none text-xs text-white focus:ring-0 w-32 ml-2" placeholder="Quick Search..." type="text"/>
+<span class="text-[10px] text-slate-500 border border-slate-700 px-1.5 rounded">⌘K</span>
+</div>
+<div class="relative flex items-center">
+<img alt="Profile" class="w-8 h-8 rounded-full border-2 border-primary/20" data-alt="Close-up headshot of a smiling professional person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDObY9XvvbjLjqWcTfXKW19XOJ5BoF5G4P8wPrcjYaiT13uOd_r4Gf8rHYMLDYpjvQP0l9-OTBzD_pMKvZimSHDouoZZYLOM5IXtdlW34Fp25chyErlPoVI7kPfSdJ9v7RGzVT-Ct2NRM9RS0ylGeQWqW7oeS583yascz_t8nh5Evs11UuZ4FEpkYFfqxrmwClMndyb3VytFqjDgiZhe3t-N01t1DgPmM_mggdHaOOqTkttsqHvrXg0ygIqn_nzzxL0tCFhr5iRNIw"/>
+<div class="absolute right-0 top-10 w-48 glass-panel rounded-lg py-2 shadow-2xl border border-white/10">
+<div class="px-4 py-2 border-b border-white/5">
+<p class="text-xs font-bold text-white">Alex Johnson</p>
+<p class="text-[10px] text-slate-400">alex@webmx.dev</p>
+</div>
+<a class="block px-4 py-2 text-xs text-slate-300 hover:bg-primary/10 hover:text-primary" href="#">Profile</a>
+<a class="block px-4 py-2 text-xs text-slate-300 hover:bg-primary/10 hover:text-primary" href="#">Settings</a>
+<a class="block px-4 py-2 text-xs text-red-400 hover:bg-red-500/10" href="#">Logout</a>
+</div>
+</div>
+</div>
+</nav>
+<div class="flex-1 flex items-center justify-center">
+<div class="text-center">
+<h4 class="text-white/20 font-bold text-5xl uppercase tracking-tighter select-none">Live Demo View</h4>
+<p class="text-white/10 mt-2 select-none">Components are interactive in this window</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Fixed vs Sticky Section -->
+<section class="mb-16">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Positioning Guide</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="p-6 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/5">
+<div class="h-40 rounded-lg bg-background-dark/50 border border-white/5 mb-4 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-4 bg-primary/20 border-b border-primary/40 z-10"></div>
+<div class="p-2 pt-6 space-y-2">
+<div class="h-2 w-3/4 bg-white/5 rounded"></div>
+<div class="h-2 w-1/2 bg-white/5 rounded"></div>
+<div class="h-2 w-full bg-white/5 rounded"></div>
+<div class="h-2 w-2/3 bg-white/5 rounded"></div>
+<div class="h-2 w-3/4 bg-white/5 rounded"></div>
+</div>
+</div>
+<h4 class="text-lg font-semibold mb-2">Fixed Positioning</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">The navbar stays fixed at the top of the viewport even while scrolling. Content slides underneath.</p>
+</div>
+<div class="p-6 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/5">
+<div class="h-40 rounded-lg bg-background-dark/50 border border-white/5 mb-4 relative overflow-hidden">
+<div class="p-2 space-y-2">
+<div class="h-2 w-3/4 bg-white/5 rounded"></div>
+<div class="h-4 w-full bg-primary/20 border-y border-primary/40"></div>
+<div class="h-2 w-1/2 bg-white/5 rounded"></div>
+<div class="h-2 w-full bg-white/5 rounded"></div>
+<div class="h-2 w-2/3 bg-white/5 rounded"></div>
+</div>
+</div>
+<h4 class="text-lg font-semibold mb-2">Sticky Positioning</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">The navbar scrolls with the page until it reaches the top, then sticks. Best for long landing pages.</p>
+</div>
+</div>
+</section>
+<!-- Variants Section -->
+<section class="mb-16">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Variants</h3>
+<div class="space-y-6">
+<!-- Classic Variant -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<p class="text-sm font-semibold uppercase tracking-wider text-slate-500">Classic (Solid)</p>
+<code class="text-xs text-primary">variant="classic"</code>
+</div>
+<div class="h-12 w-full bg-slate-800 rounded border border-white/5 flex items-center px-4">
+<span class="text-white font-bold text-sm">WebMX</span>
+<div class="flex gap-4 ml-8">
+<div class="h-1.5 w-10 bg-white/20 rounded"></div>
+<div class="h-1.5 w-12 bg-white/20 rounded"></div>
+<div class="h-1.5 w-8 bg-white/20 rounded"></div>
+</div>
+</div>
+</div>
+<!-- Glass Variant -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<p class="text-sm font-semibold uppercase tracking-wider text-slate-500">Glass (Blur)</p>
+<code class="text-xs text-primary">variant="glass"</code>
+</div>
+<div class="h-12 w-full bg-primary/10 backdrop-blur-md rounded border border-primary/30 flex items-center px-4">
+<span class="text-primary font-bold text-sm">WebMX</span>
+<div class="flex gap-4 ml-8">
+<div class="h-1.5 w-10 bg-primary/30 rounded"></div>
+<div class="h-1.5 w-12 bg-primary/30 rounded"></div>
+<div class="h-1.5 w-8 bg-primary/30 rounded"></div>
+</div>
+</div>
+</div>
+<!-- Minimal Variant -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<p class="text-sm font-semibold uppercase tracking-wider text-slate-500">Minimal (Text Only)</p>
+<code class="text-xs text-primary">variant="minimal"</code>
+</div>
+<div class="h-12 w-full flex items-center px-4">
+<span class="text-slate-400 font-bold text-sm">WebMX</span>
+<div class="flex gap-4 ml-8">
+<div class="h-1.5 w-10 bg-slate-700 rounded"></div>
+<div class="h-1.5 w-12 bg-slate-700 rounded"></div>
+<div class="h-1.5 w-8 bg-slate-700 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mobile Menu Section -->
+<section class="mb-16">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Mobile Drawer</h3>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="relative w-64 mx-auto lg:mx-0 aspect-[9/19] bg-background-dark rounded-[2.5rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full p-4">
+<!-- Mobile Nav Top -->
+<div class="flex justify-between items-center mb-6">
+<div class="w-5 h-5 bg-primary rounded"></div>
+<span class="material-icons text-white">menu</span>
+</div>
+<!-- Drawer Overlay -->
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm z-20"></div>
+<!-- Drawer Menu -->
+<div class="absolute top-0 left-0 bottom-0 w-3/4 bg-background-dark border-r border-white/10 z-30 p-6 flex flex-col">
+<div class="flex items-center gap-2 mb-10">
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center">
+<span class="text-[10px] text-background-dark font-bold">W</span>
+</div>
+<span class="text-white font-bold text-sm">WebMX</span>
+</div>
+<div class="space-y-6">
+<a class="block text-primary font-medium text-sm" href="#">Dashboard</a>
+<a class="block text-slate-400 text-sm" href="#">Projects</a>
+<a class="block text-slate-400 text-sm" href="#">Analytics</a>
+<a class="block text-slate-400 text-sm" href="#">Team</a>
+</div>
+<div class="mt-auto pt-6 border-t border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700"></div>
+<div>
+<p class="text-[10px] font-bold text-white">Alex Johnson</p>
+<p class="text-[8px] text-slate-500">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-3">Responsive by Default</h4>
+<p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                            WebMX Navbar automatically collapses into a hamburger menu on smaller screens. The mobile drawer is fully customizable and supports nested navigation items.
+                        </p>
+<div class="code-block p-4 rounded-lg font-mono text-sm overflow-x-auto">
+<div class="flex items-center gap-2 mb-2 text-slate-500">
+<span class="material-icons text-xs">code</span>
+<span class="text-xs">Example Drawer Configuration</span>
+</div>
+<span class="text-pink-500">&lt;Navbar.MobileMenu</span><br/>
+                              <span class="text-primary">position</span>="left"<br/>
+                              <span class="text-primary">blur</span>={true}<br/>
+                              <span class="text-primary">showUser</span>={true}<br/>
+<span class="text-pink-500">/&gt;</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Props Table -->
+<section class="mb-16">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Component Props</h3>
+<div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/5">
+<table class="w-full text-left text-sm border-collapse">
+<thead class="bg-slate-50 dark:bg-white/5 border-b border-slate-200 dark:border-white/10">
+<tr>
+<th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">Prop</th>
+<th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">Type</th>
+<th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">Default</th>
+<th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-white/5">
+<tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-primary">variant</td>
+<td class="px-6 py-4 text-slate-500 italic">"glass" | "classic" | "minimal"</td>
+<td class="px-6 py-4 font-mono">"glass"</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">The visual style of the navbar container.</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-primary">isFixed</td>
+<td class="px-6 py-4 text-slate-500 italic">boolean</td>
+<td class="px-6 py-4 font-mono">false</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">Whether the navbar stays fixed at the top of the viewport.</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-primary">maxWidth</td>
+<td class="px-6 py-4 text-slate-500 italic">"sm" | "md" | "lg" | "xl" | "full"</td>
+<td class="px-6 py-4 font-mono">"xl"</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">The maximum width of the inner content container.</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-primary">shouldHideOnScroll</td>
+<td class="px-6 py-4 text-slate-500 italic">boolean</td>
+<td class="px-6 py-4 font-mono">false</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">Hides the navbar when the user scrolls down.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Footer Pagination -->
+<footer class="mt-20 pt-10 border-t border-slate-200 dark:border-white/5 flex items-center justify-between">
+<a class="flex flex-col group" href="#">
+<span class="text-xs text-slate-500 uppercase tracking-widest mb-1 group-hover:text-primary transition-colors">Previous</span>
+<span class="text-lg font-semibold flex items-center gap-1 group-hover:text-primary transition-colors">
+<span class="material-icons text-sm">arrow_back</span> Installation
+                    </span>
+</a>
+<a class="flex flex-col items-end group" href="#">
+<span class="text-xs text-slate-500 uppercase tracking-widest mb-1 group-hover:text-primary transition-colors">Next</span>
+<span class="text-lg font-semibold flex items-center gap-1 group-hover:text-primary transition-colors">
+                        Sidebar <span class="material-icons text-sm">arrow_forward</span>
+</span>
+</a>
+</footer>
+</div>
+</main>
+<!-- Table of Contents (Right Sidebar) -->
+<aside class="fixed right-0 top-0 h-screen w-64 hidden xl:block p-10 z-40">
+<h5 class="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">On this page</h5>
+<ul class="space-y-4 border-l border-slate-200 dark:border-white/5 ml-1">
+<li class="pl-4 border-l-2 border-primary -ml-[2px]">
+<a class="text-sm font-medium text-primary" href="#preview">Interactive Preview</a>
+</li>
+<li class="pl-4 border-l-2 border-transparent hover:border-slate-300 dark:hover:border-white/20 transition-all">
+<a class="text-sm text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Positioning Guide</a>
+</li>
+<li class="pl-4 border-l-2 border-transparent hover:border-slate-300 dark:hover:border-white/20 transition-all">
+<a class="text-sm text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Variants</a>
+</li>
+<li class="pl-4 border-l-2 border-transparent hover:border-slate-300 dark:hover:border-white/20 transition-all">
+<a class="text-sm text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Mobile Drawer</a>
+</li>
+<li class="pl-4 border-l-2 border-transparent hover:border-slate-300 dark:hover:border-white/20 transition-all">
+<a class="text-sm text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Component Props</a>
+</li>
+</ul>
+<div class="mt-20 p-6 rounded-xl glass-panel">
+<h6 class="text-xs font-bold mb-3">Community</h6>
+<p class="text-[10px] text-slate-500 mb-4 leading-relaxed">Found a bug or need a new feature? Join our Discord or open a GitHub Issue.</p>
+<div class="flex gap-4">
+<span class="material-icons text-slate-400 hover:text-primary cursor-pointer text-xl transition-colors">chat</span>
+<span class="material-icons text-slate-400 hover:text-primary cursor-pointer text-xl transition-colors">public</span>
+</div>
+</div>
+</aside>
+</body></html>

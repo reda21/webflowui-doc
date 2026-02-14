@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebMX Avatar Component Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#0db9f2",
+                "background-light": "#f5f8f8",
+                "background-dark": "#0a0a0c",
+                "surface-dark": "#161b22",
+                "accent-green": "#10b981",
+                "accent-red": "#ef4444",
+                "accent-gray": "#64748b"
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"],
+                "mono": ["Fira Code", "monospace"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-sidebar {
+            background: rgba(16, 30, 34, 0.8);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(13, 185, 242, 0.1);
+        }
+        .code-block {
+            background: #0d1117;
+            border: 1px solid rgba(13, 185, 242, 0.1);
+        }
+        .avatar-group-item {
+            margin-left: -0.75rem;
+            transition: transform 0.2s ease;
+        }
+        .avatar-group-item:hover {
+            transform: translateY(-4px);
+            z-index: 10;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0db9f2;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-display selection:bg-primary/30">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 fixed inset-y-0 left-0 glass-sidebar z-50 hidden lg:block">
+<div class="p-6">
+<div class="flex items-center gap-2 mb-10">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="text-white font-bold">W</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">WebMX</span>
+</div>
+<nav class="space-y-8">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">Foundation</p>
+<ul class="space-y-2">
+<li><a class="block px-3 py-2 text-sm text-slate-400 hover:text-primary transition-colors" href="#">Introduction</a></li>
+<li><a class="block px-3 py-2 text-sm text-slate-400 hover:text-primary transition-colors" href="#">Theming</a></li>
+</ul>
+</div>
+<div>
+<p class="text-xs font-semibold text-primary uppercase tracking-widest mb-4">Components</p>
+<ul class="space-y-2">
+<li><a class="block px-3 py-2 text-sm text-slate-400 hover:text-primary transition-colors" href="#">Accordion</a></li>
+<li><a class="block px-3 py-2 text-sm bg-primary/10 text-primary font-medium rounded-lg" href="#">Avatar</a></li>
+<li><a class="block px-3 py-2 text-sm text-slate-400 hover:text-primary transition-colors" href="#">Button</a></li>
+<li><a class="block px-3 py-2 text-sm text-slate-400 hover:text-primary transition-colors" href="#">Card</a></li>
+<li><a class="block px-3 py-2 text-sm text-slate-400 hover:text-primary transition-colors" href="#">Dropdown</a></li>
+<li><a class="block px-3 py-2 text-sm text-slate-400 hover:text-primary transition-colors" href="#">Modal</a></li>
+</ul>
+</div>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-8 lg:p-12 max-w-7xl">
+<header class="mb-12">
+<div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+<span>Components</span>
+<span class="material-icons text-xs">chevron_right</span>
+<span>Avatar</span>
+</div>
+<h1 class="text-5xl font-bold text-slate-900 dark:text-white mb-4">Avatar</h1>
+<p class="text-xl text-slate-500 dark:text-slate-400 max-w-3xl leading-relaxed">
+                    Avatars are used to represent users, teams, or entities visually. They support images, initials, and fallback icons with various size and shape configurations.
+                </p>
+</header>
+<!-- Interactive Preview Section -->
+<section class="mb-16" id="preview">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Interactive Preview</h2>
+<div class="p-10 rounded-xl bg-background-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 flex flex-wrap items-center gap-10">
+<!-- Image Avatar -->
+<div class="flex flex-col items-center gap-2">
+<img class="w-20 h-20 rounded-full object-cover border-4 border-primary/20 shadow-xl shadow-primary/5" data-alt="Close up portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiiZYa4PRNhrT4MvUXXo7wMj8tzG25dTvYH2ceC1ljF0GK_k_ZV_bnd5gFDRivporco6fuYzByL7MIDGd5MvX-vo8IRrBH0y06AiLriudxzrusWOTPs2gchjhbzCTh7ZWY_8fG4xFl0C3uY5qD6adYA3veDtxxt7edxXR7bVs-apnguyoqrmskQAdSzggOEEVemFh91_TfkT93eoptG1GCND-uNGHSC95akqkV5w984S3uUij0EOFcvMRo_DPTquj34ngwBP6st6k"/>
+<span class="text-xs text-slate-500 uppercase font-medium">Image</span>
+</div>
+<!-- Initials Avatar -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-indigo-600 flex items-center justify-center text-white text-2xl font-bold shadow-xl shadow-primary/5">
+                            JD
+                        </div>
+<span class="text-xs text-slate-500 uppercase font-medium">Initials</span>
+</div>
+<!-- Fallback Avatar -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-20 h-20 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-400 dark:text-slate-500">
+<span class="material-icons text-4xl">person</span>
+</div>
+<span class="text-xs text-slate-500 uppercase font-medium">Fallback</span>
+</div>
+</div>
+<div class="mt-4 p-4 rounded-lg code-block">
+<pre class="font-mono text-sm text-slate-300 overflow-x-auto"><code><span class="text-primary">&lt;Avatar</span> <span class="text-indigo-400">src</span>=<span class="text-accent-green">"/user.jpg"</span> <span class="text-indigo-400">alt</span>=<span class="text-accent-green">"John Doe"</span> <span class="text-indigo-400">size</span>=<span class="text-accent-green">"lg"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;Avatar</span> <span class="text-indigo-400">name</span>=<span class="text-accent-green">"John Doe"</span> <span class="text-indigo-400">variant</span>=<span class="text-accent-green">"gradient"</span> <span class="text-primary">/&gt;</span></code></pre>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Sizes Section -->
+<section id="sizes">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Sizes</h3>
+<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-end gap-4 overflow-x-auto">
+<div class="flex flex-col items-center gap-3">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1GWnX2CzhpC6njEwN3pa8JUM45T3gXOt9g2sbYFQl5RSSGIS2YLFbQx0R3ZQbwOIapwlZxm7m-XYrvaESelrNt4gu3ZeJ5-JZktFKOpTXyzgc3_vxys4YjHCFhou2EGNN8Ao4tHj6gND5KVoLGo1_4HMyzhTX2Ea4DphuDw4RxgO6QsH0wCFJj4pcLppYtV8RXbuHPib_wAjhkMvp3u1K4R-Dh8lk-Vy8R4INGIi7GmbNHhmm5gS45V-Jdl66HiJiYlaoOYxnmCU"/>
+<span class="text-[10px] text-slate-500">XS (24)</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX1XPAMvbe3FWp0pqrzFNoegfj9RDmyBaGtwrN4hanCCCPbfCiVilEczMxPozIf7tWBVeETCqIkWqd_GgTIHuyg4HRgjKWVjGAr66lQ3jP1lIudlFc0Z7ZsoEt_NhHIkALEHJ72S4LaUJFDpCp1zeykT2KCBiVJD1yUCq5TSTjedpC5ESwSRKTWTNLSUrFie88E9YdCiiyqIwyLa767x7xjJG1go-QKvFObo2ChZvoCnkkpV4CV7n533fWGVEs61lv-_n-4C0Rv34"/>
+<span class="text-[10px] text-slate-500">SM (32)</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-primary/20" data-alt="Portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDftdc2BVr-q-6sncjQ0DTdHs3-9tafhw7aCVz2UZI4_VH3-LIPts6H82EVXG1ej1fVGnd0gZmpJV3mx5-zqGFSIK6JjurVnYjimXRUlUFRvz18TmRBUOZpZpR_zYbe9esAswjzsGoELj4TFECGlHYdhCKU1zNnQe986y05nHJrSv3CLUtBnwIsEJmHEqUm_5YzHW6Ho7gusFgfEVsj17C_sMarZ5nz31gNswGQCeGjSAjmqsmRBQLZ2OQZe_3Re5CcD2HeFygCVgg"/>
+<span class="text-[10px] text-slate-500">MD (48)</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<img class="w-16 h-16 rounded-full object-cover border-2 border-primary/20" data-alt="Portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaJgUZnaQ4DOs1gS_bNSMJOhoXOczGVMwPd1w_sT5dQeLca4G5qPjqxsMrFPgBP10YU0S3rTs_nUY0vVhc6m8tDy8GUJhFcWj5LY0xoXHVO_V6sOUUpewSGLPlkIhSlSwxr1ONuP37NM1Uj4QTbmlLYEoFThmskYFMga8tfCohoftrSdTQqiWYnmABAOHhuYa4uUIQcRhOP5Jw5S5IytCzq9EzaBrSPnXItyAbbpAItFn_sQ8K151wr31xITAcL1tcXMvVfEQjYcE"/>
+<span class="text-[10px] text-slate-500">LG (64)</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<img class="w-24 h-24 rounded-full object-cover border-2 border-primary/20" data-alt="Portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm2xgAEajCSY6amBywrDaDsQH7NKc8RC1Zfzhq8gKiCeJ02Cwb2IBiBRrxn1E4QF92oqCo9sEowjCRZo5PHNv1bFmJ9bt0T51PJ24l99t9fX27X61myo5_xVAUID1UODvn8hhaTQftYAEuJHBIZ5RA8wzgTRcH56eZ2NaqIvdCZT6lxteqvj2mUAfN6LbmglYYdyvjMCqUPdKesFjFfkM9ZNHF2_gV5QxkHkJZH2JJO7yPoftYn2xEI_-BNUd5-mnqfjuze097plg"/>
+<span class="text-[10px] text-slate-500">XXL (96)</span>
+</div>
+</div>
+</section>
+<!-- Shapes Section -->
+<section id="shapes">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Shapes</h3>
+<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-around">
+<div class="flex flex-col items-center gap-3">
+<img class="w-16 h-16 rounded-full object-cover" data-alt="Headshot of a man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEFMNgwdu2dxDqeUtAjL1OCDpvPZ5QofRmyQNy1p-JvyiAJ9b5TlARrfWfwtxgIU9SuD0b6Qv2J6dN2jxuMQB8fFZTpFlJiZig-h5BJWiwGNF18lBIvO6XGw215OnkS8AAh3drMshDgLwoxKZXyRv-mEJs2-Yo6YBtvxQoqboVynXZDGkSb6k2hPmki74dvsOyDDW42SQiR4_vyPtUkfSgRT0wyK1TiZwOSdd9KnXrsQil7SI11bWrmhzehKxAVahrOt9KEPIOOb8"/>
+<span class="text-sm text-slate-500">Circle</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<img class="w-16 h-16 rounded-xl object-cover" data-alt="Headshot of a man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvolNiz1Kl16icJNoCFBFHex7LgUEpEQOEU95bYMl_FzYlXF56hchlU-fQPfsOpeEQMz2aiILATsgOq0C4wu_L7yToHCfuokd2I1McsX1oMgh4Abr9uPB34mUO-RaJgjzIX3fCYMTNPP7Kipglq8KOITfEDCKNvjA_bBpAVnddgOPb5bm_s64qDaX_YpLC-E84EGiz2CPtnhk8912dCzX2fs_Nf54brW68BYx55Cdnd4myvzIstZeKSjWrihSjUf-Nu3tjaKrFzSc"/>
+<span class="text-sm text-slate-500">Rounded</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<img class="w-16 h-16 rounded-none object-cover" data-alt="Headshot of a man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA45saG8d0h7ryTIUw2ub89hLoLx-atk5PkSOTWcWgkEKwX2SDtGJ-cAFQOtVyy1UW0JCCcYDzMR5L30rjpGlABIBuWFQY4UgxjUASffPkH-togmgfIYzc70E5OfEgvkFJV9RaZ7vTQSKT8AX10XpS_iK771wMGrRVuOACZ9Hv-Jf_HsTHqwM6Zvc1ICN2LB8mhyMmle5OfJUXtv5q1r_6CO-y7JjQfBSn9y50CswGJxEnPyoa-_eJeuiqF7B6CcAT1l1ziywsa2FU"/>
+<span class="text-sm text-slate-500">Square</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Status & Group Sections -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+<!-- Badges Section -->
+<section id="badges">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Status &amp; Notifications</h3>
+<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-10">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="Professional woman portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPmRwJL3hs0g5HxrqPxa7-Yel-vf6LxQciRS7L_CX7piFkOwbfL5H-N3oD6t0Sy5MZsQ_4Oq6dqZzxI04GyB0SeZaaWNp2xZbQW8uVzLwegA7vOQpolAw81ewdyeZwc8FaGdfGmZvO30iOMAsJTVx0rwvMZQ-mMBMfCmPLdfCkTdiWXpMFCD3euSiTP_KYmfK3tZQ0c14GCiwfJ7-wDo-AWR5_yJIck_o_s293EAoEZqu2Y8NCQCRJ-8RhAWMVaG_UFlPsnGQSgKU"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-accent-green rounded-full border-2 border-background-light dark:border-surface-dark"></div>
+</div>
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="Professional woman portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7rAXDcTbZcbn17u7Yl1w3fsOv9bLMU_2pWkp9sPZO5yvweJaa5JD-mNMqIHmtN-oF6IoquChuBbD6v0ykBTcKK9Dg2fNZju-J15Ge7gaoP0YBxwovCTYVNRV_ynBo7xRyCr3jMeWfOf4WKGzigkia-92KNm9ZB-W6uOD4FG62k9hKgDs1aasIJAoBlKCds0jaHycRVkERDu_YMFgr_a-LOsCCpk_VEZI87RMT1bidgGMaM5ZK-sXbiiBvS-v0wzMSc_gK1QlRTkw"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-accent-red rounded-full border-2 border-background-light dark:border-surface-dark"></div>
+</div>
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="Professional woman portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwioYf96mkkoyFSYOdXiDOJ0CG1j_AsT4veNqu7SBVFvMyM26O3vGwtn3vsXk2R_Hrd3wBsOfatpjh4do59AA_YsV9YBrRSE6i8qQ7h9-6IscxlBfLaTlVgXfeanAiHltNP0FNaKWMmMXwbVLMTnEUY-wrPFNAOr19CvxLGvS_EYBKmEnSYIi0gyrs2kv-nYAqPp-qt_8YAWtHSVd8RFfnViwuMFLo2U_vq6d5IUqzRRhCdG3XNIVsf_v3RqcT9uOzbbA1LKQ_2Ok"/>
+<div class="absolute top-0 right-0 w-5 h-5 bg-primary text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-background-light dark:border-surface-dark">9+</div>
+</div>
+</div>
+</section>
+<!-- Avatar Group Section -->
+<section id="group">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Avatar Group</h3>
+<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center">
+<div class="avatar-group-item">
+<img class="w-12 h-12 rounded-full border-2 border-background-dark object-cover" data-alt="Young man with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrFAsGEKwtlr6ZBT_4xdYVeM8iREOPxSl2-xZ36y6AvzuPdUMCElk1sqRtoPTCL8sHpY73xkSLp5N70xTDcPbJLBCqwdcNTtaWg2dVvM1fn0uJNoxi_Bo8cYip_T9pQGm5VmQBuxMJfjY0SD_HDTwppd_lVqXM5Ge4KMBUGlOThRrlJEHLfKyn1ow67tCbuh2H5Ki548taVh-P_K0Ja2v62U2LFkOlNRlLGc1UA9lHK8yRviRiOeFX1DJrjTN7i_ag_TUSkmRNhCU"/>
+</div>
+<div class="avatar-group-item">
+<img class="w-12 h-12 rounded-full border-2 border-background-dark object-cover" data-alt="Happy man portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Xsb7ArczwE5fJfFBaIR_r5vTE3CTaDe8QnmTik5yPI5Y0gFmFgu6qIxxcHTLP_Et7lgVXqG9TLHGOa3zYj0V0Sm6QDjX91ftG1J5-mdnMcy7EeZBvE86Nth0p2982HmvnTyWGDZQFyGP3OFcSb9A0FURd_d7wi3LjyZJGwwQVdtV9SBOH2KmJ8enLejNe55VwxrocVeieLOco8Cu5tmKZPqjJiZUB0bb_72JrdiXlXgpxBFKjIBF9KVC9jxF8BEMLepTQ1AxNpE"/>
+</div>
+<div class="avatar-group-item">
+<img class="w-12 h-12 rounded-full border-2 border-background-dark object-cover" data-alt="Smiling woman portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGNQcua3Si4s0RG0c5kjCXIZCiZX5_6vB0av925f1gIQnKbTlbnGxRpp3iA6-jISEdOCgt1Ng_2Ids02B7VNEZR3A4r2sIhSOQh0iMy-fI0nBRxP4ADJivrI13MTVBuNQIcLwR0GIWza6qdC2QsSd7PiND2pU-vcUMSA22EzEajhU1E_ly868znNuzxJu1izV03tmfNH4OJNsYCIp-JK8cdg_pAD1wgGHbMNb-_nxi5fQpeASTSfoYeLruBQm9vJLfMNEZSKNVvlA"/>
+</div>
+<div class="avatar-group-item">
+<div class="w-12 h-12 rounded-full border-2 border-background-dark bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-400">
+                                    +12
+                                </div>
+</div>
+</div>
+<p class="mt-4 text-sm text-slate-500 italic">Hover to see interaction</p>
+</div>
+</section>
+</div>
+<!-- Props Table -->
+<section class="mt-20" id="props">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Props Reference</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-200 dark:border-slate-800">
+<th class="py-4 px-4 text-sm font-semibold text-slate-900 dark:text-white">Prop</th>
+<th class="py-4 px-4 text-sm font-semibold text-slate-900 dark:text-white">Type</th>
+<th class="py-4 px-4 text-sm font-semibold text-slate-900 dark:text-white">Default</th>
+<th class="py-4 px-4 text-sm font-semibold text-slate-900 dark:text-white">Description</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="py-4 px-4 font-mono text-primary">src</td>
+<td class="py-4 px-4 text-slate-500">string</td>
+<td class="py-4 px-4 text-slate-500">-</td>
+<td class="py-4 px-4 text-slate-400">The URL for the avatar image.</td>
+</tr>
+<tr>
+<td class="py-4 px-4 font-mono text-primary">name</td>
+<td class="py-4 px-4 text-slate-500">string</td>
+<td class="py-4 px-4 text-slate-500">-</td>
+<td class="py-4 px-4 text-slate-400">The name used for generating initials.</td>
+</tr>
+<tr>
+<td class="py-4 px-4 font-mono text-primary">size</td>
+<td class="py-4 px-4 text-slate-500">'xs' | 'sm' | 'md' | 'lg' | 'xl'</td>
+<td class="py-4 px-4 text-slate-500">'md'</td>
+<td class="py-4 px-4 text-slate-400">Determines the dimensions of the component.</td>
+</tr>
+<tr>
+<td class="py-4 px-4 font-mono text-primary">shape</td>
+<td class="py-4 px-4 text-slate-500">'circle' | 'rounded' | 'square'</td>
+<td class="py-4 px-4 text-slate-500">'circle'</td>
+<td class="py-4 px-4 text-slate-400">Border radius configuration.</td>
+</tr>
+<tr>
+<td class="py-4 px-4 font-mono text-primary">status</td>
+<td class="py-4 px-4 text-slate-500">'online' | 'busy' | 'offline'</td>
+<td class="py-4 px-4 text-slate-500">-</td>
+<td class="py-4 px-4 text-slate-400">Adds a status indicator dot.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<footer class="mt-24 pt-10 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center text-slate-500 text-sm">
+<p>© 2024 WebMX UI Library. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary" href="#">Github</a>
+<a class="hover:text-primary" href="#">Twitter</a>
+<a class="hover:text-primary" href="#">Changelog</a>
+</div>
+</footer>
+</main>
+<!-- Right Mini-TOC -->
+<aside class="w-48 sticky top-0 h-screen py-12 pr-8 hidden xl:block">
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">On this page</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="text-slate-400 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#preview">Overview</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#sizes">Sizes</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#shapes">Shapes</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#badges">Status Badges</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#group">Avatar Group</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#props">API Props</a></li>
+</ul>
+</aside>
+</div>
+</body></html>

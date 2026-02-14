@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebMX Toast Component Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2559f4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101422",
+                        "surface-dark": "#1a1f35",
+                        "border-dark": "#2d3554",
+                        "success": "#10b981",
+                        "error": "#ef4444",
+                        "warning": "#f59e0b",
+                        "info": "#3b82f6",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-sidebar {
+            background: rgba(26, 31, 53, 0.7);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(45, 53, 84, 0.5);
+        }
+        .code-block {
+            background: #0d1117;
+            border: 1px solid #30363d;
+        }
+        .toast-glow-success { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #2d3554; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-64 fixed inset-y-0 left-0 glass-sidebar z-50 hidden lg:flex flex-col">
+<div class="p-6">
+<div class="flex items-center gap-2 mb-10">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white text-sm">grid_view</span>
+</div>
+<span class="font-bold text-xl tracking-tight">WebMX</span>
+</div>
+<nav class="space-y-8">
+<div>
+<h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Getting Started</h3>
+<ul class="space-y-2">
+<li><a class="text-sm text-slate-400 hover:text-white transition-colors" href="#">Introduction</a></li>
+<li><a class="text-sm text-slate-400 hover:text-white transition-colors" href="#">Installation</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Components</h3>
+<ul class="space-y-2">
+<li><a class="text-sm text-slate-400 hover:text-white transition-colors" href="#">Button</a></li>
+<li><a class="text-sm text-slate-400 hover:text-white transition-colors" href="#">Modal</a></li>
+<li><a class="flex items-center text-sm text-primary font-medium" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+                                Toast
+                            </a></li>
+<li><a class="text-sm text-slate-400 hover:text-white transition-colors" href="#">Tooltip</a></li>
+</ul>
+</div>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<div class="p-4 rounded-lg bg-primary/10 border border-primary/20">
+<p class="text-xs text-slate-300 mb-2">v2.4.0 available</p>
+<button class="text-xs font-semibold text-primary">View Changelog</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-8 lg:p-12 max-w-6xl mx-auto">
+<!-- Header -->
+<header class="mb-12">
+<div class="flex items-center gap-2 text-primary mb-2">
+<span class="text-sm font-semibold uppercase tracking-widest">Feedback</span>
+</div>
+<h1 class="text-4xl lg:text-5xl font-bold mb-4 tracking-tight">Toast</h1>
+<p class="text-lg text-slate-400 max-w-3xl">
+                    Push notifications that provide non-obtrusive user feedback. Designed to be lightweight, customizable, and high-performance.
+                </p>
+</header>
+<!-- Interactive Preview -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-semibold">Interactive Playground</h2>
+<span class="px-2 py-1 text-[10px] bg-slate-800 rounded text-slate-400 font-mono uppercase">Live Preview</span>
+</div>
+<div class="relative w-full aspect-video lg:aspect-[21/9] bg-surface-dark border border-border-dark rounded-xl overflow-hidden flex items-center justify-center group">
+<!-- The Background Canvas -->
+<div class="absolute inset-0 opacity-10">
+<div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #2d3554 1px, transparent 0); background-size: 24px 24px;"></div>
+</div>
+<!-- Toast Simulation Container -->
+<div class="absolute top-6 right-6 w-80 z-10">
+<div class="bg-surface-dark/90 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-2xl toast-glow-success flex gap-3 items-start animate-pulse-subtle">
+<div class="w-8 h-8 rounded-full bg-success/20 flex items-center justify-center flex-shrink-0">
+<span class="material-icons text-success text-lg">check_circle</span>
+</div>
+<div class="flex-1">
+<h4 class="font-semibold text-sm">Success!</h4>
+<p class="text-xs text-slate-400 mt-1">Profile updated successfully</p>
+</div>
+<button class="text-slate-500 hover:text-white">
+<span class="material-icons text-base">close</span>
+</button>
+</div>
+</div>
+<!-- Control Buttons -->
+<div class="flex flex-wrap gap-4 relative z-20">
+<button class="px-6 py-2.5 bg-success hover:bg-success/90 text-white rounded font-medium transition-all flex items-center gap-2">
+<span class="material-icons text-sm">done</span> Success
+                        </button>
+<button class="px-6 py-2.5 bg-error hover:bg-error/90 text-white rounded font-medium transition-all flex items-center gap-2">
+<span class="material-icons text-sm">error_outline</span> Error
+                        </button>
+<button class="px-6 py-2.5 bg-warning hover:bg-warning/90 text-white rounded font-medium transition-all flex items-center gap-2 text-background-dark">
+<span class="material-icons text-sm">warning_amber</span> Warning
+                        </button>
+<button class="px-6 py-2.5 bg-info hover:bg-info/90 text-white rounded font-medium transition-all flex items-center gap-2">
+<span class="material-icons text-sm">info</span> Info
+                        </button>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+<!-- Positioning -->
+<section>
+<h2 class="text-xl font-semibold mb-6">Positioning</h2>
+<p class="text-slate-400 text-sm mb-6">Control where the notification appears on the screen using the <code class="bg-slate-800 text-primary px-1.5 py-0.5 rounded text-xs">position</code> prop.</p>
+<div class="grid grid-cols-2 gap-3 bg-surface-dark p-6 border border-border-dark rounded-xl h-64">
+<div class="border-2 border-dashed border-border-dark rounded-lg flex items-center justify-center group hover:border-primary/50 transition-colors cursor-pointer">
+<span class="text-[10px] text-slate-500 group-hover:text-primary uppercase tracking-tighter">Top Left</span>
+</div>
+<div class="border-2 border-primary/50 bg-primary/5 rounded-lg flex items-center justify-center relative cursor-pointer">
+<span class="text-[10px] text-primary font-bold uppercase tracking-tighter">Top Right</span>
+<div class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full animate-ping"></div>
+</div>
+<div class="border-2 border-dashed border-border-dark rounded-lg flex items-center justify-center group hover:border-primary/50 transition-colors cursor-pointer">
+<span class="text-[10px] text-slate-500 group-hover:text-primary uppercase tracking-tighter">Bottom Left</span>
+</div>
+<div class="border-2 border-dashed border-border-dark rounded-lg flex items-center justify-center group hover:border-primary/50 transition-colors cursor-pointer">
+<span class="text-[10px] text-slate-500 group-hover:text-primary uppercase tracking-tighter">Bottom Right</span>
+</div>
+</div>
+</section>
+<!-- Variants -->
+<section>
+<h2 class="text-xl font-semibold mb-6">Variants</h2>
+<p class="text-slate-400 text-sm mb-6">Choose from different visual structures based on the complexity of your notification.</p>
+<div class="space-y-4">
+<!-- Simple Text -->
+<div class="p-3 bg-surface-dark border border-border-dark rounded-lg flex items-center justify-between">
+<span class="text-xs text-slate-300">Simple: Action archived.</span>
+<span class="text-[10px] text-slate-500 uppercase">Simple Text</span>
+</div>
+<!-- With Title -->
+<div class="p-3 bg-surface-dark border border-border-dark rounded-lg flex gap-3">
+<div class="w-6 h-6 rounded bg-info/20 flex items-center justify-center"><span class="material-icons text-info text-xs">info</span></div>
+<div class="flex-1">
+<h5 class="text-xs font-semibold">Update Available</h5>
+<p class="text-[10px] text-slate-400">Version 2.0 is now live.</p>
+</div>
+<span class="text-[10px] text-slate-500 uppercase">With Title</span>
+</div>
+<!-- With Progress Bar -->
+<div class="p-3 bg-surface-dark border border-border-dark rounded-lg relative overflow-hidden">
+<div class="flex gap-3 mb-2">
+<div class="w-6 h-6 rounded bg-warning/20 flex items-center justify-center"><span class="material-icons text-warning text-xs">sync</span></div>
+<div class="flex-1">
+<h5 class="text-xs font-semibold">Uploading...</h5>
+</div>
+</div>
+<div class="h-0.5 w-full bg-slate-800 absolute bottom-0 left-0">
+<div class="h-full bg-warning w-2/3 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- API Hooks -->
+<section class="mb-16">
+<h2 class="text-2xl font-semibold mb-6">Usage (React Hook)</h2>
+<div class="code-block rounded-xl overflow-hidden">
+<div class="flex items-center justify-between px-4 py-2 bg-slate-800/50 border-b border-border-dark">
+<span class="text-xs text-slate-400 font-mono">Example.tsx</span>
+<button class="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors">
+<span class="material-icons text-sm">content_copy</span> Copy code
+                        </button>
+</div>
+<div class="p-6 overflow-x-auto">
+<pre class="text-sm font-mono leading-relaxed"><span class="text-purple-400">import</span> { useToast } <span class="text-purple-400">from</span> <span class="text-emerald-400">'@webmx/ui'</span>;
+
+<span class="text-purple-400">const</span> Example = () =&gt; {
+  <span class="text-purple-400">const</span> { toast } = <span class="text-blue-400">useToast</span>();
+
+  <span class="text-purple-400">const</span> <span class="text-yellow-300">showNotification</span> = () =&gt; {
+    <span class="text-blue-400">toast</span>({
+      title: <span class="text-emerald-400">'Success!'</span>,
+      description: <span class="text-emerald-400">'Profile updated successfully'</span>,
+      type: <span class="text-emerald-400">'success'</span>,
+      duration: <span class="text-orange-400">5000</span>,
+      position: <span class="text-emerald-400">'top-right'</span>,
+    });
+  };
+
+  <span class="text-purple-400">return</span> (
+    &lt;<span class="text-pink-400">button</span> <span class="text-orange-400">onClick</span>={showNotification}&gt;
+      Show Toast
+    &lt;/<span class="text-pink-400">button</span>&gt;
+  );
+};</pre>
+</div>
+</div>
+</section>
+<!-- Props Table -->
+<section class="mb-16">
+<h2 class="text-2xl font-semibold mb-6">Props Reference</h2>
+<div class="overflow-hidden border border-border-dark rounded-xl bg-surface-dark">
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-800/50 text-slate-400 border-b border-border-dark">
+<tr>
+<th class="px-6 py-4 font-medium uppercase tracking-wider text-xs">Prop</th>
+<th class="px-6 py-4 font-medium uppercase tracking-wider text-xs">Type</th>
+<th class="px-6 py-4 font-medium uppercase tracking-wider text-xs">Default</th>
+<th class="px-6 py-4 font-medium uppercase tracking-wider text-xs">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark">
+<tr>
+<td class="px-6 py-4 font-mono text-primary">message</td>
+<td class="px-6 py-4 text-slate-400">string</td>
+<td class="px-6 py-4 text-slate-500">-</td>
+<td class="px-6 py-4">The main body text of the notification.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-mono text-primary">type</td>
+<td class="px-6 py-4 text-slate-400">'success' | 'error' | 'info' | 'warning'</td>
+<td class="px-6 py-4 text-slate-500">'info'</td>
+<td class="px-6 py-4">Defines the semantic theme and icon.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-mono text-primary">duration</td>
+<td class="px-6 py-4 text-slate-400">number</td>
+<td class="px-6 py-4 text-slate-500">3000</td>
+<td class="px-6 py-4">Time in ms before auto-closing. Set to 0 to disable.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-mono text-primary">position</td>
+<td class="px-6 py-4 text-slate-400">Enum</td>
+<td class="px-6 py-4 text-slate-500">'top-right'</td>
+<td class="px-6 py-4">Screen placement for the toast stack.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Footer -->
+<footer class="pt-12 border-t border-border-dark flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500 text-sm">
+<p>© 2024 WebMX Library. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">GitHub</a>
+<a class="hover:text-white transition-colors" href="#">Discord</a>
+<a class="hover:text-white transition-colors" href="#">Twitter</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

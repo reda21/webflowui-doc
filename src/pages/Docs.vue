@@ -1,117 +1,140 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { Icon } from 'webflow-ui'
 
 const route = useRoute()
 
-// Active section is now based on route
+// Active section logic
 const activeSection = computed(() => {
-    if (route.path.includes('getting-started')) return 'installation'
-    if (route.path.includes('navbar')) return 'navbar'
-    if (route.path.includes('button-group')) return 'button-group'
-    if (route.path.includes('social-button')) return 'social-button'
-    if (route.path.includes('button')) return 'button'
-    if (route.path.includes('theming')) return 'theming'
-    if (route.path.includes('dark-mode')) return 'dark-mode'
-    if (route.path.includes('avatar')) return 'avatar'
-    if (route.path.includes('icon')) return 'icon'
-    if (route.path.includes('tooltip')) return 'tooltip'
-    if (route.path.includes('modal')) return 'modal'
-    if (route.path.includes('card')) return 'card'
-    if (route.path.includes('skeleton')) return 'skeleton'
-    if (route.path.includes('toast')) return 'toast'
-    if (route.path.includes('progress')) return 'progress'
-    if (route.path.includes('separator')) return 'separator'
+    const path = route.path
+    if (path.includes('getting-started')) return 'installation'
+    if (path.includes('navbar')) return 'navbar'
+    if (path.includes('button-group')) return 'button-group'
+    if (path.includes('social-button')) return 'social-button'
+    if (path.includes('button')) return 'button'
+    if (path.includes('theming')) return 'theming'
+    if (path.includes('dark-mode')) return 'dark-mode'
+    if (path.includes('avatar')) return 'avatar'
+    if (path.includes('icon-library')) return 'icon-library'
+    if (path.includes('icon')) return 'icon'
+    if (path.includes('tooltip')) return 'tooltip'
+    if (path.includes('modal')) return 'modal'
+    if (path.includes('card')) return 'card'
+    if (path.includes('skeleton')) return 'skeleton'
+    if (path.includes('toast')) return 'toast'
+    if (path.includes('progress')) return 'progress'
+    if (path.includes('separator')) return 'separator'
+    if (path.includes('changelog')) return 'changelog'
     return ''
 })
 
-const scrollToSection = (sectionId: string) => {
-    // No longer scrolling in one page, but navigation is handled by router-link
-}
+// Styles definition to avoid @apply issues in SFC
+const navLinkClass = "flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-300 italic"
+const navActiveClass = "flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 shadow-lg shadow-indigo-500/5 italic"
 </script>
 
 <template>
-    <div class="flex min-h-[calc(100vh-80px)]">
-        <!-- Sidebar -->
-        <aside class="hidden lg:block w-72 shrink-0 docs-sidebar sticky top-20 h-[calc(100vh-80px)] overflow-y-auto">
-            <nav class="p-8 space-y-10">
-                <!-- Getting Started -->
-                <div>
-                    <div class="section-label mb-4">Onboarding</div>
-                    <ul class="space-y-2">
+    <div class="flex min-h-[calc(100vh-80px)] bg-transparent">
+        <!-- Dashboard Sidebar (Glass) -->
+        <aside
+            class="hidden lg:block w-80 shrink-0 sticky top-20 h-[calc(100vh-80px)] overflow-y-auto border-r border-white/5 bg-black/5 backdrop-blur-3xl custom-scrollbar">
+            <nav class="p-8 space-y-12">
+                <!-- Group: Start -->
+                <div class="space-y-4">
+                    <div
+                        class="flex items-center gap-2 px-2 text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
+                        <Icon name="heroicons:bolt" size="xs" class="text-indigo-500" />
+                        Inisialisation
+                    </div>
+                    <ul class="space-y-1">
                         <li>
                             <router-link to="/docs/getting-started"
-                                :class="[activeSection === 'installation' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
-                                class="block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
+                                :class="[activeSection === 'installation' ? navActiveClass : navLinkClass]">
+                                <Icon name="heroicons:rocket-launch" size="xs" />
                                 Installation
                             </router-link>
                         </li>
-                        <li>
-                            <router-link to="/docs/getting-started#usage"
-                                :class="[route.hash === '#usage' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
-                                class="block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
-                                Utilisation
-                            </router-link>
-                        </li>
                     </ul>
                 </div>
 
-                <!-- Components -->
-                <div>
-                    <div class="section-label mb-4">Composants</div>
-                    <ul class="space-y-2">
+                <!-- Group: Elements -->
+                <div class="space-y-4">
+                    <div
+                        class="flex items-center gap-2 px-2 text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
+                        <Icon name="heroicons:square-3-stack-3d" size="xs" class="text-cyan-500" />
+                        Composants Flux
+                    </div>
+                    <ul class="space-y-1">
                         <li v-for="comp in [
-                            { name: 'Navbar', icon: 'bg-blue-500', path: 'navbar' },
-                            { name: 'Button', icon: 'bg-indigo-500', path: 'button' },
-                            { name: 'ButtonGroup', icon: 'bg-purple-500', path: 'button-group' },
-                            { name: 'SocialButton', icon: 'bg-pink-500', path: 'social-button' },
-                            { name: 'Avatar', icon: 'bg-rose-500', path: 'avatar' },
-                            { name: 'Icon', icon: 'bg-orange-500', path: 'icon' },
-                            { name: 'Tooltip', icon: 'bg-amber-500', path: 'tooltip' },
-                            { name: 'Modal', icon: 'bg-yellow-500', path: 'modal' },
-                            { name: 'Card', icon: 'bg-lime-500', path: 'card' },
-                            { name: 'Skeleton', icon: 'bg-green-500', path: 'skeleton' },
-                            { name: 'Toast', icon: 'bg-emerald-500', path: 'toast' },
-                            { name: 'Progress', icon: 'bg-teal-500', path: 'progress' },
-                            { name: 'Separator', icon: 'bg-cyan-500', path: 'separator' }
+                            { name: 'Navbar', icon: 'heroicons:window', path: 'navbar' },
+                            { name: 'Button', icon: 'heroicons:cursor-arrow-ripple', path: 'button' },
+                            { name: 'ButtonGroup', icon: 'heroicons:rectangle-group', path: 'button-group' },
+                            { name: 'SocialButton', icon: 'heroicons:globe-alt', path: 'social-button' },
+                            { name: 'Avatar', icon: 'heroicons:user-circle', path: 'avatar' },
+                            { name: 'Icon', icon: 'heroicons:face-smile', path: 'icon' },
+                            { name: 'Tooltip', icon: 'heroicons:chat-bubble-left-ellipsis', path: 'tooltip' },
+                            { name: 'Modal', icon: 'heroicons:square-2-stack', path: 'modal' },
+                            { name: 'Card', icon: 'heroicons:rectangle-stack', path: 'card' },
+                            { name: 'Skeleton', icon: 'heroicons:sparkles', path: 'skeleton' },
+                            { name: 'Toast', icon: 'heroicons:bell-alert', path: 'toast' },
+                            { name: 'Progress', icon: 'heroicons:chart-bar', path: 'progress' },
+                            { name: 'Separator', icon: 'heroicons:minus', path: 'separator' }
                         ]" :key="comp.path">
                             <router-link :to="'/docs/components/' + comp.path"
-                                :class="[activeSection === comp.path ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
-                                class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
-                                <span :class="comp.icon"
-                                    class="w-2 h-2 rounded-full shadow-lg shadow-current/50"></span>
+                                :class="[activeSection === comp.path ? navActiveClass : navLinkClass]">
+                                <Icon :name="comp.icon" size="xs" />
                                 {{ comp.name }}
                             </router-link>
                         </li>
-                        <!-- Soon components -->
-                        <li>
-                            <div
-                                class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 dark:text-slate-600 opacity-60">
-                                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-                                Input
-                                <span
-                                    class="ml-auto text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">Soon</span>
-                            </div>
-                        </li>
                     </ul>
                 </div>
 
-                <!-- Customization -->
-                <div>
-                    <div class="section-label mb-4">Personnalisation</div>
-                    <ul class="space-y-2">
+                <!-- Group: System -->
+                <div class="space-y-4">
+                    <div
+                        class="flex items-center gap-2 px-2 text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
+                        <Icon name="heroicons:command-line" size="xs" class="text-violet-500" />
+                        Configuration
+                    </div>
+                    <ul class="space-y-1">
                         <li>
                             <router-link to="/docs/theming"
-                                :class="[activeSection === 'theming' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
-                                class="block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
-                                Thèmes
+                                :class="[activeSection === 'theming' ? navActiveClass : navLinkClass]">
+                                <Icon name="heroicons:swatch" size="xs" />
+                                DNA (Théming)
                             </router-link>
                         </li>
                         <li>
                             <router-link to="/docs/dark-mode"
-                                :class="[activeSection === 'dark-mode' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
-                                class="block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
-                                Dark Mode
+                                :class="[activeSection === 'dark-mode' ? navActiveClass : navLinkClass]">
+                                <Icon name="heroicons:moon" size="xs" />
+                                Spectre Sombre
+                            </router-link>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Group: Archives -->
+                <div class="space-y-4">
+                    <div
+                        class="flex items-center gap-2 px-2 text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
+                        <Icon name="heroicons:archive-box" size="xs" class="text-rose-500" />
+                        Ressources
+                    </div>
+                    <ul class="space-y-1">
+                        <li>
+                            <router-link to="/docs/icon-library"
+                                :class="[activeSection === 'icon-library' ? navActiveClass : navLinkClass]">
+                                <Icon name="heroicons:rectangle-group" size="xs" />
+                                Icon Library
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link to="/docs/changelog"
+                                :class="[activeSection === 'changelog' ? navActiveClass : navLinkClass]">
+                                <Icon name="heroicons:list-bullet" size="xs" />
+                                Changelog
                             </router-link>
                         </li>
                     </ul>
@@ -119,11 +142,52 @@ const scrollToSection = (sectionId: string) => {
             </nav>
         </aside>
 
-        <!-- Main Content (Router View) -->
-        <div class="flex-1 min-w-0 bg-slate-50/30 dark:bg-transparent">
-            <div class="max-w-5xl mx-auto px-6 lg:px-12 py-16">
-                <router-view />
+        <!-- Content Area -->
+        <main class="flex-1 min-w-0">
+            <!-- Dynamic Background -->
+            <div class="fixed inset-0 pointer-events-none -z-10 bg-slate-50 dark:bg-black overflow-hidden opacity-30">
+                <div class="absolute -top-1/4 -right-1/4 w-full h-full bg-indigo-500/10 blur-[200px] rounded-full">
+                </div>
             </div>
-        </div>
+
+            <div class="max-w-6xl mx-auto px-6 lg:px-12 py-16">
+                <router-view v-slot="{ Component }">
+                    <transition name="page" mode="out-in">
+                        <component :is="Component" />
+                    </transition>
+                </router-view>
+            </div>
+        </main>
     </div>
 </template>
+
+<style scoped>
+/* Page Transition */
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-enter-from {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.page-leave-to {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+</style>

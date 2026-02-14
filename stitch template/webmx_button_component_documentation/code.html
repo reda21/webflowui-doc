@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Button Component - WebMX Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3d7af5",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0a0c10",
+                        "surface-dark": "#121826",
+                        "border-dark": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scrollbar-width: thin;
+            scrollbar-color: #3d7af5 #0a0c10;
+        }
+        .glass-sidebar {
+            background: rgba(10, 12, 16, 0.8);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(18, 24, 38, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .syntax-keyword { color: #f472b6; }
+        .syntax-string { color: #22d3ee; }
+        .syntax-prop { color: #818cf8; }
+        .syntax-tag { color: #3d7af5; }
+        pre { font-family: 'Fira Code', monospace; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Header Navigation -->
+<header class="fixed top-0 w-full z-50 glass-sidebar border-b border-white/5 h-16 flex items-center justify-between px-8">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-white text-xl">layers</span>
+</div>
+<span class="font-bold text-xl tracking-tight">Web<span class="text-primary">MX</span></span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="bg-surface-dark border border-white/10 rounded-lg pl-10 pr-4 py-1.5 text-sm w-64 focus:outline-none focus:border-primary" placeholder="Quick search..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-slate-400">
+<span class="material-icons cursor-pointer hover:text-white">github</span>
+<span class="material-icons cursor-pointer hover:text-white">dark_mode</span>
+</div>
+</div>
+</header>
+<div class="flex pt-16">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 w-64 h-[calc(100vh-64px)] overflow-y-auto glass-sidebar p-6 hidden lg:block">
+<nav class="space-y-8">
+<div>
+<h5 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Getting Started</h5>
+<ul class="space-y-3">
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Introduction</a></li>
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Installation</a></li>
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Theming</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Components</h5>
+<ul class="space-y-3">
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Alert</a></li>
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Avatar</a></li>
+<li><a class="text-sm text-primary font-medium flex items-center gap-2" href="#">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                            Button
+                        </a></li>
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Card</a></li>
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Input</a></li>
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Modal</a></li>
+<li><a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Tabs</a></li>
+</ul>
+</div>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 xl:mr-64 p-8 lg:p-12 max-w-5xl mx-auto">
+<!-- Header Section -->
+<section class="mb-12">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">v1.2.4</span>
+<span class="text-slate-500 text-sm">Last updated: Oct 2023</span>
+</div>
+<h1 class="text-4xl lg:text-5xl font-bold mb-4 tracking-tight">Button</h1>
+<p class="text-lg text-slate-400 max-w-3xl leading-relaxed">
+                    A flexible component that allows users to take actions, and make choices, with a single tap. Buttons can be customized with various styles, sizes, and icon positions.
+                </p>
+</section>
+<!-- Hero Preview -->
+<section class="mb-16">
+<div class="glass-card rounded-xl p-1 lg:p-12 overflow-hidden relative group">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-50"></div>
+<div class="relative flex flex-col items-center justify-center min-h-[300px]">
+<button class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center gap-2 group-active:scale-95">
+                            Get Started Free
+                            <span class="material-icons text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="mt-4 flex justify-between items-center text-xs text-slate-500 font-mono">
+<span>Preview Stage v1</span>
+<span class="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
+<span class="material-icons text-sm">refresh</span> Reset View
+                    </span>
+</div>
+</section>
+<!-- Usage Section -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="text-primary">#</span> Usage
+                </h2>
+<div class="bg-surface-dark border border-white/5 rounded-xl overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/5">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">App.tsx</span>
+<button class="text-slate-500 hover:text-white transition-colors">
+<span class="material-icons text-sm">content_copy</span>
+</button>
+</div>
+<div class="p-6 font-mono text-sm leading-7">
+<pre><code><span class="syntax-keyword">import</span> { <span class="syntax-tag">Button</span> } <span class="syntax-keyword">from</span> <span class="syntax-string">'@webmx/core'</span>;
+
+<span class="syntax-keyword">function</span> <span class="syntax-tag">Example</span>() {
+  <span class="syntax-keyword">return</span> (
+    &lt;<span class="syntax-tag">Button</span> <span class="syntax-prop">variant</span>=<span class="syntax-string">"primary"</span> <span class="syntax-prop">size</span>=<span class="syntax-string">"lg"</span>&gt;
+      Click Me
+    &lt;/<span class="syntax-tag">Button</span>&gt;
+  );
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- Variants Section -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="text-primary">#</span> Variants
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Primary -->
+<div class="space-y-4">
+<div class="glass-card rounded-xl p-8 flex items-center justify-center min-h-[140px]">
+<button class="bg-primary text-white font-medium py-2 px-6 rounded-lg hover:brightness-110 transition-all">Primary</button>
+</div>
+<div>
+<p class="text-sm font-semibold mb-2">Primary</p>
+<p class="text-xs text-slate-500">The default state for primary actions.</p>
+</div>
+</div>
+<!-- Secondary -->
+<div class="space-y-4">
+<div class="glass-card rounded-xl p-8 flex items-center justify-center min-h-[140px]">
+<button class="bg-primary/20 text-primary font-medium py-2 px-6 rounded-lg hover:bg-primary/30 transition-all">Secondary</button>
+</div>
+<div>
+<p class="text-sm font-semibold mb-2">Secondary</p>
+<p class="text-xs text-slate-500">Used for alternative actions in a view.</p>
+</div>
+</div>
+<!-- Outline -->
+<div class="space-y-4">
+<div class="glass-card rounded-xl p-8 flex items-center justify-center min-h-[140px]">
+<button class="border border-white/10 text-white font-medium py-2 px-6 rounded-lg hover:bg-white/5 transition-all">Outline</button>
+</div>
+<div>
+<p class="text-sm font-semibold mb-2">Outline</p>
+<p class="text-xs text-slate-500">Subtle border with no background until hover.</p>
+</div>
+</div>
+<!-- Ghost -->
+<div class="space-y-4">
+<div class="glass-card rounded-xl p-8 flex items-center justify-center min-h-[140px]">
+<button class="text-slate-400 font-medium py-2 px-6 rounded-lg hover:bg-white/5 hover:text-white transition-all">Ghost</button>
+</div>
+<div>
+<p class="text-sm font-semibold mb-2">Ghost</p>
+<p class="text-xs text-slate-500">Minimalist button for secondary controls.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Sizes Section -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="text-primary">#</span> Sizes
+                </h2>
+<div class="glass-card rounded-xl p-8 flex flex-wrap items-center justify-center gap-8">
+<button class="bg-primary text-white text-xs font-medium py-1.5 px-3 rounded-md">Small</button>
+<button class="bg-primary text-white text-sm font-medium py-2.5 px-5 rounded-lg">Medium</button>
+<button class="bg-primary text-white text-base font-semibold py-3.5 px-8 rounded-xl">Large</button>
+</div>
+</section>
+<!-- Icons Section -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="text-primary">#</span> Icons
+                </h2>
+<div class="glass-card rounded-xl p-8 flex flex-wrap items-center justify-center gap-8">
+<button class="bg-primary text-white font-medium py-2.5 px-6 rounded-lg flex items-center gap-2">
+<span class="material-icons text-lg">cloud_upload</span>
+                        Upload Files
+                    </button>
+<button class="border border-white/10 text-white font-medium py-2.5 px-6 rounded-lg flex items-center gap-2">
+                        Settings
+                        <span class="material-icons text-lg">settings</span>
+</button>
+<button class="bg-primary/20 text-primary p-2.5 rounded-lg flex items-center justify-center">
+<span class="material-icons text-lg">delete</span>
+</button>
+</div>
+</section>
+<!-- Props Table -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="text-primary">#</span> Props API
+                </h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10">
+<th class="py-4 px-4 text-sm font-semibold text-slate-400">Property</th>
+<th class="py-4 px-4 text-sm font-semibold text-slate-400">Type</th>
+<th class="py-4 px-4 text-sm font-semibold text-slate-400">Default</th>
+<th class="py-4 px-4 text-sm font-semibold text-slate-400">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-4 px-4 font-mono text-sm text-primary">variant</td>
+<td class="py-4 px-4 font-mono text-xs text-slate-400">'primary' | 'secondary' | 'outline' | 'ghost'</td>
+<td class="py-4 px-4 font-mono text-xs text-slate-500">'primary'</td>
+<td class="py-4 px-4 text-sm text-slate-300">The visual style variant of the button.</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-4 px-4 font-mono text-sm text-primary">size</td>
+<td class="py-4 px-4 font-mono text-xs text-slate-400">'sm' | 'md' | 'lg'</td>
+<td class="py-4 px-4 font-mono text-xs text-slate-500">'md'</td>
+<td class="py-4 px-4 text-sm text-slate-300">Adjust the padding and font size.</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-4 px-4 font-mono text-sm text-primary">isLoading</td>
+<td class="py-4 px-4 font-mono text-xs text-slate-400">boolean</td>
+<td class="py-4 px-4 font-mono text-xs text-slate-500">false</td>
+<td class="py-4 px-4 text-sm text-slate-300">Show a spinner and disable interactions.</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-4 px-4 font-mono text-sm text-primary">isDisabled</td>
+<td class="py-4 px-4 font-mono text-xs text-slate-400">boolean</td>
+<td class="py-4 px-4 font-mono text-xs text-slate-500">false</td>
+<td class="py-4 px-4 text-sm text-slate-300">Disable all interactions and grey out.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Footer Pagination -->
+<footer class="mt-24 pt-12 border-t border-white/10 flex justify-between items-center text-slate-500">
+<a class="flex flex-col gap-1 items-start hover:text-white transition-colors" href="#">
+<span class="text-xs">Previous</span>
+<span class="font-semibold text-primary">← Avatar</span>
+</a>
+<a class="flex flex-col gap-1 items-end hover:text-white transition-colors" href="#">
+<span class="text-xs">Next</span>
+<span class="font-semibold text-primary">Card →</span>
+</a>
+</footer>
+</main>
+<!-- On this page Navigation -->
+<aside class="fixed right-0 w-64 h-[calc(100vh-64px)] p-8 hidden xl:block">
+<h5 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">On this page</h5>
+<ul class="space-y-3 text-sm border-l border-white/5 pl-4">
+<li><a class="text-primary hover:text-primary transition-colors" href="#">Overview</a></li>
+<li><a class="text-slate-400 hover:text-white transition-colors" href="#">Usage</a></li>
+<li><a class="text-slate-400 hover:text-white transition-colors" href="#">Variants</a></li>
+<li><a class="text-slate-400 hover:text-white transition-colors" href="#">Sizes</a></li>
+<li><a class="text-slate-400 hover:text-white transition-colors" href="#">Icons</a></li>
+<li><a class="text-slate-400 hover:text-white transition-colors" href="#">Props API</a></li>
+</ul>
+<div class="mt-12 glass-card rounded-lg p-4">
+<p class="text-xs text-slate-400 mb-3 font-medium">Need help?</p>
+<button class="w-full py-2 bg-primary/10 text-primary text-xs font-bold rounded hover:bg-primary/20 transition-colors">
+                    Join Discord
+                </button>
+</div>
+</aside>
+</div>
+</body></html>

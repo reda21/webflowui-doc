@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebMX Changelog Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #101e22;
+            background-image: 
+                linear-gradient(rgba(37, 192, 244, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 192, 244, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .glass-card {
+            background: rgba(16, 30, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(37, 192, 244, 0.15);
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, rgba(37, 192, 244, 0.4) 5%, rgba(37, 192, 244, 0.4) 95%, transparent);
+        }
+        .glow-dot {
+            box-shadow: 0 0 12px rgba(37, 192, 244, 0.6);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display text-white min-h-screen">
+<!-- Header / Search Bar -->
+<header class="sticky top-0 z-50 px-4 py-3 bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center justify-between gap-4 max-w-lg mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-icons text-primary">menu</span>
+<span class="text-lg font-bold tracking-tight text-white">WebMX<span class="text-primary">.</span></span>
+</div>
+<div class="flex-1 max-w-xs relative">
+<input class="w-full bg-background-dark/50 border border-primary/20 rounded-lg py-1.5 pl-9 pr-3 text-sm focus:outline-none focus:border-primary/50 transition-colors" placeholder="Search versions..." type="text"/>
+<span class="material-icons absolute left-2.5 top-1.5 text-primary/60 text-lg">search</span>
+</div>
+</div>
+</header>
+<main class="max-w-lg mx-auto px-4 py-8">
+<!-- Page Title -->
+<div class="mb-10 px-4">
+<h1 class="text-3xl font-bold text-white mb-2">Changelog</h1>
+<p class="text-primary/60 text-sm">Every update, improvement, and bug fix in one place.</p>
+</div>
+<!-- Timeline Container -->
+<div class="relative pl-6 ml-2">
+<!-- Vertical Line -->
+<div class="absolute left-0 top-0 bottom-0 w-[2px] timeline-line"></div>
+<!-- Version v2.4.0 -->
+<div class="relative mb-12">
+<!-- Dot -->
+<div class="absolute -left-[27px] top-6 w-3.5 h-3.5 rounded-full bg-primary glow-dot border-2 border-background-dark"></div>
+<div class="glass-card rounded-xl p-5 shadow-2xl">
+<div class="flex items-center justify-between mb-3">
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold border border-primary/30 uppercase tracking-wider">v2.4.0</span>
+<span class="text-primary/40 text-[10px] font-medium uppercase tracking-widest">Oct 24, 2023</span>
+</div>
+<p class="text-white/80 text-sm leading-relaxed mb-6 font-medium">Major performance overhaul and new glassmorphism utility classes for mobile layouts.</p>
+<div class="space-y-6">
+<!-- New Features -->
+<section>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-icons text-[#4ade80] text-sm">add_circle</span>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-[#4ade80]/90">New Features</h3>
+</div>
+<ul class="space-y-2.5 pl-6">
+<li class="text-sm text-white/70 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#4ade80]/40 before:rounded-full">Auto-tinting sidebar navigation logic</li>
+<li class="text-sm text-white/70 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#4ade80]/40 before:rounded-full">Support for native iOS Haptic Feedback via hooks</li>
+</ul>
+</section>
+<!-- Improvements -->
+<section>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-icons text-[#818cf8] text-sm">bolt</span>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-[#818cf8]/90">Improvements</h3>
+</div>
+<ul class="space-y-2.5 pl-6">
+<li class="text-sm text-white/70 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#818cf8]/40 before:rounded-full">Reduced main bundle size by 14.2%</li>
+<li class="text-sm text-white/70 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#818cf8]/40 before:rounded-full">Optimized image lazy loading for Retina displays</li>
+</ul>
+</section>
+<!-- Bug Fixes -->
+<section>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-icons text-[#fb7185] text-sm">bug_report</span>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-[#fb7185]/90">Bug Fixes</h3>
+</div>
+<ul class="space-y-2.5 pl-6">
+<li class="text-sm text-white/70 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#fb7185]/40 before:rounded-full">Fixed overflow issues on iPhone SE (1st Gen)</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<!-- Version v2.3.1 -->
+<div class="relative mb-12">
+<!-- Dot -->
+<div class="absolute -left-[27px] top-6 w-3.5 h-3.5 rounded-full bg-primary/40 border-2 border-background-dark"></div>
+<div class="glass-card rounded-xl p-5 shadow-xl opacity-80">
+<div class="flex items-center justify-between mb-3">
+<span class="bg-primary/10 text-primary/80 px-3 py-1 rounded-full text-xs font-bold border border-primary/20 uppercase tracking-wider">v2.3.1</span>
+<span class="text-primary/30 text-[10px] font-medium uppercase tracking-widest">Oct 02, 2023</span>
+</div>
+<p class="text-white/70 text-sm leading-relaxed mb-4">Hotfix for navigation state persistence and theme provider stabilization.</p>
+<div class="space-y-4">
+<section>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-icons text-[#fb7185] text-sm">bug_report</span>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-[#fb7185]/80">Bug Fixes</h3>
+</div>
+<ul class="space-y-2 pl-6">
+<li class="text-sm text-white/60 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#fb7185]/30 before:rounded-full">Resolved memory leak in dark-mode observer</li>
+<li class="text-sm text-white/60 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#fb7185]/30 before:rounded-full">Fixed flickering in Safari background blur components</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<!-- Version v2.3.0 -->
+<div class="relative mb-12">
+<!-- Dot -->
+<div class="absolute -left-[27px] top-6 w-3.5 h-3.5 rounded-full bg-primary/40 border-2 border-background-dark"></div>
+<div class="glass-card rounded-xl p-5 shadow-xl opacity-80">
+<div class="flex items-center justify-between mb-3">
+<span class="bg-primary/10 text-primary/80 px-3 py-1 rounded-full text-xs font-bold border border-primary/20 uppercase tracking-wider">v2.3.0</span>
+<span class="text-primary/30 text-[10px] font-medium uppercase tracking-widest">Sep 15, 2023</span>
+</div>
+<p class="text-white/70 text-sm leading-relaxed mb-6">Introduction of the Grid Architecture engine for developer environments.</p>
+<div class="space-y-6">
+<section>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-icons text-[#4ade80] text-sm">add_circle</span>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-[#4ade80]/80">New Features</h3>
+</div>
+<ul class="space-y-2 pl-6">
+<li class="text-sm text-white/60 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#4ade80]/30 before:rounded-full">New Developer Grid Overlay component</li>
+<li class="text-sm text-white/60 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#4ade80]/30 before:rounded-full">Custom cursor themes for touch-based interfaces</li>
+</ul>
+</section>
+<section>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-icons text-[#818cf8] text-sm">bolt</span>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-[#818cf8]/80">Improvements</h3>
+</div>
+<ul class="space-y-2 pl-6">
+<li class="text-sm text-white/60 relative before:content-[''] before:absolute before:-left-3.5 before:top-2 before:w-1.5 before:h-1.5 before:bg-[#818cf8]/30 before:rounded-full">Improved contrast ratios across all default themes</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-20 pb-12 text-center">
+<div class="flex justify-center mb-6">
+<img class="w-16 h-16 rounded-xl object-cover border border-primary/20 grayscale opacity-40" data-alt="Abstract code and grid pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpKE2v_gGLHc2nAZVy18QAP_uCXvTAgdMsDpTj_jhN7LhsrhZfThCZoEjDwB8c1O6-ttaLYjKaleo-0OZ8W-QWQfNRkJx1Qn2wKeUpmW2JkZRlG99B2_tnARpGD5YAOumCnned9zkK3xf6F39Yxm9gVjmj6Xlm_O91NlGoyfM5AADhX7kTBlk3jq_M-TBvdoCcII7Q6f-yId3hmxo3BM7098UL8kpejIRvd4YsnnJiTUXBh3s6Z329nkelmGkuhNWv9dS-mHC8hc4"/>
+</div>
+<p class="text-xs text-primary/40 uppercase tracking-widest font-medium">End of Release History</p>
+<button class="mt-6 px-6 py-2 bg-primary/10 border border-primary/30 text-primary text-xs font-bold rounded-lg uppercase tracking-widest hover:bg-primary/20 transition-all">
+                Subscribe to Updates
+            </button>
+</footer>
+</main>
+<!-- Side Menu / Floating Nav (Simplified for Mobile) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-background-dark/90 border border-primary/20 px-2 py-2 rounded-full backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] z-50">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-primary/60 hover:text-primary transition-colors">
+<span class="material-icons text-xl">home</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-background-dark font-bold shadow-lg">
+<span class="material-icons text-xl">history</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-primary/60 hover:text-primary transition-colors">
+<span class="material-icons text-xl">extension</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-primary/60 hover:text-primary transition-colors">
+<span class="material-icons text-xl">article</span>
+</button>
+</nav>
+</body></html>

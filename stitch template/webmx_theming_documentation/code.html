@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebMX Theming Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3d7af5",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0a0c10",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(61, 122, 245, 0.2);
+        }
+        body {
+            background: radial-gradient(circle at top right, #1a2235, #0a0c10);
+            min-height: 100vh;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-display text-slate-200 antialiased bg-background-light dark:bg-background-dark">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 glass-effect border-r border-white/10 hidden lg:flex flex-col">
+<div class="p-6">
+<div class="flex items-center gap-2 mb-8">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-white text-xl">layers</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-white">WebMX</span>
+</div>
+<nav class="space-y-1">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 px-3">Getting Started</p>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-white/5 transition-colors" href="#">
+<span class="material-icons text-sm">auto_awesome</span>
+<span class="text-sm">Introduction</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-white/5 transition-colors" href="#">
+<span class="material-icons text-sm">download</span>
+<span class="text-sm">Installation</span>
+</a>
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-8 mb-4 px-3">Foundations</p>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary border border-primary/20" href="#">
+<span class="material-icons text-sm text-primary">palette</span>
+<span class="text-sm font-medium">Theming</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-white/5 transition-colors" href="#">
+<span class="material-icons text-sm">text_fields</span>
+<span class="text-sm">Typography</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-white/5 transition-colors" href="#">
+<span class="material-icons text-sm">grid_view</span>
+<span class="text-sm">Layout</span>
+</a>
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-8 mb-4 px-3">Components</p>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-white/5 transition-colors" href="#">
+<span class="material-icons text-sm">smart_button</span>
+<span class="text-sm">Buttons</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-white/5 transition-colors" href="#">
+<span class="material-icons text-sm">credit_card</span>
+<span class="text-sm">Cards</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-white/5">
+<div class="flex items-center gap-3 p-3 glass-effect rounded-xl">
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img alt="Avatar" data-alt="User profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUvaMCSr7Oq0pTcanIEd8MVlnEcUze5se0Pp3KK3flguuoww4T4mRCgn2QfR_-44fhltOc10YABMkTiCbxeNBCyiG8UXUc0VQCn0Y4PXwy_Un85XfKEXOvmN9zdSgok1ideaT4cANNUzhQXWwqT8wqmAv1PY9PS-9VOlHf95oCEc3ogKxpYrnSQGDgTtBaMNPVKM1T610xfO9d45X3MeEhESyhU-n13yYl9YPXnGHO35QNeeSvD66znCT_ke9lgJ3lsrsYJZIvdrg"/>
+</div>
+<div>
+<p class="text-xs font-semibold text-white">Alex Morgan</p>
+<p class="text-[10px] text-slate-500">Pro Developer</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Documentation Scroll -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-8 lg:p-12">
+<div class="max-w-4xl mx-auto">
+<header class="mb-12">
+<div class="flex items-center gap-2 text-primary mb-4">
+<span class="text-sm font-bold tracking-widest uppercase">Design System</span>
+</div>
+<h1 class="text-4xl font-bold text-white mb-4">Theming</h1>
+<p class="text-slate-400 text-lg leading-relaxed">
+                            WebMX is built on a robust design token system. Customize your library's look and feel globally by modifying variables for colors, typography, and spacing.
+                        </p>
+</header>
+<!-- Section: Color Palette -->
+<section class="mb-16">
+<div class="flex items-center gap-3 mb-8">
+<span class="p-2 bg-primary/10 rounded-lg"><span class="material-icons text-primary">palette</span></span>
+<h2 class="text-2xl font-bold text-white">Color Palette</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Primary Swatch -->
+<div class="glass-effect p-6 rounded-xl flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-primary flex-shrink-0 border-4 border-white/5 shadow-lg shadow-primary/20"></div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-bold text-white">Primary</span>
+<span class="text-[10px] px-2 py-0.5 bg-primary/20 text-primary rounded-full font-mono">--webmx-primary</span>
+</div>
+<div class="flex gap-4">
+<div>
+<p class="text-[10px] text-slate-500 uppercase">Hex</p>
+<p class="text-xs font-mono text-slate-300">#3d7af5</p>
+</div>
+<div>
+<p class="text-[10px] text-slate-500 uppercase">HSL</p>
+<p class="text-xs font-mono text-slate-300">220, 91%, 60%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Success Swatch -->
+<div class="glass-effect p-6 rounded-xl flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-emerald-500 flex-shrink-0 border-4 border-white/5"></div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-bold text-white">Success</span>
+<span class="text-[10px] px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded-full font-mono">--webmx-success</span>
+</div>
+<div class="flex gap-4">
+<div>
+<p class="text-[10px] text-slate-500 uppercase">Hex</p>
+<p class="text-xs font-mono text-slate-300">#10b981</p>
+</div>
+<div>
+<p class="text-[10px] text-slate-500 uppercase">HSL</p>
+<p class="text-xs font-mono text-slate-300">160, 84%, 39%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Warning Swatch -->
+<div class="glass-effect p-6 rounded-xl flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-amber-500 flex-shrink-0 border-4 border-white/5"></div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-bold text-white">Warning</span>
+<span class="text-[10px] px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded-full font-mono">--webmx-warning</span>
+</div>
+<div class="flex gap-4">
+<div>
+<p class="text-[10px] text-slate-500 uppercase">Hex</p>
+<p class="text-xs font-mono text-slate-300">#f59e0b</p>
+</div>
+<div>
+<p class="text-[10px] text-slate-500 uppercase">HSL</p>
+<p class="text-xs font-mono text-slate-300">38, 92%, 50%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Error Swatch -->
+<div class="glass-effect p-6 rounded-xl flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-rose-500 flex-shrink-0 border-4 border-white/5"></div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-bold text-white">Error</span>
+<span class="text-[10px] px-2 py-0.5 bg-rose-500/20 text-rose-400 rounded-full font-mono">--webmx-error</span>
+</div>
+<div class="flex gap-4">
+<div>
+<p class="text-[10px] text-slate-500 uppercase">Hex</p>
+<p class="text-xs font-mono text-slate-300">#f43f5e</p>
+</div>
+<div>
+<p class="text-[10px] text-slate-500 uppercase">HSL</p>
+<p class="text-xs font-mono text-slate-300">350, 89%, 60%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Typography -->
+<section class="mb-16">
+<div class="flex items-center gap-3 mb-8">
+<span class="p-2 bg-primary/10 rounded-lg"><span class="material-icons text-primary">text_fields</span></span>
+<h2 class="text-2xl font-bold text-white">Typography</h2>
+</div>
+<div class="glass-effect p-8 rounded-xl space-y-8">
+<div class="flex items-baseline gap-8 border-b border-white/5 pb-8">
+<span class="text-6xl font-bold text-white w-24">Aa</span>
+<div>
+<h3 class="text-2xl font-bold text-white">Inter</h3>
+<p class="text-slate-400 italic">"The quick brown fox jumps over the lazy dog"</p>
+</div>
+</div>
+<div class="grid gap-6">
+<div class="flex items-center">
+<span class="w-32 text-[10px] font-bold text-slate-500 uppercase">H1 Display</span>
+<span class="text-4xl font-bold text-white">Visual Storytelling</span>
+<span class="ml-auto text-xs font-mono text-slate-500">40px / 700</span>
+</div>
+<div class="flex items-center">
+<span class="w-32 text-[10px] font-bold text-slate-500 uppercase">Heading 2</span>
+<span class="text-2xl font-semibold text-white">System Architecture</span>
+<span class="ml-auto text-xs font-mono text-slate-500">24px / 600</span>
+</div>
+<div class="flex items-center">
+<span class="w-32 text-[10px] font-bold text-slate-500 uppercase">Body Lead</span>
+<span class="text-lg font-medium text-slate-300">Standardizing web patterns</span>
+<span class="ml-auto text-xs font-mono text-slate-500">18px / 500</span>
+</div>
+<div class="flex items-center">
+<span class="w-32 text-[10px] font-bold text-slate-500 uppercase">Body Base</span>
+<span class="text-base font-normal text-slate-400">Documentation for developers</span>
+<span class="ml-auto text-xs font-mono text-slate-500">16px / 400</span>
+</div>
+<div class="flex items-center">
+<span class="w-32 text-[10px] font-bold text-slate-500 uppercase">Caption</span>
+<span class="text-xs font-light text-slate-500">Updated 2 mins ago</span>
+<span class="ml-auto text-xs font-mono text-slate-500">12px / 300</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Global Styles (Spacing/Radius) -->
+<section class="mb-16">
+<div class="flex items-center gap-3 mb-8">
+<span class="p-2 bg-primary/10 rounded-lg"><span class="material-icons text-primary">straighten</span></span>
+<h2 class="text-2xl font-bold text-white">Global Styles</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Spacing Scale -->
+<div class="glass-effect p-8 rounded-xl">
+<h4 class="text-sm font-bold text-white mb-6 flex justify-between">
+<span>Spacing Scale</span>
+<span class="text-slate-500">2px - 64px</span>
+</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-1 h-4 bg-primary/40 rounded"></div>
+<div class="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="bg-primary w-[10%] h-full"></div>
+</div>
+<span class="text-[10px] font-mono text-slate-400 w-8">4px</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-4 h-4 bg-primary/40 rounded"></div>
+<div class="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="bg-primary w-[25%] h-full"></div>
+</div>
+<span class="text-[10px] font-mono text-slate-400 w-8">16px</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 bg-primary/40 rounded"></div>
+<div class="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="bg-primary w-[50%] h-full"></div>
+</div>
+<span class="text-[10px] font-mono text-slate-400 w-8">32px</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/40 rounded"></div>
+<div class="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="bg-primary w-[100%] h-full"></div>
+</div>
+<span class="text-[10px] font-mono text-slate-400 w-8">64px</span>
+</div>
+</div>
+</div>
+<!-- Border Radius -->
+<div class="glass-effect p-8 rounded-xl">
+<h4 class="text-sm font-bold text-white mb-6">Corner Radius</h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 border border-white/10 rounded flex flex-col items-center gap-2">
+<div class="w-12 h-12 border-2 border-primary rounded-sm"></div>
+<span class="text-[10px] font-mono text-slate-500">sm (2px)</span>
+</div>
+<div class="p-4 border border-white/10 rounded-lg flex flex-col items-center gap-2">
+<div class="w-12 h-12 border-2 border-primary rounded-lg"></div>
+<span class="text-[10px] font-mono text-slate-500">lg (8px)</span>
+</div>
+<div class="p-4 border border-white/10 rounded-xl flex flex-col items-center gap-2">
+<div class="w-12 h-12 border-2 border-primary rounded-xl"></div>
+<span class="text-[10px] font-mono text-slate-500">xl (12px)</span>
+</div>
+<div class="p-4 border border-white/10 rounded-full flex flex-col items-center gap-2">
+<div class="w-12 h-12 border-2 border-primary rounded-full"></div>
+<span class="text-[10px] font-mono text-slate-500">full (99px)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Customizer Sidebar / Widget -->
+<aside class="w-96 glass-effect border-l border-white/10 p-8 hidden xl:flex flex-col">
+<div class="flex items-center gap-2 mb-8">
+<span class="material-icons text-primary">tune</span>
+<h3 class="text-lg font-bold text-white">Theme Customizer</h3>
+</div>
+<div class="space-y-8">
+<!-- Controls -->
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-xs font-bold text-slate-400 uppercase mb-3">
+<span>Primary Hue</span>
+<span class="text-primary">220°</span>
+</div>
+<input class="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold text-slate-400 uppercase mb-3">
+<span>Border Radius</span>
+<span class="text-primary">12px</span>
+</div>
+<input class="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold text-slate-400 uppercase mb-3">
+<span>Blur Intensity</span>
+<span class="text-primary">8px</span>
+</div>
+<input class="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+</div>
+<!-- Live Preview -->
+<div class="pt-8 border-t border-white/5">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">Live Preview</p>
+<div class="space-y-6">
+<!-- Preview Card -->
+<div class="bg-background-dark border border-white/10 rounded-xl p-6 glow-primary">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-white/5 p-1 border border-white/10">
+<img alt="Profile" data-alt="User avatar image for preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtbodTrhUCvbx2EM1AIF6FOS4u9fUh4KzGETsCNTau6BkGFAKcGnhFDhjgGcx87m4EVzGhGUAz7sEMwL3uKqvZzEe2fbUfeHCj7HIZFTfc1Saptj5Hz9wRPbvK4OPQziQ1ssCm97tbfR9e1uHLGKLwZG49fMbbOwA9uZwIp98oPndmHuC2CvZ1XC5cuXkI79R_nna98vzWhGxityDVfYiMZ0YxWqS44G2W_Ce8UzUe5APGBP8sgj0ae-7bFwKXNmk44FXf7EV5IIY"/>
+</div>
+<div>
+<p class="text-sm font-bold text-white">David Chen</p>
+<p class="text-xs text-slate-500">UI/UX Designer</p>
+</div>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                    Experience the power of a fully customizable design system. Adjust the sliders to see instant changes.
+                                </p>
+<button class="w-full py-3 bg-primary text-white text-sm font-bold rounded-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-icons text-sm">shopping_cart</span>
+                                    Purchase License
+                                </button>
+</div>
+<!-- Preview Secondary -->
+<div class="flex items-center justify-between p-4 glass-effect rounded-xl">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/20 rounded-lg">
+<span class="material-icons text-primary text-sm">notifications</span>
+</div>
+<span class="text-xs font-medium text-white">Notifications</span>
+</div>
+<div class="w-10 h-5 bg-primary/20 rounded-full relative">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="p-4 border-2 border-dashed border-white/10 rounded-xl flex items-center justify-center gap-3 text-slate-500 hover:border-primary/50 hover:text-primary transition-colors cursor-pointer group">
+<span class="material-icons text-sm">add_circle_outline</span>
+<span class="text-xs font-bold uppercase tracking-wider">Add Component</span>
+</div>
+</div>
+</div>
+<div class="mt-auto">
+<button class="w-full py-3 border border-white/10 rounded-lg text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-white/5 transition-colors">
+<span class="material-icons text-sm">code</span>
+                            Export Theme Tokens
+                        </button>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</body></html><!-- End of implementation -->

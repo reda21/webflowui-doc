@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebMX | Form Elements Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0a0b10",
+                        "neutral-surface": "#161b22",
+                        "border-accent": "#ffffff10",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .glass {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow:focus-within {
+            box-shadow: 0 0 15px rgba(13, 185, 242, 0.3);
+            border-color: #0db9f2;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .code-block {
+            background-color: #0d1117;
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Navigation Sidebar -->
+<aside class="fixed top-0 left-0 h-screen w-64 glass border-r border-border-accent z-50 hidden lg:flex flex-col">
+<div class="p-6 border-b border-border-accent">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="text-white font-bold">W</span>
+</div>
+<span class="text-xl font-bold tracking-tight">WebMX</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto p-4 space-y-8 scrollbar-hide">
+<div>
+<h3 class="text-xs font-semibold uppercase text-slate-500 mb-4 px-2 tracking-widest">Getting Started</h3>
+<ul class="space-y-1">
+<li><a class="block px-3 py-2 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" href="#">Installation</a></li>
+<li><a class="block px-3 py-2 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" href="#">Theming</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-semibold uppercase text-slate-500 mb-4 px-2 tracking-widest">Components</h3>
+<ul class="space-y-1">
+<li><a class="block px-3 py-2 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" href="#">Layout</a></li>
+<li><a class="block px-3 py-2 rounded-lg bg-primary/20 text-primary font-medium" href="#">Form Elements</a></li>
+<li><a class="block px-3 py-2 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" href="#">Navigation</a></li>
+<li><a class="block px-3 py-2 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" href="#">Overlays</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-semibold uppercase text-slate-500 mb-4 px-2 tracking-widest">Content</h3>
+<ul class="space-y-1">
+<li><a class="block px-3 py-2 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" href="#inputs">Text Inputs</a></li>
+<li><a class="block px-3 py-2 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" href="#selection">Selection Controls</a></li>
+<li><a class="block px-3 py-2 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" href="#validation">Validation States</a></li>
+</ul>
+</div>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 min-h-screen">
+<!-- Header Section -->
+<header class="p-8 lg:p-12 border-b border-border-accent bg-background-light dark:bg-background-dark/50 sticky top-0 backdrop-blur-md z-40">
+<div class="max-w-4xl">
+<div class="flex items-center gap-2 text-primary mb-4 text-sm font-medium">
+<span>Documentation</span>
+<span class="material-icons text-xs">chevron_right</span>
+<span>Components</span>
+</div>
+<h1 class="text-4xl lg:text-5xl font-bold mb-4 tracking-tight">Form Elements</h1>
+<p class="text-xl text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
+                    Build robust, accessible, and high-performance user inputs with our premium component suite. Optimized for rapid development and aesthetic perfection.
+                </p>
+</div>
+</header>
+<div class="p-8 lg:p-12 space-y-24 max-w-6xl">
+<!-- 1. Interactive Playground -->
+<section class="space-y-6" id="demo">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-semibold">Interactive Preview</h2>
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">Live Demo</span>
+</div>
+<div class="grid lg:grid-cols-2 gap-12 items-start">
+<div class="glass p-8 rounded-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-icons text-primary/40">auto_awesome</span>
+</div>
+<h3 class="text-xl font-bold mb-6">Contact Form</h3>
+<form class="space-y-5">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">First Name</label>
+<input class="w-full bg-slate-900/50 border border-border-accent rounded-lg px-4 py-3 focus:outline-none neon-glow text-white placeholder-slate-600 transition-all" placeholder="John" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Last Name</label>
+<input class="w-full bg-slate-900/50 border border-border-accent rounded-lg px-4 py-3 focus:outline-none neon-glow text-white placeholder-slate-600 transition-all" placeholder="Doe" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Inquiry Type</label>
+<div class="relative">
+<select class="w-full appearance-none bg-slate-900/50 border border-border-accent rounded-lg px-4 py-3 focus:outline-none neon-glow text-white transition-all cursor-pointer">
+<option>General Support</option>
+<option>Enterprise Sales</option>
+<option>Partnership</option>
+</select>
+<span class="material-icons absolute right-3 top-3.5 text-slate-500 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Message</label>
+<textarea class="w-full bg-slate-900/50 border border-border-accent rounded-lg px-4 py-3 focus:outline-none neon-glow text-white placeholder-slate-600 transition-all resize-none" placeholder="How can we help you?" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary hover:bg-primary/80 text-white font-bold py-4 rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2" type="button">
+                                Send Message <span class="material-icons text-sm">send</span>
+</button>
+</form>
+</div>
+<div class="space-y-4">
+<p class="text-slate-400 leading-relaxed italic border-l-2 border-primary pl-4">
+                            "The WebMX contact form template demonstrates how to handle mixed input types while maintaining consistent spacing, accessibility focus rings, and premium glassmorphic styling."
+                        </p>
+<div class="code-block p-4 rounded-xl border border-border-accent">
+<pre class="text-sm text-primary/70 overflow-x-auto"><code>&lt;Form class="glass-container"&gt;
+  &lt;Input label="First Name" /&gt;
+  &lt;Select label="Inquiry Type"&gt;
+    &lt;Option value="support"&gt;Support&lt;/Option&gt;
+  &lt;/Select&gt;
+  &lt;Textarea label="Message" /&gt;
+  &lt;Button variant="primary"&gt;Send&lt;/Button&gt;
+&lt;/Form&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Text Inputs Gallery -->
+<section class="space-y-8" id="inputs">
+<div>
+<h2 class="text-2xl font-semibold mb-2">Text Inputs</h2>
+<p class="text-slate-500">Standard input variations for every data entry need.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Standard -->
+<div class="space-y-3">
+<label class="text-sm font-medium">Standard</label>
+<input class="w-full bg-slate-900/40 border border-border-accent rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Enter text..." type="text"/>
+<span class="text-xs text-slate-500 italic">Default state</span>
+</div>
+<!-- Password -->
+<div class="space-y-3">
+<label class="text-sm font-medium">Password</label>
+<div class="relative">
+<input class="w-full bg-slate-900/40 border border-border-accent rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="password" value="password123"/>
+<span class="material-icons absolute right-3 top-2 text-slate-500 cursor-pointer text-xl">visibility</span>
+</div>
+<span class="text-xs text-slate-500 italic">Toggle visibility</span>
+</div>
+<!-- Search -->
+<div class="space-y-3">
+<label class="text-sm font-medium">Search</label>
+<div class="relative">
+<span class="material-icons absolute left-3 top-2 text-slate-500 text-xl">search</span>
+<input class="w-full bg-slate-900/40 border border-border-accent rounded pl-10 pr-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Quick search..." type="search"/>
+</div>
+<span class="text-xs text-slate-500 italic">Icon support</span>
+</div>
+<!-- States -->
+<div class="space-y-3">
+<label class="text-sm font-medium">Focus State</label>
+<input class="w-full bg-slate-900/40 border border-primary ring-1 ring-primary/40 rounded px-4 py-2 outline-none" type="text" value="Active interaction"/>
+</div>
+<div class="space-y-3">
+<label class="text-sm font-medium text-red-500">Error State</label>
+<input class="w-full bg-red-500/5 border border-red-500/50 rounded px-4 py-2 outline-none" type="text" value="Invalid email address"/>
+<div class="flex items-center gap-1 text-red-500 text-xs mt-1">
+<span class="material-icons text-sm">error_outline</span>
+<span>Please enter a valid email.</span>
+</div>
+</div>
+<div class="space-y-3 opacity-50">
+<label class="text-sm font-medium">Disabled</label>
+<input class="w-full bg-slate-800 border border-border-accent rounded px-4 py-2 cursor-not-allowed" disabled="" type="text" value="Cannot edit me"/>
+</div>
+</div>
+</section>
+<!-- 3. Selection Controls -->
+<section class="space-y-8" id="selection">
+<div>
+<h2 class="text-2xl font-semibold mb-2">Selection &amp; Toggles</h2>
+<p class="text-slate-500">High-end controls for boolean and multi-option selection.</p>
+</div>
+<div class="grid lg:grid-cols-2 gap-12">
+<div class="space-y-8">
+<!-- Custom Select -->
+<div class="space-y-4">
+<label class="text-sm font-medium">High-End Select Menu</label>
+<div class="glass rounded-xl overflow-hidden border-border-accent">
+<div class="p-3 border-b border-border-accent">
+<div class="relative">
+<span class="material-icons absolute left-3 top-2 text-slate-500 text-sm">search</span>
+<input class="w-full bg-slate-800 border-none rounded px-8 py-1.5 text-sm focus:ring-0" placeholder="Filter options..." type="text"/>
+</div>
+</div>
+<div class="max-h-48 overflow-y-auto p-1">
+<div class="flex items-center justify-between p-3 rounded-lg bg-primary/20 text-primary group cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-icons">architecture</span>
+<span>Designer Role</span>
+</div>
+<span class="material-icons text-sm">check</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer text-slate-400">
+<div class="flex items-center gap-3">
+<span class="material-icons">code</span>
+<span>Developer Role</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer text-slate-400">
+<div class="flex items-center gap-3">
+<span class="material-icons">manage_accounts</span>
+<span>Manager Role</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<div class="grid grid-cols-2 gap-8">
+<!-- Switches -->
+<div class="space-y-4">
+<label class="text-sm font-medium">Toggles</label>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between gap-4">
+<span class="text-sm text-slate-400">Notifications</span>
+<button class="w-12 h-6 rounded-full bg-primary relative transition-all shadow-lg shadow-primary/20">
+<div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+</button>
+</div>
+<div class="flex items-center justify-between gap-4">
+<span class="text-sm text-slate-400">Dark Mode</span>
+<button class="w-12 h-6 rounded-full bg-slate-800 relative transition-all">
+<div class="absolute left-1 top-1 w-4 h-4 bg-slate-500 rounded-full"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Radios & Checks -->
+<div class="space-y-4">
+<label class="text-sm font-medium">Inputs</label>
+<div class="flex flex-col gap-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded border-2 border-primary bg-primary flex items-center justify-center">
+<span class="material-icons text-white text-[16px] font-bold">check</span>
+</div>
+<span class="text-sm text-slate-400 group-hover:text-slate-200">Checkbox Checked</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+</div>
+<span class="text-sm text-slate-400 group-hover:text-slate-200">Radio Active</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Validation Guidelines -->
+<section class="space-y-8" id="validation">
+<div>
+<h2 class="text-2xl font-semibold mb-2">Validation Logic</h2>
+<p class="text-slate-500">How to handle success, warning, and error states visually.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="p-6 border border-emerald-500/20 bg-emerald-500/5 rounded-xl space-y-4">
+<div class="flex items-center gap-2 text-emerald-500">
+<span class="material-icons">check_circle</span>
+<span class="font-bold">Success State</span>
+</div>
+<input class="w-full bg-slate-900/50 border border-emerald-500/50 rounded px-4 py-2 text-emerald-100" type="text" value="ValidUsername_01"/>
+<p class="text-sm text-emerald-500/80">Username is available and meets security criteria.</p>
+</div>
+<div class="p-6 border border-red-500/20 bg-red-500/5 rounded-xl space-y-4">
+<div class="flex items-center gap-2 text-red-500">
+<span class="material-icons">error</span>
+<span class="font-bold">Critical Error</span>
+</div>
+<input class="w-full bg-slate-900/50 border border-red-500/50 rounded px-4 py-2 text-red-100" type="text" value="invalid-email"/>
+<p class="text-sm text-red-500/80">The email address provided does not exist in our registry.</p>
+</div>
+</div>
+</section>
+<!-- 5. Props Reference -->
+<section class="space-y-8" id="props">
+<div>
+<h2 class="text-2xl font-semibold mb-2">Technical Reference</h2>
+<p class="text-slate-500">API properties for the Form Component suite.</p>
+</div>
+<div class="overflow-x-auto glass rounded-xl">
+<table class="w-full text-left">
+<thead class="bg-slate-900/80 border-b border-border-accent">
+<tr>
+<th class="px-6 py-4 text-xs font-bold uppercase text-slate-500 tracking-wider">Property</th>
+<th class="px-6 py-4 text-xs font-bold uppercase text-slate-500 tracking-wider">Type</th>
+<th class="px-6 py-4 text-xs font-bold uppercase text-slate-500 tracking-wider">Default</th>
+<th class="px-6 py-4 text-xs font-bold uppercase text-slate-500 tracking-wider">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-accent">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-sm text-primary">label</td>
+<td class="px-6 py-4 font-mono text-sm text-purple-400">string</td>
+<td class="px-6 py-4 font-mono text-sm text-slate-500">undefined</td>
+<td class="px-6 py-4 text-sm text-slate-400">Floating or static label text for the input.</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-sm text-primary">variant</td>
+<td class="px-6 py-4 font-mono text-sm text-purple-400">"filled" | "outline"</td>
+<td class="px-6 py-4 font-mono text-sm text-slate-500">"outline"</td>
+<td class="px-6 py-4 text-sm text-slate-400">Determines the visual background and border style.</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-sm text-primary">isDisabled</td>
+<td class="px-6 py-4 font-mono text-sm text-purple-400">boolean</td>
+<td class="px-6 py-4 font-mono text-sm text-slate-500">false</td>
+<td class="px-6 py-4 text-sm text-slate-400">Toggles the input interaction and visual opacity.</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-sm text-primary">iconRight</td>
+<td class="px-6 py-4 font-mono text-sm text-purple-400">MaterialIcon</td>
+<td class="px-6 py-4 font-mono text-sm text-slate-500">null</td>
+<td class="px-6 py-4 text-sm text-slate-400">Renders a specific icon on the trailing edge.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="p-12 border-t border-border-accent bg-background-light dark:bg-background-dark">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center">
+<span class="text-white text-[10px] font-bold">W</span>
+</div>
+<span class="font-bold">WebMX Components</span>
+</div>
+<div class="flex gap-8 text-slate-500 text-sm">
+<a class="hover:text-primary transition-colors" href="#">Github</a>
+<a class="hover:text-primary transition-colors" href="#">Discord</a>
+<a class="hover:text-primary transition-colors" href="#">Changelog</a>
+</div>
+<div class="text-slate-500 text-sm italic">
+                    Built for developers who value design.
+                </div>
+</div>
+</footer>
+</main>
+<!-- Floating Table of Contents (Right Sidebar) -->
+<aside class="fixed top-32 right-8 w-48 hidden xl:block">
+<h4 class="text-xs font-bold uppercase text-slate-500 mb-6 tracking-widest">On This Page</h4>
+<ul class="space-y-4 text-sm border-l border-border-accent pl-4">
+<li><a class="text-slate-400 hover:text-primary transition-colors block border-l-2 border-transparent -ml-[17px] pl-4" href="#demo">Live Demo</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors block border-l-2 border-transparent -ml-[17px] pl-4" href="#inputs">Text Inputs</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors block border-l-2 border-transparent -ml-[17px] pl-4" href="#selection">Selection Controls</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors block border-l-2 border-transparent -ml-[17px] pl-4" href="#validation">Validation</a></li>
+<li><a class="text-slate-400 hover:text-primary transition-colors block border-l-2 border-transparent -ml-[17px] pl-4" href="#props">API Reference</a></li>
+</ul>
+</aside>
+</body></html>

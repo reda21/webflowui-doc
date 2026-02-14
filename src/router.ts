@@ -104,6 +104,16 @@ const routes = [
         name: "docs-separator",
         component: () => import("./pages/docs/components/Separator.vue"),
       },
+      {
+        path: "icon-library",
+        name: "docs-icon-library",
+        component: () => import("./pages/docs/IconLibrary.vue"),
+      },
+      {
+        path: "changelog",
+        name: "docs-changelog",
+        component: () => import("./pages/docs/Changelog.vue"),
+      },
     ],
   },
 ];
