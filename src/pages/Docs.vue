@@ -33,26 +33,23 @@ const scrollToSection = (sectionId: string) => {
 <template>
     <div class="flex min-h-[calc(100vh-80px)]">
         <!-- Sidebar -->
-        <aside
-            class="hidden lg:block w-64 shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm">
-            <nav class="sticky top-20 p-6 space-y-8 max-h-[calc(100vh-80px)] overflow-y-auto">
+        <aside class="hidden lg:block w-72 shrink-0 docs-sidebar sticky top-20 h-[calc(100vh-80px)] overflow-y-auto">
+            <nav class="p-8 space-y-10">
                 <!-- Getting Started -->
                 <div>
-                    <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3">
-                        Pour commencer
-                    </h5>
-                    <ul class="space-y-1">
+                    <div class="section-label mb-4">Onboarding</div>
+                    <ul class="space-y-2">
                         <li>
                             <router-link to="/docs/getting-started"
-                                :class="[activeSection === 'installation' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="block px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+                                :class="[activeSection === 'installation' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
+                                class="block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
                                 Installation
                             </router-link>
                         </li>
                         <li>
                             <router-link to="/docs/getting-started#usage"
-                                :class="[route.hash === '#usage' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="block px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+                                :class="[route.hash === '#usage' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
+                                class="block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
                                 Utilisation
                             </router-link>
                         </li>
@@ -61,143 +58,59 @@ const scrollToSection = (sectionId: string) => {
 
                 <!-- Components -->
                 <div>
-                    <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3">
-                        Composants
-                    </h5>
-                    <ul class="space-y-1">
-                        <li>
-                            <router-link to="/docs/components/navbar"
-                                :class="[activeSection === 'navbar' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Navbar
+                    <div class="section-label mb-4">Composants</div>
+                    <ul class="space-y-2">
+                        <li v-for="comp in [
+                            { name: 'Navbar', icon: 'bg-blue-500', path: 'navbar' },
+                            { name: 'Button', icon: 'bg-indigo-500', path: 'button' },
+                            { name: 'ButtonGroup', icon: 'bg-purple-500', path: 'button-group' },
+                            { name: 'SocialButton', icon: 'bg-pink-500', path: 'social-button' },
+                            { name: 'Avatar', icon: 'bg-rose-500', path: 'avatar' },
+                            { name: 'Icon', icon: 'bg-orange-500', path: 'icon' },
+                            { name: 'Tooltip', icon: 'bg-amber-500', path: 'tooltip' },
+                            { name: 'Modal', icon: 'bg-yellow-500', path: 'modal' },
+                            { name: 'Card', icon: 'bg-lime-500', path: 'card' },
+                            { name: 'Skeleton', icon: 'bg-green-500', path: 'skeleton' },
+                            { name: 'Toast', icon: 'bg-emerald-500', path: 'toast' },
+                            { name: 'Progress', icon: 'bg-teal-500', path: 'progress' },
+                            { name: 'Separator', icon: 'bg-cyan-500', path: 'separator' }
+                        ]" :key="comp.path">
+                            <router-link :to="'/docs/components/' + comp.path"
+                                :class="[activeSection === comp.path ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
+                                class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
+                                <span :class="comp.icon"
+                                    class="w-2 h-2 rounded-full shadow-lg shadow-current/50"></span>
+                                {{ comp.name }}
                             </router-link>
                         </li>
+                        <!-- Soon components -->
                         <li>
-                            <router-link to="/docs/components/button"
-                                :class="[activeSection === 'button' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Button
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/button-group"
-                                :class="[activeSection === 'button-group' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                ButtonGroup
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/social-button"
-                                :class="[activeSection === 'social-button' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                SocialButton
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/avatar"
-                                :class="[activeSection === 'avatar' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Avatar
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/icon"
-                                :class="[activeSection === 'icon' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Icon
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/tooltip"
-                                :class="[activeSection === 'tooltip' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Tooltip
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/modal"
-                                :class="[activeSection === 'modal' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Modal
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/card"
-                                :class="[activeSection === 'card' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Card
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/skeleton"
-                                :class="[activeSection === 'skeleton' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Skeleton
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/toast"
-                                :class="[activeSection === 'toast' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Toast
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/progress"
-                                :class="[activeSection === 'progress' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Progress
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/docs/components/separator"
-                                :class="[activeSection === 'separator' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Separator
-                            </router-link>
-                        </li>
-                        <li>
-                            <span
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-400 dark:text-slate-600 cursor-not-allowed">
-                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                            <div
+                                class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 dark:text-slate-600 opacity-60">
+                                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
                                 Input
                                 <span
-                                    class="ml-auto text-xs px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400">Soon</span>
-                            </span>
+                                    class="ml-auto text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">Soon</span>
+                            </div>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Customization -->
                 <div>
-                    <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3">
-                        Personnalisation
-                    </h5>
-                    <ul class="space-y-1">
+                    <div class="section-label mb-4">Personnalisation</div>
+                    <ul class="space-y-2">
                         <li>
                             <router-link to="/docs/theming"
-                                :class="[activeSection === 'theming' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="block px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+                                :class="[activeSection === 'theming' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
+                                class="block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
                                 Thèmes
                             </router-link>
                         </li>
                         <li>
                             <router-link to="/docs/dark-mode"
-                                :class="[activeSection === 'dark-mode' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800']"
-                                class="block px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+                                :class="[activeSection === 'dark-mode' ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/40 border-indigo-200/50 dark:border-indigo-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-transparent']"
+                                class="block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border">
                                 Dark Mode
                             </router-link>
                         </li>
@@ -207,8 +120,8 @@ const scrollToSection = (sectionId: string) => {
         </aside>
 
         <!-- Main Content (Router View) -->
-        <div class="flex-1 min-w-0">
-            <div class="max-w-4xl mx-auto px-6 lg:px-12 py-12">
+        <div class="flex-1 min-w-0 bg-slate-50/30 dark:bg-transparent">
+            <div class="max-w-5xl mx-auto px-6 lg:px-12 py-16">
                 <router-view />
             </div>
         </div>
